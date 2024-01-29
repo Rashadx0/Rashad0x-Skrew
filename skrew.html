@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Scoreboard</h2>
+    <form id="scoreForm">
+        <label for="numPlayers">Enter number of players:</label>
+        <input type="number" id="numPlayers" name="numPlayers" required min="1"><br><br>
+        <div id="playersContainer"></div>
+        <button type="submit">Create Scoreboard</button>
+    </form>
+    <div id="scoreboard"></div>
+
+    <script>
+        document.getElementById("scoreForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var numPlayers = parseInt(document.getElementById("numPlayers").value);
+            var playersContainer = document.getElementById("playersContainer");
+            playersContainer.innerHTML = "";
+            for (var i = 1; i <= numPlayers; i++) {
+                var playerName = prompt("Enter name of player " + i + ":");
+                playersContainer.innerHTML += "<input type='hidden' name='player" + i + "' value='" + playerName + "'>";
+            }
+
+            var scoreboard = document.getElementById("scoreboard");
+            scoreboard.innerHTML = "<h2>Scoreboard</h2><table><tr><th>Player</th><th>Score</th></tr></table>";
+            displayScoreboard();
+        });
+
+        function displayScoreboard() {
+            var scoreboardTable = document.querySelector("#scoreboard table");
+            var players = document.getElementById("scoreForm").querySelectorAll("input[type='hidden']");
+            players.forEach(function(player) {
+                var playerName = player.value;
+                var score = parseInt(prompt("Enter score for " + playerName + ":"));
+                scoreboardTable.innerHTML += "<tr><td>" + playerName + "</td><td>" + score + "</td></tr>";
+            });
+        }
+    </script>
+</body>
+</html>
