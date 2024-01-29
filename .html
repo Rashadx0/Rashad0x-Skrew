@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لعبة الأرقام</title>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<h2>لعبة الأرقام</h2>
+<label for="players">اختر عدد اللاعبين:</label>
+<select id="players">
+    <option value="2">2 لاعب</option>
+    <option value="3">3 لاعبين</option>
+    <option value="4">4 لاعبين</option>
+</select>
+<button onclick="setupGame()">بدء اللعبة</button>
+<br><br>
+<div id="gameContainer"></div>
+
+<script>
+    function setupGame() {
+        var numPlayers = document.getElementById("players").value;
+        var gameContainer = document.getElementById("gameContainer");
+        var tableHTML = "<table><tr><th>اسم اللاعب</th><th>الرقم</th></tr>";
+        for (var i = 1; i <= numPlayers; i++) {
+            tableHTML += "<tr><td>لاعب " + i + "</td><td id='player" + i + "'>-</td></tr>";
+        }
+        tableHTML += "<tr><td>المجموع</td><td id='total'>-</td></tr>";
+        tableHTML += "</table><br><button onclick='resetNumbers()'>تصفير الأرقام</button>";
+        gameContainer.innerHTML = tableHTML;
+    }
+
+    function resetNumbers() {
+        var numPlayers = document.getElementById("players").value;
+        for (var i = 1; i <= numPlayers; i++) {
+            document.getElementById("player" + i).textContent = "-";
+        }
+        document.getElementById("total").textContent = "-";
+    }
+</script>
+
+</body>
+</html>
