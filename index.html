@@ -3,56 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لعبة الأرقام</title>
+<title>Multiplayer Game</title>
 <style>
     table {
         border-collapse: collapse;
     }
-    th, td {
+    table, th, td {
         border: 1px solid black;
-        padding: 8px;
-        text-align: center;
-    }
-    button {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
     }
 </style>
 </head>
 <body>
 
-<h2>لعبة الأرقام</h2>
-<label for="players">اختر عدد اللاعبين:</label>
-<select id="players">
-    <option value="2">2 لاعب</option>
-    <option value="3">3 لاعبين</option>
-    <option value="4">4 لاعبين</option>
+<h2>لعبة متعددة اللاعبين</h2>
+
+<label for="numPlayers">اختر عدد اللاعبين (1-8):</label>
+<select id="numPlayers">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
 </select>
-<button onclick="setupGame()">بدء اللعبة</button>
 <br><br>
-<div id="gameContainer"></div>
+
+<div id="playersInput">
+    <!-- سيتم إضافة حقول إدخال الأسماء هنا بناءً على اختيار اللاعبين -->
+</div>
+
+<button onclick="startGame()">بدء اللعبة</button>
+
+<table id="gameTable">
+    <thead>
+        <tr>
+            <th>اللاعب</th>
+            <th>الأرقام</th>
+            <th>المجموع</th>
+            <th>الفائز</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- الجدول الناتج سيكون هنا -->
+    </tbody>
+</table>
 
 <script>
-    function setupGame() {
-        var numPlayers = document.getElementById("players").value;
-        var gameContainer = document.getElementById("gameContainer");
-        var tableHTML = "<table><tr><th>اسم اللاعب</th><th>الرقم</th></tr>";
-        for (var i = 1; i <= numPlayers; i++) {
-            tableHTML += "<tr><td>لاعب " + i + "</td><td id='player" + i + "'>-</td></tr>";
-        }
-        tableHTML += "<tr><td>المجموع</td><td id='total'>-</td></tr>";
-        tableHTML += "</table><br><button onclick='resetNumbers()'>تصفير الأرقام</button>";
-        gameContainer.innerHTML = tableHTML;
+function startGame() {
+    var numPlayers = parseInt(document.getElementById("numPlayers").value);
+    var playersInputDiv = document.getElementById("playersInput");
+    playersInputDiv.innerHTML = "";
+
+    for (var i = 1; i <= numPlayers; i++) {
+        var playerName = prompt("اسم اللاعب " + i);
+        playersInputDiv.innerHTML += '<input type="text" id="player' + i + '" value="' + playerName + '" readonly><br>';
     }
 
-    function resetNumbers() {
-        var numPlayers = document.getElementById("players").value;
-        for (var i = 1; i <= numPlayers; i++) {
-            document.getElementById("player" + i).textContent = "-";
+    var tableBody = document.querySelector("#gameTable tbody");
+    tableBody.innerHTML = "";
+
+    for (var i = 1; i <= numPlayers; i++) {
+        var playerName = document.getElementById("player" + i).value;
+        var newRow = tableBody.insertRow();
+        newRow.innerHTML = '<td>' + playerName + '</td><td class="numbers"></td><td class="total">0</td><td class="winner"></td>';
+
+        for (var j = 0; j < 6; j++) {
+            var randomNumber = Math.floor(Math.random() * 100) + 1;
+            newRow.querySelector(".numbers").innerHTML += randomNumber + '<br>';
         }
-        document.getElementById("total").textContent = "-";
     }
+}
+
+function updateWinner() {
+    var rows = document.querySelectorAll("#gameTable tbody tr");
+    rows.forEach(function(row) {
+        var numbers = row.querySelector(".numbers").innerText.trim().split("\n").map(Number);
+        var total = numbers.reduce((a, b) => a + b, 0);
+        row.querySelector(".total").textContent = total;
+        var minNumber = Math.min(...numbers);
+        row.querySelector(".winner").textContent = minNumber === 0 ? "الفائز" : "";
+    });
+}
+
+// تحديث الفائز عند تغيير أحد الأرقام
+document.getElementById("gameTable").addEventListener("input", updateWinner);
 </script>
 
 </body>
