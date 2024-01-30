@@ -86,10 +86,7 @@ input[type="number"]::placeholder{
 #score5,
 #score6,
 #score7,
-#score8,
-
-
- {
+#score8 {
     display: grid;
     place-items: center;
     font-weight: bold;
@@ -98,9 +95,7 @@ input[type="number"]::placeholder{
     background-repeat: no-repeat;
     background-position: 95% 5px;
 }
-        }
 
-       
 @media ( max-width : 768px) {
     body{
         padding: 5px;
