@@ -3,151 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/skrre.webp">
-    <title>Skrew || 2-Players</title>
+    <title>Scoreboard</title>
     <style>
-        .table{
+        .table {
+            display: grid;
             grid-template-columns: repeat(2, 1fr);
-        }
+            gap: 10px;
+            margin-bottom: 20px;
+
     </style>
 </head>
 <body>
     <div class="table">
-
         <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
         <div><input class="text" id="row1_col2" placeholder="Name"></div>
-
 
         <div><input type="number" id="row2_col1" placeholder="R1"></div>
         <div><input type="number" id="row2_col2" placeholder="R1"></div>
 
-
         <div><input type="number" id="row3_col1" placeholder="R2"></div>
         <div><input type="number" id="row3_col2" placeholder="R2"></div>
-
 
         <div><input type="number" id="row4_col1" placeholder="R3"></div>
         <div><input type="number" id="row4_col2" placeholder="R3"></div>
 
-
         <div><input type="number" id="row5_col1" placeholder="R4"></div>
         <div><input type="number" id="row5_col2" placeholder="R4"></div>
-
 
         <div><input type="number" id="row6_col1" placeholder="R5"></div>
         <div><input type="number" id="row6_col2" placeholder="R5"></div>
 
-
         <div id="score1" class="mnr"></div>
         <div id="score2"></div>
-
-
-
     </div>
+
+    <div class="standings">
+        <div class="standings-header">Standings</div>
+        <div id="standing1" class="standing"></div>
+        <div id="standing2" class="standing"></div>
+    </div>
+
     <script>
-    function calculateSums() {
-    const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
-    const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
+        function calculateSums() {
+            const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
+            const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
 
-    let sum1 = 0;
-    let sum2 = 0;
+            let sum1 = 0;
+            let sum2 = 0;
 
-    for (let i = 0; i < column1IDs.length; i++) {
-        const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
-        const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
+            for (let i = 0; i < column1IDs.length; i++) {
+                const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
+                const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
 
-        sum1 += value1;
-        sum2 += value2;
-    }
+                sum1 += value1;
+                sum2 += value2;
+            }
 
-    document.getElementById('score1').textContent = sum1;
-    document.getElementById('score2').textContent = sum2;
+            document.getElementById('score1').textContent = sum1;
+            document.getElementById('score2').textContent = sum2;
 
-    checkAndColorScores();
-}
-
-function checkAndColorScores() {
-    const scores = [];
-    const thScores = [];
-
-    for (let i = 1; i <= 4; i++) {
-        const score = parseFloat(document.getElementById(`score${i}`).textContent);
-        scores.push(score);
-        thScores.push(document.getElementById(`score${i}`));
-    }
-
-    const minScore = Math.min(...scores);
-    const minScoreIndices = scores.reduce((indices, score, index) => {
-        if (score === minScore) indices.push(index);
-        return indices;
-    }, []);
-
-    const maxScore = Math.max(...scores);
-    const maxScoreIndices = scores.reduce((indices, score, index) => {
-        if (score === maxScore) indices.push(index);
-        return indices;
-    }, []);
-
-    for (let i = 0; i < scores.length; i++) {
-        if (minScoreIndices.includes(i)) {
-            thScores[i].style.backgroundColor = '#2ECC40';
-            thScores[i].style.backgroundImage = `url(images/crown.png)`;
-            thScores[i].style.color = '#FFF';
-        } else if (maxScoreIndices.includes(i)) {
-            thScores[i].style.backgroundColor = '#D32F2F';
-            thScores[i].style.backgroundImage = `url(images/cone.png)`;
-            thScores[i].style.color = '#FFF';
-        } else {
-            thScores[i].style.backgroundColor = 'orange';
-            thScores[i].style.color = '#FFF';
-            thScores[i].style.backgroundImage = "none";
+            checkAndColorScore3();
+            displayStandings(sum1, sum2);
         }
-    }
-}
 
-// Add event listeners to input fields
-const inputFields = document.querySelectorAll('input[type="number"]');
-inputFields.forEach(input => {
-    input.addEventListener('input', calculateSums);
-});
+        function checkAndColorScore3() {
+            const score1 = parseFloat(document.getElementById('score1').textContent);
+            const score2 = parseFloat(document.getElementById('score2').textContent);
 
-// Call calculateSums initially
-calculateSums();
+            const thScore1 = document.querySelector('#score1');
+            const thScore2 = document.querySelector('#score2');
 
-// Update background color for number inputs
-function updateBackgroundColor(input) {
-    const inputValue = parseInt(input.value);
-    if (inputValue === 0) {
-        input.style.backgroundColor = '#2ECC40';
-        input.parentElement.style.backgroundColor = '#2ECC40';
-    } else {
-        input.style.backgroundColor = '';
-        input.parentElement.style.backgroundColor = '';
-    }
-}
+            const scores = [score1, score2];
+            const thScores = [thScore1, thScore2];
 
-const numberInputs = document.querySelectorAll('input[type="number"]');
-const textInputs = document.querySelectorAll('input[type="text"]');
+            const minScore = Math.min(...scores);
+            const minScoreIndices = scores.reduce((indices, score, index) => {
+                if (score === minScore) indices.push(index);
+                return indices;
+            }, []);
 
-numberInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        input.value = input.value.replace(/[^0-9]/g, '');
-        updateBackgroundColor(input);
-        calculateSums(); // Recalculate sums when any input changes
-    });
-});
+            const maxScore = Math.max(...scores);
+            const maxScoreIndices = scores.reduce((indices, score, index) => {
+                if (score === maxScore) indices.push(index);
+                return indices;
+            }, []);
 
-textInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        input.value = input.value.replace(/[0-9]/g, '');
-    });
-});
+            for (let i = 0; i < scores.length; i++) {
+                if (minScoreIndices.includes(i)) {
+                    thScores[i].style.backgroundColor = '#2ECC40';
+                    thScores[i].style.backgroundImage = `url(images/crown.png)`;
+                    thScores[i].style.color = '#FFF';
+                } else if (maxScoreIndices.includes(i)) {
+                    thScores[i].style.backgroundColor = '#D32F2F';
+                    thScores[i].style.backgroundImage = `url(images/cone.png)`;
+                    thScores[i].style.color = '#FFF';
+                } else {
+                    thScores[i].style.backgroundColor = 'orange';
+                    thScores[i].style.color = '#FFF';
+                    thScores[i].style.backgroundImage = "none";
+                }
+            }
+        }
 
-numberInputs.forEach(input => {
-    updateBackgroundColor(input);
-});
+        function displayStandings(score1, score2) {
+            const standings = document.querySelectorAll('.standing');
 
+            if (score1 < score2) {
+                standings[0].innerHTML = '1st Place';
+                standings[1].innerHTML = '2nd Place';
+            } else if (score1 > score2) {
+                standings[0].innerHTML = '2nd Place';
+                standings[1].innerHTML = '1st Place';
+            } else {
+                standings[0].innerHTML = 'Tied';
+                standings[1].innerHTML = 'Tied';
+            }
+        }
+
+        const inputFields = document.querySelectorAll('input[type="number"]');
+        inputFields.forEach(input => {
+            input.addEventListener('input', calculateSums);
+        });
+
+        calculateSums();
+
+        const numberInputs = document.querySelectorAll('input[type="number"]');
+        const textInputs = document.querySelectorAll('input[type="text"]');
+
+        function updateBackgroundColor(input) {
+            const inputValue = parseInt(input.value);
+            if (inputValue === 0) {
+                input.style.backgroundColor = '#2ECC40';
+                input.parentElement.style.backgroundColor = '#2ECC40';
+            } else {
+                input.style.backgroundColor = '';
+                input.parentElement.style.backgroundColor = '';
+            }
+        }
+
+        numberInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/[^0-9]/g, '');
+                updateBackgroundColor(input);
+            });
+        });
+
+        textInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/[0-9]/g, '');
+            });
+        });
+
+        numberInputs.forEach(input => {
+            updateBackgroundColor(input);
+        });
     </script>
 </body>
 </html>
