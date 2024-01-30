@@ -14,48 +14,41 @@
 </head>
 <body>
     <div class="table">
-
         <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
         <div><input class="text" id="row1_col2" placeholder="Name"></div>
-
 
         <div><input type="number" id="row2_col1" placeholder="R1"></div>
         <div><input type="number" id="row2_col2" placeholder="R1"></div>
 
-
         <div><input type="number" id="row3_col1" placeholder="R2"></div>
         <div><input type="number" id="row3_col2" placeholder="R2"></div>
-
 
         <div><input type="number" id="row4_col1" placeholder="R3"></div>
         <div><input type="number" id="row4_col2" placeholder="R3"></div>
 
-
         <div><input type="number" id="row5_col1" placeholder="R4"></div>
         <div><input type="number" id="row5_col2" placeholder="R4"></div>
-
 
         <div><input type="number" id="row6_col1" placeholder="R5"></div>
         <div><input type="number" id="row6_col2" placeholder="R5"></div>
 
-
         <div id="score1" class="mnr"></div>
         <div id="score2"></div>
 
-
-
+        <div id="bottomScores">
+            <div><input type="number" id="bottom_row1_col1"></div>
+            <div><input type="number" id="bottom_row1_col2"></div>
+            <div><input type="number" id="bottom_row2_col1"></div>
+            <div><input type="number" id="bottom_row2_col2"></div>
+        </div>
     </div>
     <script>
-  function calculateSums() {
+    function calculateSums() {
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
 
     let sum1 = 0;
     let sum2 = 0;
-
-    // تخزين الأزواج من النقاط (المجموع والترتيب) لكل عمود
-    const column1Scores = [];
-    const column2Scores = [];
 
     for (let i = 0; i < column1IDs.length; i++) {
         const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
@@ -63,40 +56,31 @@
 
         sum1 += value1;
         sum2 += value2;
-
-        column1Scores.push({ score: value1, order: 0 });
-        column2Scores.push({ score: value2, order: 0 });
-    }
-
-    // القيمة الأقل تأخذ الترتيب الأعلى
-    column1Scores.sort((a, b) => b.score - a.score);
-    column2Scores.sort((a, b) => b.score - a.score);
-
-    // تحديث الترتيب لكل عمود
-    for (let i = 0; i < column1Scores.length; i++) {
-        column1Scores[i].order = i + 1;
-        column2Scores[i].order = i + 1;
     }
 
     document.getElementById('score1').textContent = sum1;
     document.getElementById('score2').textContent = sum2;
 
-    // تحديث العرض ليعكس الترتيب الجديد
-    updateOrderDisplay(column1IDs, column1Scores);
-    updateOrderDisplay(column2IDs, column2Scores);
-
+    calculateBottomSums();
     checkAndColorScore3();
 }
 
-// تحديث العرض ليعكس الترتيب الجديد
-function updateOrderDisplay(columnIDs, scores) {
-    for (let i = 0; i < columnIDs.length; i++) {
-        const cell = document.getElementById(columnIDs[i]);
-        const orderDisplay = document.createElement('div');
-        orderDisplay.textContent = scores[i].order;
-        orderDisplay.className = 'order';
-        cell.appendChild(orderDisplay);
+function calculateBottomSums() {
+    let bottomSum1 = 0;
+    let bottomSum2 = 0;
+    const bottomColumn1IDs = ['bottom_row1_col1', 'bottom_row2_col1'];
+    const bottomColumn2IDs = ['bottom_row1_col2', 'bottom_row2_col2'];
+
+    for (let i = 0; i < bottomColumn1IDs.length; i++) {
+        const value1 = parseFloat(document.getElementById(bottomColumn1IDs[i]).value) || 0;
+        const value2 = parseFloat(document.getElementById(bottomColumn2IDs[i]).value) || 0;
+
+        bottomSum1 += value1;
+        bottomSum2 += value2;
     }
+
+    document.getElementById('bottomScore1').textContent = bottomSum1;
+    document.getElementById('bottomScore2').textContent = bottomSum2;
 }
 
 function checkAndColorScore3() {
@@ -115,25 +99,13 @@ function checkAndColorScore3() {
         return indices;
     }, []);
 
-    const maxScore = Math.max(...scores);
-    const maxScoreIndices = scores.reduce((indices, score, index) => {
-        if (score === maxScore) indices.push(index);
-        return indices;
-    }, []);
-
     for (let i = 0; i < scores.length; i++) {
         if (minScoreIndices.includes(i)) {
             thScores[i].style.backgroundColor = '#2ECC40';
-            thScores[i].style.backgroundImage = `url(images/crown.png)`;
-            thScores[i].style.color = '#FFF';
-        } else if (maxScoreIndices.includes(i)) {
-            thScores[i].style.backgroundColor = '#D32F2F';
-            thScores[i].style.backgroundImage = `url(images/cone.png)`;
             thScores[i].style.color = '#FFF';
         } else {
-            thScores[i].style.backgroundColor = 'orange';
-            thScores[i].style.color = '#FFF';
-            thScores[i].style.backgroundImage = "none";
+            thScores[i].style.backgroundColor = '';
+            thScores[i].style.color = '';
         }
     }
 }
@@ -150,7 +122,7 @@ const textInputs = document.querySelectorAll('input[type="text"]');
 
 function updateBackgroundColor(input) {
     const inputValue = parseInt(input.value);
-    if (inputValue === 0) {
+    if(inputValue === 0) {
         input.style.backgroundColor = '#2ECC40';
         input.parentElement.style.backgroundColor = '#2ECC40';
     } else {
@@ -175,7 +147,6 @@ textInputs.forEach(input => {
 numberInputs.forEach(input => {
     updateBackgroundColor(input);
 });
-
     </script>
 </body>
 </html>
