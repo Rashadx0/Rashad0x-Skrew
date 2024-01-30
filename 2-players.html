@@ -168,33 +168,32 @@ textInputs.forEach(input => {
 numberInputs.forEach(input => {
     updateBackgroundColor(input);
 });
-function checkAndColorScore3() {
-    const score1 = parseFloat(document.getElementById('score1').textContent);
-    const score2 = parseFloat(document.getElementById('score2').textContent);
+def calculateSums(numbers):
+    sums = []
+    for nums in numbers:
+        total = sum(nums)
+        sums.append(total)
+    # إضافة خانة للترتيب
+    sorted_sums = sorted(sums)
+    min_sum = sorted_sums[0]
+    max_sum = sorted_sums[-1]
 
-    const thScore1 = document.querySelector('#score1');
-    const thScore2 = document.querySelector('#score2');
+    # تحديد القيم المطلوبة لأقل وأكبر مجموع
+    if min_sum == max_sum:
+        min_value = 1
+        max_value = 2
+    else:
+        min_value = 1
+        max_value = 2
 
-    // ترتيب النتائج
-    const scores = [score1, score2];
-    scores.sort((a, b) => a - b); // ترتيب بالتصاعدي
+    return min_value, max_value
 
-    // تحديث النتائج وتلوينها
-    for (let i = 0; i < scores.length; i++) {
-        const thScore = (i === 0) ? thScore1 : thScore2; // العثور على العنصر الذي يجب تحديثه
-        thScore.textContent = scores[i];
-        
-        if (i === 0) {
-            thScore.style.backgroundColor = '#2ECC40';
-            thScore.style.backgroundImage = `url(images/crown.png)`;
-            thScore.style.color = '#FFF';
-        } else {
-            thScore.style.backgroundColor = '#D32F2F';
-            thScore.style.backgroundImage = `url(images/cone.png)`;
-            thScore.style.color = '#FFF';
-        }
-    }
-}
+# استخدام الدالة مع قائمة الأرقام المعطاة
+numbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+min_value, max_value = calculateSums(numbers)
+print("قيمة أقل مجموع:", min_value)
+print("قيمة أكبر مجموع:", max_value)
+
 
     </script>
 </body>
