@@ -1,57 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/skrre.webp">
-    <title>Skrew || 2-Players</title>
-    <style>
-        .table{
-            grid-template-columns: repeat(2, 1fr);
-        }
-    </style>
-</head>
-<body>
-    <div class="table">
-
-        <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
-        <div><input class="text" id="row1_col2" placeholder="Name"></div>
-
-
-        <div><input type="number" id="row2_col1" placeholder="R1"></div>
-        <div><input type="number" id="row2_col2" placeholder="R1"></div>
-
-
-        <div><input type="number" id="row3_col1" placeholder="R2"></div>
-        <div><input type="number" id="row3_col2" placeholder="R2"></div>
-
-
-        <div><input type="number" id="row4_col1" placeholder="R3"></div>
-        <div><input type="number" id="row4_col2" placeholder="R3"></div>
-
-
-        <div><input type="number" id="row5_col1" placeholder="R4"></div>
-        <div><input type="number" id="row5_col2" placeholder="R4"></div>
-
-
-        <div><input type="number" id="row6_col1" placeholder="R5"></div>
-        <div><input type="number" id="row6_col2" placeholder="R5"></div>
-
-
-        <div id="score1" class="mnr"></div>
-        <div id="score2"></div>
-
-
-
-    </div>
-    <script>
-    function calculateSums() {
+function calculateSums() {
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
 
     let sum1 = 0;
     let sum2 = 0;
+
+    // تخزين الأزواج من النقاط (المجموع والترتيب) لكل عمود
+    const column1Scores = [];
+    const column2Scores = [];
 
     for (let i = 0; i < column1IDs.length; i++) {
         const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
@@ -59,21 +15,40 @@
 
         sum1 += value1;
         sum2 += value2;
+
+        column1Scores.push({ score: value1, order: 0 });
+        column2Scores.push({ score: value2, order: 0 });
+    }
+
+    // القيمة الأقل تأخذ الترتيب الأعلى
+    column1Scores.sort((a, b) => b.score - a.score);
+    column2Scores.sort((a, b) => b.score - a.score);
+
+    // تحديث الترتيب لكل عمود
+    for (let i = 0; i < column1Scores.length; i++) {
+        column1Scores[i].order = i + 1;
+        column2Scores[i].order = i + 1;
     }
 
     document.getElementById('score1').textContent = sum1;
     document.getElementById('score2').textContent = sum2;
 
+    // تحديث العرض ليعكس الترتيب الجديد
+    updateOrderDisplay(column1IDs, column1Scores);
+    updateOrderDisplay(column2IDs, column2Scores);
+
     checkAndColorScore3();
+}
 
-    const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
-    const mmrInput = document.querySelector('.mmr');
-    const mnrInput = document.querySelector('.mnr');
-    const score1 = parseFloat(document.getElementById('score1').textContent);
-    const score2 = parseFloat(document.getElementById('score2').textContent);
-
-    const thScore1 = document.querySelector('#score1');
-    const thScore2 = document.querySelector('#score2');
+// تحديث العرض ليعكس الترتيب الجديد
+function updateOrderDisplay(columnIDs, scores) {
+    for (let i = 0; i < columnIDs.length; i++) {
+        const cell = document.getElementById(columnIDs[i]);
+        const orderDisplay = document.createElement('div');
+        orderDisplay.textContent = scores[i].order;
+        orderDisplay.className = 'order';
+        cell.appendChild(orderDisplay);
+    }
 }
 
 function checkAndColorScore3() {
@@ -86,23 +61,29 @@ function checkAndColorScore3() {
     const scores = [score1, score2];
     const thScores = [thScore1, thScore2];
 
-    // ترتيب المجموعات
-    const sortedScores = [...scores].sort((a, b) => a - b);
-    const ranks = scores.map(score => sortedScores.indexOf(score) + 1);
+    const minScore = Math.min(...scores);
+    const minScoreIndices = scores.reduce((indices, score, index) => {
+        if (score === minScore) indices.push(index);
+        return indices;
+    }, []);
 
-    // تحديد الألوان والرموز
+    const maxScore = Math.max(...scores);
+    const maxScoreIndices = scores.reduce((indices, score, index) => {
+        if (score === maxScore) indices.push(index);
+        return indices;
+    }, []);
+
     for (let i = 0; i < scores.length; i++) {
-        thScores[i].textContent = ranks[i]; // تحديد الترتيب
-        if (ranks[i] === 1) {
-            thScores[i].style.backgroundColor = '#2ECC40'; // المجموع الأقل
+        if (minScoreIndices.includes(i)) {
+            thScores[i].style.backgroundColor = '#2ECC40';
             thScores[i].style.backgroundImage = `url(images/crown.png)`;
             thScores[i].style.color = '#FFF';
-        } else if (ranks[i] === scores.length) {
-            thScores[i].style.backgroundColor = '#D32F2F'; // المجموع الأعلى
+        } else if (maxScoreIndices.includes(i)) {
+            thScores[i].style.backgroundColor = '#D32F2F';
             thScores[i].style.backgroundImage = `url(images/cone.png)`;
             thScores[i].style.color = '#FFF';
         } else {
-            thScores[i].style.backgroundColor = 'orange'; // المجموعات الوسيطة
+            thScores[i].style.backgroundColor = 'orange';
             thScores[i].style.color = '#FFF';
             thScores[i].style.backgroundImage = "none";
         }
@@ -146,7 +127,3 @@ textInputs.forEach(input => {
 numberInputs.forEach(input => {
     updateBackgroundColor(input);
 });
-
-    </script>
-</body>
-</html>
