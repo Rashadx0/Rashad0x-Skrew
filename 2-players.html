@@ -14,101 +14,122 @@
 </head>
 <body>
     <div class="table">
+
         <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
         <div><input class="text" id="row1_col2" placeholder="Name"></div>
+
 
         <div><input type="number" id="row2_col1" placeholder="R1"></div>
         <div><input type="number" id="row2_col2" placeholder="R1"></div>
 
+
         <div><input type="number" id="row3_col1" placeholder="R2"></div>
         <div><input type="number" id="row3_col2" placeholder="R2"></div>
+
 
         <div><input type="number" id="row4_col1" placeholder="R3"></div>
         <div><input type="number" id="row4_col2" placeholder="R3"></div>
 
+
         <div><input type="number" id="row5_col1" placeholder="R4"></div>
         <div><input type="number" id="row5_col2" placeholder="R4"></div>
+
 
         <div><input type="number" id="row6_col1" placeholder="R5"></div>
         <div><input type="number" id="row6_col2" placeholder="R5"></div>
 
+
         <div id="score1" class="mnr"></div>
         <div id="score2"></div>
 
-        <div id="bottomScores">
-            <div><input type="number" id="bottom_row1_col1"></div>
-            <div><input type="number" id="bottom_row1_col2"></div>
-            <div><input type="number" id="bottom_row2_col1"></div>
-            <div><input type="number" id="bottom_row2_col2"></div>
-        </div>
+
+
     </div>
     <script>
     function calculateSums() {
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
 
+
     let sum1 = 0;
     let sum2 = 0;
+
 
     for (let i = 0; i < column1IDs.length; i++) {
         const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
         const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
 
+
+
+
         sum1 += value1;
         sum2 += value2;
+
+
     }
 
     document.getElementById('score1').textContent = sum1;
     document.getElementById('score2').textContent = sum2;
 
-    calculateBottomSums();
+
+
     checkAndColorScore3();
-}
 
-function calculateBottomSums() {
-    let bottomSum1 = 0;
-    let bottomSum2 = 0;
-    const bottomColumn1IDs = ['bottom_row1_col1', 'bottom_row2_col1'];
-    const bottomColumn2IDs = ['bottom_row1_col2', 'bottom_row2_col2'];
+    const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
+    const mmrInput = document.querySelector('.mmr');
+    const mnrInput = document.querySelector('.mnr');
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
 
-    for (let i = 0; i < bottomColumn1IDs.length; i++) {
-        const value1 = parseFloat(document.getElementById(bottomColumn1IDs[i]).value) || 0;
-        const value2 = parseFloat(document.getElementById(bottomColumn2IDs[i]).value) || 0;
 
-        bottomSum1 += value1;
-        bottomSum2 += value2;
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+
     }
-
-    document.getElementById('bottomScore1').textContent = bottomSum1;
-    document.getElementById('bottomScore2').textContent = bottomSum2;
-}
 
 function checkAndColorScore3() {
     const score1 = parseFloat(document.getElementById('score1').textContent);
     const score2 = parseFloat(document.getElementById('score2').textContent);
 
+
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
+
 
     const scores = [score1, score2];
     const thScores = [thScore1, thScore2];
 
-    const minScore = Math.min(...scores);
-    const minScoreIndices = scores.reduce((indices, score, index) => {
-        if (score === minScore) indices.push(index);
-        return indices;
-    }, []);
+const minScore = Math.min(...scores);
+const minScoreIndices = scores.reduce((indices, score, index) => {
+if (score === minScore) indices.push(index);
+return indices;
+}, []);
 
-    for (let i = 0; i < scores.length; i++) {
-        if (minScoreIndices.includes(i)) {
-            thScores[i].style.backgroundColor = '#2ECC40';
-            thScores[i].style.color = '#FFF';
-        } else {
-            thScores[i].style.backgroundColor = '';
-            thScores[i].style.color = '';
-        }
-    }
+const maxScore = Math.max(...scores);
+const maxScoreIndices = scores.reduce((indices, score, index) => {
+if (score === maxScore) indices.push(index);
+return indices;
+}, []);
+
+
+for (let i = 0; i < scores.length; i++) {
+if (minScoreIndices.includes(i)) {
+    thScores[i].style.backgroundColor = '#2ECC40';
+    thScores[i].style.backgroundImage = `url(images/crown.png)`;
+    thScores[i].style.color = '#FFF'
+} else if(maxScoreIndices.includes(i)){
+    thScores[i].style.backgroundColor = '#D32F2F';
+    thScores[i].style.backgroundImage = `url(images/cone.png)`;
+    thScores[i].style.color = '#FFF'
+} else {
+    thScores[i].style.backgroundColor = 'orange';
+    thScores[i].style.color = '#FFF'
+    thScores[i].style.backgroundImage = "none";
 }
+}
+}
+
 
 const inputFields = document.querySelectorAll('input[type="number"]');
 inputFields.forEach(input => {
@@ -147,6 +168,34 @@ textInputs.forEach(input => {
 numberInputs.forEach(input => {
     updateBackgroundColor(input);
 });
+function checkAndColorScore3() {
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+    // ترتيب النتائج
+    const scores = [score1, score2];
+    scores.sort((a, b) => a - b); // ترتيب بالتصاعدي
+
+    // تحديث النتائج وتلوينها
+    for (let i = 0; i < scores.length; i++) {
+        const thScore = (i === 0) ? thScore1 : thScore2; // العثور على العنصر الذي يجب تحديثه
+        thScore.textContent = scores[i];
+        
+        if (i === 0) {
+            thScore.style.backgroundColor = '#2ECC40';
+            thScore.style.backgroundImage = `url(images/crown.png)`;
+            thScore.style.color = '#FFF';
+        } else {
+            thScore.style.backgroundColor = '#D32F2F';
+            thScore.style.backgroundImage = `url(images/cone.png)`;
+            thScore.style.color = '#FFF';
+        }
+    }
+}
+
     </script>
 </body>
 </html>
