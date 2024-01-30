@@ -10,7 +10,24 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
             margin-bottom: 20px;
+ .standings {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 20px;
+        }
 
+        .standings-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .standing {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
