@@ -87,14 +87,7 @@ input[type="number"]::placeholder{
 #score6,
 #score7,
 #score8,
-#ranking1,
-#ranking2,
-#ranking3,
-#ranking4,
-#ranking5,
-#ranking6,
-#ranking7,
-#ranking8
+
 
  {
     display: grid;
