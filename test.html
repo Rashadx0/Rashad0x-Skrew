@@ -1,76 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Table</title>
-<style>
-  table {
-    border-collapse: collapse;
-    width: 50%;
-    margin: 20px auto;
-  }
-
-  th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
-  }
-
-  .green {
-    background-color: lightgreen;
-  }
-
-  .red {
-    background-color: tomato;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/skrre.jpg">
+    <title>Skrew || 2-Players</title>
+    <style>
+        .table {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .player-info {
+            display: flex;
+            align-items: center;
+        }
+        .player-name {
+            flex: 1;
+        }
+        .player-score input {
+            width: 50px;
+        }
+        .player-score input:focus {
+            outline: none;
+        }
+        .player-score input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .score-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .winner {
+            color: white;
+            background-color: green;
+        }
+        .loser {
+            color: white;
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
+    <div class="table">
+        <div class="player-info">
+            <div class="player-name"><input class="text" id="player1_name" placeholder="Player 1"></div>
+            <div class="player-score"><input type="number" id="player1_score" placeholder="Score"></div>
+        </div>
+        <div class="player-info">
+            <div class="player-name"><input class="text" id="player2_name" placeholder="Player 2"></div>
+            <div class="player-score"><input type="number" id="player2_score" placeholder="Score"></div>
+        </div>
+        <div id="score1" class="score-box"></div>
+        <div id="score2" class="score-box"></div>
+    </div>
 
-<table>
-  <tbody id="table-body">
-    <tr>
-      <td contenteditable="true" id="name1">Name 1</td>
-      <td contenteditable="true" id="name2">Name 2</td>
-    </tr>
-    <tr>
-      <td contenteditable="true" id="R1"></td>
-      <td contenteditable="true" id="R2"></td>
-    </tr>
-    <tr>
-      <td contenteditable="true" id="R3"></td>
-      <td contenteditable="true" id="R4"></td>
-    </tr>
-    <tr>
-      <td contenteditable="true" id="R5"></td>
-      <td contenteditable="true" id="R6"></td>
-    </tr>
-    <tr>
-      <td contenteditable="true" id="R7"></td>
-      <td contenteditable="true" id="R8"></td>
-    </tr>
-    <tr>
-      <td contenteditable="true" id="R9"></td>
-      <td contenteditable="true" id="R10"></td>
-    </tr>
-  </tbody>
-</table>
+    <script>
+        const player1ScoreInput = document.getElementById('player1_score');
+        const player2ScoreInput = document.getElementById('player2_score');
+        const player1NameInput = document.getElementById('player1_name');
+        const player2NameInput = document.getElementById('player2_name');
+        const score1Display = document.getElementById('score1');
+        const score2Display = document.getElementById('score2');
 
-<script>
-  const cells = document.querySelectorAll('td');
+        function calculateSums() {
+            const player1Score = parseFloat(player1ScoreInput.value) || 0;
+            const player2Score = parseFloat(player2ScoreInput.value) || 0;
 
-  cells.forEach(cell => {
-    cell.addEventListener('input', function() {
-      const value = parseInt(this.textContent);
-      if (value === 0) {
-        this.classList.add('green');
-      } else {
-        this.classList.remove('green');
-      }
-    });
-  });
-</script>
+            score1Display.textContent = player1Score;
+            score2Display.textContent = player2Score;
 
+            checkAndColorScore();
+        }
+
+        function checkAndColorScore() {
+            const player1Score = parseFloat(player1ScoreInput.value) || 0;
+            const player2Score = parseFloat(player2ScoreInput.value) || 0;
+
+            if (player1Score > player2Score) {
+                score1Display.classList.add('winner');
+                score2Display.classList.add('loser');
+            } else if (player2Score > player1Score) {
+                score2Display.classList.add('winner');
+                score1Display.classList.add('loser');
+            } else {
+                score1Display.classList.remove('winner', 'loser');
+                score2Display.classList.remove('winner', 'loser');
+            }
+        }
+
+        [player1ScoreInput, player2ScoreInput].forEach(input => {
+            input.addEventListener('input', calculateSums);
+        });
+
+        calculateSums();
+
+        [player1NameInput, player2NameInput].forEach(input => {
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/[0-9]/g, '');
+            });
+        });
+    </script>
 </body>
 </html>
