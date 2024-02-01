@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/skrre.jpg">
     <title>Skrew || 2-Players</title>
     <style>
@@ -27,7 +28,7 @@
         .table {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(7, 1fr);
+            grid-template-rows: repeat(9, 1fr); /* Increased from 7 to 9 rows */
             gap: 10px;
             height: 100%;
             padding: 20px;
@@ -99,13 +100,17 @@
         }
 
         #score1,
-        #score2 {
+        #score2,
+        #score3,
+        #score4 { /* Added styles for score3 and score4 */
             display: grid;
             place-items: center;
             font-weight: bold;
             font-size: 18px;
             background-repeat: no-repeat;
             background-position: 95% 5px;
+            border-radius: 10px;
+            color: #fff;
         }
 
         @media (max-width: 768px) {
@@ -150,6 +155,10 @@
 
         <div id="score1" class="mnr"></div>
         <div id="score2"></div>
+
+        <!-- New score cells -->
+        <div id="score3"></div>
+        <div id="score4"></div>
     </div>
     <script>
         function calculateSums() {
@@ -176,12 +185,13 @@
         function checkAndColorScore3() {
             const score1 = parseFloat(document.getElementById('score1').textContent);
             const score2 = parseFloat(document.getElementById('score2').textContent);
-
             const thScore1 = document.querySelector('#score1');
             const thScore2 = document.querySelector('#score2');
+            const thScore3 = document.querySelector('#score3');
+            const thScore4 = document.querySelector('#score4');
 
             const scores = [score1, score2];
-            const thScores = [thScore1, thScore2];
+            const thScores = [thScore1, thScore2, thScore3, thScore4];
 
             const minScore = Math.min(...scores);
             const minScoreIndices = scores.reduce((indices, score, index) => {
@@ -197,17 +207,24 @@
 
             for (let i = 0; i < scores.length; i++) {
                 if (minScoreIndices.includes(i)) {
+                    thScores[i].textContent = '1';
                     thScores[i].style.backgroundColor = '#2ecc40';
-                    thScores[i].style.backgroundImage = `url(images/crown.png)`;
                     thScores[i].style.color = '#fff';
                 } else if (maxScoreIndices.includes(i)) {
+                    thScores[i].textContent = '2';
                     thScores[i].style.backgroundColor = '#d32f2f';
-                    thScores[i].style.backgroundImage = `url(images/cone.png)`;
+                    thScores[i].style.color = '#fff';
+                }
+            }
+
+            for (let i = 2; i < thScores.length; i++) {
+                if (i === minScoreIndices[0] || i === maxScoreIndices[0]) {
+                    thScores[i].style.backgroundColor = thScores[i].style.backgroundColor === '#2ecc40' ? '#2ecc40' : '#d32f2f';
                     thScores[i].style.color = '#fff';
                 } else {
-                    thScores[i].style.backgroundColor = 'orange';
-                    thScores[i].style.color = '#fff';
-                    thScores[i].style.backgroundImage = 'none';
+                    thScores[i].textContent = '';
+                    thScores[i].style.backgroundColor = '';
+                    thScores[i].style.color = '';
                 }
             }
         }
