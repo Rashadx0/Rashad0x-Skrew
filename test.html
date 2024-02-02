@@ -138,20 +138,20 @@
         <div><input class="text mmr" id="row1_col1" placeholder="Name"></div>
         <div><input class="text" id="row1_col2" placeholder="Name"></div>
 
-        <div><input type="number" id="row2_col1" placeholder="R1"></div>
-        <div><input type="number" id="row2_col2" placeholder="R1"></div>
+        <div><input type="number" id="row2_col1" placeholder="R1"><button onclick="clearNumbers('row2_col1')">مسح</button></div>
+        <div><input type="number" id="row2_col2" placeholder="R1"><button onclick="clearNumbers('row2_col2')">مسح</button></div>
 
-        <div><input type="number" id="row3_col1" placeholder="R2"></div>
-        <div><input type="number" id="row3_col2" placeholder="R2"></div>
+        <div><input type="number" id="row3_col1" placeholder="R2"><button onclick="clearNumbers('row3_col1')">مسح</button></div>
+        <div><input type="number" id="row3_col2" placeholder="R2"><button onclick="clearNumbers('row3_col2')">مسح</button></div>
 
-        <div><input type="number" id="row4_col1" placeholder="R3"></div>
-        <div><input type="number" id="row4_col2" placeholder="R3"></div>
+        <div><input type="number" id="row4_col1" placeholder="R3"><button onclick="clearNumbers('row4_col1')">مسح</button></div>
+        <div><input type="number" id="row4_col2" placeholder="R3"><button onclick="clearNumbers('row4_col2')">مسح</button></div>
 
-        <div><input type="number" id="row5_col1" placeholder="R4"></div>
-        <div><input type="number" id="row5_col2" placeholder="R4"></div>
+        <div><input type="number" id="row5_col1" placeholder="R4"><button onclick="clearNumbers('row5_col1')">مسح</button></div>
+        <div><input type="number" id="row5_col2" placeholder="R4"><button onclick="clearNumbers('row5_col2')">مسح</button></div>
 
-        <div><input type="number" id="row6_col1" placeholder="R5"></div>
-        <div><input type="number" id="row6_col2" placeholder="R5"></div>
+        <div><input type="number" id="row6_col1" placeholder="R5"><button onclick="clearNumbers('row6_col1')">مسح</button></div>
+        <div><input type="number" id="row6_col2" placeholder="R5"><button onclick="clearNumbers('row6_col2')">مسح</button></div>
 
         <div id="score1" class="mnr"></div>
         <div id="score2"></div>
@@ -180,6 +180,11 @@
             document.getElementById('score2').textContent = sum2;
 
             checkAndColorScore3();
+        }
+
+        function clearNumbers(inputId) {
+            document.getElementById(inputId).value = ''; // Clears the value in the specified number input
+            calculateSums(); // Recalculate sums after clearing
         }
 
         function checkAndColorScore3() {
