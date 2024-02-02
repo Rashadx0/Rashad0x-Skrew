@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,6 +44,16 @@
     }
     td input {
         width: 50px;
+        color: white; /* لون النص */
+        font-weight: bold; /* تغيير الفونت إلى بولد */
+        text-align: center; /* تحديد مركز النص */
+        background-color: #22183d; /* لون الخلفية */
+        border: none; /* إزالة حدود الحقول */
+    }
+    td input::placeholder {
+        color: white; /* لون النص */
+        font-weight: bold; /* تغيير الفونت إلى بولد */
+        text-align: center; /* تحديد مركز النص */
     }
 </style>
 </head>
@@ -64,47 +74,47 @@
     <tbody>
         <tr>
             <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
         <tr>
             <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
         <tr>
             <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
         <tr>
             <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
         <tr>
             <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
+            <td><input type="number" class="round" min="0" oninput="updateTotal(this)"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
         <!-- إضافة صفوف إضافية هنا إذا لزم الأمر -->
@@ -112,27 +122,16 @@
 </table>
 
 <script>
-    // Function to toggle between th and td
-    function toggleTableHeaders() {
-        var headers = document.querySelectorAll('thead th');
-        headers.forEach(function(header) {
-            var newElement = document.createElement('td');
-            newElement.innerHTML = header.innerHTML;
-            header.parentNode.replaceChild(newElement, header);
+    function updateTotal(input) {
+        var row = input.parentNode.parentNode;
+        var inputs = row.querySelectorAll('.round');
+        var totalCell = row.querySelector('.total span');
+        var total = 0;
+        inputs.forEach(function(input) {
+            total += parseInt(input.value) || 0;
         });
-
-        var cells = document.querySelectorAll('tbody td');
-        cells.forEach(function(cell) {
-            var newElement = document.createElement('th');
-            newElement.innerHTML = cell.innerHTML;
-            cell.parentNode.replaceChild(newElement, cell);
-        });
+        totalCell.textContent = total;
     }
-
-    // Call the function to toggle between th and td
-    document.addEventListener('DOMContentLoaded', function() {
-        toggleTableHeaders();
-    });
 </script>
 
 </body>
