@@ -35,43 +35,28 @@
  <div class="table">
 
         <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
-        <div><input class="text" id="row1_col2" placeholder="Name"></div>
 
 
         <div><input type="number" id="row2_col1" placeholder="R1"></div>
-        <div><input type="number" id="row2_col2" placeholder="R1"></div>
 
 
         <div><input type="number" id="row3_col1" placeholder="R2"></div>
-        <div><input type="number" id="row3_col2" placeholder="R2"></div>
 
 
         <div><input type="number" id="row4_col1" placeholder="R3"></div>
-        <div><input type="number" id="row4_col2" placeholder="R3"></div>
 
 
         <div><input type="number" id="row5_col1" placeholder="R4"></div>
-        <div><input type="number" id="row5_col2" placeholder="R4"></div>
 
 
         <div><input type="number" id="row6_col1" placeholder="R5"></div>
-        <div><input type="number" id="row6_col2" placeholder="R5"></div>
 
 
         <div id="score1" class="mnr"></div>
         <div id="score2"></div>
 
 <script>
-    function updateTotal(input) {
-        var row = input.parentNode.parentNode;
-        var inputs = row.querySelectorAll('.round');
-        var totalCell = row.querySelector('.total span');
-        var total = 0;
-        inputs.forEach(function(input) {
-            total += parseInt(input.value) || 0;
-        });
-        totalCell.textContent = total;
-    }
+   
 </script>
 
 </body>
