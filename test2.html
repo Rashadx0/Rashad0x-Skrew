@@ -46,42 +46,7 @@
             <td><input type="number" class="round" min="0"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
+        <!-- إضافة صفوف إضافية هنا إذا لزم الأمر -->
     </tbody>
 </table>
 
@@ -104,7 +69,9 @@
     }
 
     // Call the function to toggle between th and td
-    toggleTableHeaders();
+    document.addEventListener('DOMContentLoaded', function() {
+        toggleTableHeaders();
+    });
 </script>
 
 </body>
