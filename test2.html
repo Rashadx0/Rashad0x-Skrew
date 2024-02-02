@@ -20,9 +20,6 @@
     td input {
         width: 50px;
     }
-    .zero {
-        color: green;
-    }
 </style>
 </head>
 <body>
@@ -49,59 +46,61 @@
             <td><input type="number" class="round" min="0"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
-        <!-- Add more player rows as needed -->
+        <tr>
+            <td class="total"><span>0</span></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="text" class="playerName"></td>
+        </tr>
+        <tr>
+            <td class="total"><span>0</span></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="text" class="playerName"></td>
+        </tr>
+        <tr>
+            <td class="total"><span>0</span></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="text" class="playerName"></td>
+        </tr>
+        <tr>
+            <td class="total"><span>0</span></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="text" class="playerName"></td>
+        </tr>
     </tbody>
 </table>
 
 <script>
-    // Function to toggle between th and td
-    function toggleTableHeaders() {
-        var headers = document.querySelectorAll('thead th');
-        headers.forEach(function(header) {
-            var newElement = document.createElement('td');
-            newElement.innerHTML = header.innerHTML;
-            header.parentNode.replaceChild(newElement, header);
-        });
-
-        var cells = document.querySelectorAll('tbody td');
-        cells.forEach(function(cell) {
-            var newElement = document.createElement('th');
-            newElement.innerHTML = cell.innerHTML;
-            cell.parentNode.replaceChild(newElement, cell);
-        });
-    }
-
-    // Call the function to toggle between th and td
-    toggleTableHeaders();
-
-    // Function to update totals and highlight zeros
-    function updateTotals() {
-        var totalCells = document.querySelectorAll('.total span');
-        totalCells.forEach(function(total) {
-            var sum = 0;
-            var rounds = total.parentNode.parentNode.querySelectorAll('.round');
-            rounds.forEach(function(round) {
-                sum += parseInt(round.value) || 0;
+    // Function to calculate totals
+    function calculateTotals() {
+        var rows = document.querySelectorAll('tbody tr');
+        rows.forEach(function(row) {
+            var inputs = row.querySelectorAll('.round');
+            var total = 0;
+            inputs.forEach(function(input) {
+                total += parseInt(input.value) || 0;
             });
-            total.textContent = sum;
-            if (sum === 0) {
-                total.classList.add('zero');
-            } else {
-                total.classList.remove('zero');
-            }
+            row.querySelector('.total span').textContent = total;
         });
     }
 
-    // Call the function to update totals initially
-    updateTotals();
-
-    // Add event listeners to input fields for dynamic updates
-    var inputFields = document.querySelectorAll('.round');
-    inputFields.forEach(function(input) {
-        input.addEventListener('input', function() {
-            updateTotals();
-        });
-    });
+    // Call the function to calculate totals
+    calculateTotals();
 </script>
 
 </body>
