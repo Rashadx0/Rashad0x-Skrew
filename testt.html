@@ -92,12 +92,11 @@ function calculateSums() {
 const rank1 = document.getElementById('rank1');
 const rank2 = document.getElementById('rank2');
 
-// قيمة مبدئية للرانك 1
+// تعيين القيم المبدئية
 rank1.textContent = '1';
 rank1.style.backgroundColor = '#2ECC40';
 rank1.style.color = '#FFF';
 
-// افتراض القيمة المبدئية للرانك 2
 rank2.textContent = '1';
 rank2.style.backgroundColor = '#2ECC40';
 rank2.style.color = '#FFF';
@@ -106,17 +105,16 @@ rank2.style.color = '#FFF';
 if (score1 < score2) {
     // لا يلزم هنا شيء، لأن القيم المبدئية هي القيمة المطلوبة
 } else {
-    // في حالة عدم تحقق الشرط
-    // يقوم بتغيير القيمة المبدئية للرانك 2 إلى 1
-    rank2.textContent = '1';
-    rank2.style.backgroundColor = '#2ECC40';
-    rank2.style.color = '#FFF';
-
-    // يقوم بتغيير القيمة المبدئية للرانك 1 إلى 2
+    // تغيير القيمة في حالة عدم تحقق الشرط
     rank1.textContent = '2';
     rank1.style.backgroundColor = '#D32F2F';
     rank1.style.color = '#FFF';
+
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = '#D32F2F';
+    rank2.style.color = '#FFF';
 }
+
 }
 
 // دالة لفحص وتلوين المجموع الثالث
