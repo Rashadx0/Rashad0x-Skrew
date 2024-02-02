@@ -134,34 +134,40 @@
     </style>
 </head>
 <body>
-<div class="table">
-    <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
-    <div><input class="text" id="row1_col2" placeholder="Name"></div>
+    <div class="table">
 
-    <div><input type="number" id="row2_col1" placeholder="R1"></div>
-    <div><input type="number" id="row2_col2" placeholder="R1"></div>
+        <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
+        <div><input class="text" id="row1_col2" placeholder="Name"></div>
 
-    <div><input type="number" id="row3_col1" placeholder="R2"></div>
-    <div><input type="number" id="row3_col2" placeholder="R2"></div>
 
-    <div><input type="number" id="row4_col1" placeholder="R3"></div>
-    <div><input type="number" id="row4_col2" placeholder="R3"></div>
+        <div><input type="number" id="row2_col1" placeholder="R1"></div>
+        <div><input type="number" id="row2_col2" placeholder="R1"></div>
 
-    <div><input type="number" id="row5_col1" placeholder="R4"></div>
-    <div><input type="number" id="row5_col2" placeholder="R4"></div>
 
-    <div><input type="number" id="row6_col1" placeholder="R5"></div>
-    <div><input type="number" id="row6_col2" placeholder="R5"></div>
+        <div><input type="number" id="row3_col1" placeholder="R2"></div>
+        <div><input type="number" id="row3_col2" placeholder="R2"></div>
 
-    <div id="score1" class="mnr"></div>
-    <div id="score2"></div>
 
-    <div id="rank1" class="mnr"></div>
-    <div id="rank2"></div>
-  
-</div>
-<script>
-function calculateSums() {
+        <div><input type="number" id="row4_col1" placeholder="R3"></div>
+        <div><input type="number" id="row4_col2" placeholder="R3"></div>
+
+
+        <div><input type="number" id="row5_col1" placeholder="R4"></div>
+        <div><input type="number" id="row5_col2" placeholder="R4"></div>
+
+
+        <div><input type="number" id="row6_col1" placeholder="R5"></div>
+        <div><input type="number" id="row6_col2" placeholder="R5"></div>
+
+
+        <div id="score1" class="mnr"></div>
+        <div id="score2"></div>
+
+
+
+    </div>
+    <script>
+    function calculateSums() {
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
 
@@ -283,6 +289,6 @@ textInputs.forEach(input => {
 numberInputs.forEach(input => {
     updateBackgroundColor(input);
 });
-</script>
+    </script>
 </body>
 </html>
