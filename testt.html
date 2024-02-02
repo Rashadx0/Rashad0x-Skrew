@@ -208,58 +208,26 @@ function calculateSums() {
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
 
-// تحديد المتغيرات لجميع العناصر
-const ranks = [
-    document.getElementById('rank1'),
-    document.getElementById('rank2'),
-    // إضافة المزيد من المتغيرات حسب الحاجة
-];
+ // عرض الترتيب
+    const rank1 = document.getElementById('rank1');
+    const rank2 = document.getElementById('rank2');
 
-// تحديد المتغيرات لجميع النقاط
-const scores = [
-    score1,
-    score2,
-    // إضافة المزيد من المتغيرات حسب الحاجة
-];
+    if (score1 < score2) {
+        rank1.textContent = '1';
+        rank1.style.backgroundColor = '#2ECC40';
+        rank1.style.color = '#FFF';
 
-const rank1 = document.getElementById('rank1');
-const rank2 = document.getElementById('rank2');
+        rank2.textContent = '2';
+        rank2.style.backgroundColor = '#D32F2F';
+        rank2.style.color = '#FFF';
+    } else {
+        rank1.textContent = '2';
+        rank1.style.backgroundColor = '#D32F2F';
+        rank1.style.color = '#FFF';
 
-// افحص أي من النتائج هو الأعلى
-const maxScore = Math.max(score1, score2);
-// افحص أي من النتائج هو الأدنى
-const minScore = Math.min(score1, score2);
-
-if (score1 < score2) {
-    // تعيين الترتيب والألوان لكل نتيجة
-    rank1.textContent = '1';
-    rank1.style.backgroundColor = '#2ECC40';
-    rank1.style.color = '#FFF';
-
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
-
-    // تعيين الألوان للمراتب بين الأول والأخير
-    for (let i = minScore + 1; i < maxScore; i++) {
-        const rank = document.getElementById(`rank${i}`);
-        rank.style.backgroundColor = '#FFA500'; // orange color
-        rank.style.color = '#000'; // black color
-    }
-} else {
-    rank1.textContent = '2';
-    rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
-
-    rank2.textContent = '1';
-    rank2.style.backgroundColor = '#2ECC40';
-    rank2.style.color = '#FFF';
-
-    // تعيين الألوان للمراتب بين الأول والأخير
-    for (let i = minScore + 1; i < maxScore; i++) {
-        const rank = document.getElementById(`rank${i}`);
-        rank.style.backgroundColor = '#FFA500'; // orange color
-        rank.style.color = '#000'; // black color
+        rank2.textContent = '1';
+        rank2.style.backgroundColor = '#2ECC40';
+        rank2.style.color = '#FFF';
     }
 }
 
