@@ -208,31 +208,44 @@ function calculateSums() {
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
 
-// عرض الترتيب
-const rank1 = document.getElementById('rank1');
-const rank2 = document.getElementById('rank2');
+// تحديد المتغيرات لجميع العناصر
+const ranks = [
+    document.getElementById('rank1'),
+    document.getElementById('rank2'),
+    // إضافة المزيد من المتغيرات حسب الحاجة
+];
 
-// جعل الترتيب الافتراضي "1"
-rank1.textContent = '1';
-rank1.style.backgroundColor = '#2ECC40';
-rank1.style.color = '#FFF';
+// تحديد المتغيرات لجميع النقاط
+const scores = [
+    score1,
+    score2,
+    // إضافة المزيد من المتغيرات حسب الحاجة
+];
 
-rank2.textContent = '1';
-rank2.style.backgroundColor = '#2ECC40';
-rank2.style.color = '#FFF';
+// الترتيب
+for (let i = 0; i < ranks.length; i++) {
+    for (let j = i + 1; j < ranks.length; j++) {
+        if (scores[i] < scores[j]) {
+            // تبديل الترتيب إذا كانت النقاط الحالية أقل من النقاط التالية
+            const tempRank = ranks[i].textContent;
+            const tempBackgroundColor = ranks[i].style.backgroundColor;
+            const tempColor = ranks[i].style.color;
 
-if (score1 < score2) {
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
-} else {
-    rank1.textContent = '2';
-    rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
+            ranks[i].textContent = ranks[j].textContent;
+            ranks[i].style.backgroundColor = ranks[j].style.backgroundColor;
+            ranks[i].style.color = ranks[j].style.color;
+
+            ranks[j].textContent = tempRank;
+            ranks[j].style.backgroundColor = tempBackgroundColor;
+            ranks[j].style.color = tempColor;
+
+            // تبديل النقاط في المصفوفة للحفاظ على الترتيب الصحيح
+            const tempScore = scores[i];
+            scores[i] = scores[j];
+            scores[j] = tempScore;
+        }
+    }
 }
-
-}
-
 // دالة لفحص وتلوين المجموع الثالث
 function checkAndColorScore3() {
    const score1 = parseFloat(document.getElementById('score1').textContent);
