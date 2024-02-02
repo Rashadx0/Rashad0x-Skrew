@@ -20,6 +20,10 @@
     td input {
         width: 50px;
     }
+    tfoot {
+        display: flex;
+        justify-content: flex-end;
+    }
 </style>
 </head>
 <body>
@@ -27,44 +31,34 @@
 <table>
     <tfoot>
         <tr>
-            <th>المجموع</th>
-            <th>الجولة الخامسة</th>
-            <th>الجولة الرابعة</th>
-            <th>الجولة الثالثة</th>
-            <th>الجولة الثانية</th>
-            <th>الجولة الأولى</th>
-            <th>اسم اللاعب</th>
+            <td>المجموع</td>
+            <td><span id="total">0</span></td>
+        </tr>
+        <tr>
+            <td>الجولة الخامسة</td>
+            <td><input type="number" class="round" min="0"></td>
+        </tr>
+        <tr>
+            <td>الجولة الرابعة</td>
+            <td><input type="number" class="round" min="0"></td>
+        </tr>
+        <tr>
+            <td>الجولة الثالثة</td>
+            <td><input type="number" class="round" min="0"></td>
+        </tr>
+        <tr>
+            <td>الجولة الثانية</td>
+            <td><input type="number" class="round" min="0"></td>
+        </tr>
+        <tr>
+            <td>الجولة الأولى</td>
+            <td><input type="number" class="round" min="0"></td>
+        </tr>
+        <tr>
+            <td>اسم اللاعب</td>
+            <td><input type="text" class="playerName"></td>
         </tr>
     </tfoot>
-    <tbody>
-        <tr>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-    </tbody>
 </table>
 
 <script>
@@ -74,15 +68,12 @@
     });
 
     function calculateTotal() {
-        var rows = document.querySelectorAll('tbody tr');
+        var inputs = document.querySelectorAll('.round');
         var total = 0;
-        rows.forEach(function(row) {
-            var inputs = row.querySelectorAll('.round');
-            inputs.forEach(function(input) {
-                total += parseInt(input.value) || 0;
-            });
+        inputs.forEach(function(input) {
+            total += parseInt(input.value) || 0;
         });
-        document.querySelector('tfoot .total span').innerText = total;
+        document.getElementById('total').innerText = total;
     }
 </script>
 
