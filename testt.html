@@ -89,50 +89,33 @@ function calculateSums() {
 
 
 
-// عرض الترتيب
-
 const rank1 = document.getElementById('rank1');
 const rank2 = document.getElementById('rank2');
 
+// قيمة مبدئية للرانك 1
+rank1.textContent = '1';
+rank1.style.backgroundColor = '#2ECC40';
+rank1.style.color = '#FFF';
+
+// افتراض القيمة المبدئية للرانك 2
+rank2.textContent = '2';
+rank2.style.backgroundColor = '#D32F2F';
+rank2.style.color = '#FFF';
+
+// اختبار الشرط
 if (score1 < score2) {
-    rank1.textContent = '1';
-    rank1.style.backgroundColor = '#2ECC40';
-    rank1.style.color = '#FFF';
-
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
+    // لا يلزم هنا شيء، لأن القيم المبدئية هي القيمة المطلوبة
 } else {
-    rank1.textContent = '2';
-    rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
-
+    // في حالة عدم تحقق الشرط
+    // يقوم بتغيير القيمة المبدئية للرانك 2 إلى 1
     rank2.textContent = '1';
     rank2.style.backgroundColor = '#2ECC40';
     rank2.style.color = '#FFF';
-}
 
-
-}
-if (score1 = 0) {
-    rank1.textContent = '1';
-    rank1.style.backgroundColor = '#2ECC40';
-    rank1.style.color = '#FFF';
-
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
-if (score2 = 0) {
+    // يقوم بتغيير القيمة المبدئية للرانك 1 إلى 2
     rank1.textContent = '2';
     rank1.style.backgroundColor = '#D32F2F';
     rank1.style.color = '#FFF';
-
-    rank2.textContent = '1';
-    rank2.style.backgroundColor = '#2ECC40';
-    rank2.style.color = '#FFF';
-}
-
-
 }
 
 // دالة لفحص وتلوين المجموع الثالث
