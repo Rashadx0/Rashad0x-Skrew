@@ -37,26 +37,35 @@
         <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
 
 
-        <div><input type="number" id="row2_col1" placeholder="R1"></div>
+        <div><input type="number" id="row2_col1" placeholder="R1" oninput="calculateSum()"></div>
 
 
-        <div><input type="number" id="row3_col1" placeholder="R2"></div>
+        <div><input type="number" id="row3_col1" placeholder="R2" oninput="calculateSum()"></div>
 
 
-        <div><input type="number" id="row4_col1" placeholder="R3"></div>
+        <div><input type="number" id="row4_col1" placeholder="R3" oninput="calculateSum()"></div>
 
 
-        <div><input type="number" id="row5_col1" placeholder="R4"></div>
+        <div><input type="number" id="row5_col1" placeholder="R4" oninput="calculateSum()"></div>
 
 
-        <div><input type="number" id="row6_col1" placeholder="R5"></div>
+        <div><input type="number" id="row6_col1" placeholder="R5" oninput="calculateSum()"></div>
 
 
         <div id="score1" class="mnr"></div>
         <div id="score2"></div>
 
 <script>
-   
+    function calculateSum() {
+        var total = 0;
+        // جمع الأرقام المدخلة
+        for (var i = 2; i <= 6; i++) {
+            var input = document.getElementById('row' + i + '_col1');
+            total += parseFloat(input.value) || 0;
+        }
+        // عرض النتيجة
+        document.getElementById('score1').textContent = 'مجموع الأرقام: ' + total;
+    }
 </script>
 
 </body>
