@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>جدول البيانات</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Cairo', sans-serif;
+    }
+    body {
+        height: 100vh;
+        background: linear-gradient(rgba(0,0,0,0.7),transparent), url(images/back.jpg);
+        background-size: cover;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1em; /* تكبير الفونت */
+    }
+    @media (max-width: 768px) {
+        body {
+            background-position: top center;
+        }
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #22183d; /* لون الخلفية */
+    }
+    table, th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+        color: white; /* لون النص */
+        font-weight: bold; /* تغيير الفونت إلى بولد */
+    }
+    th {
+        background-color: #22183d; /* لون الخلفية لرأس الجدول */
+        color: white; /* لون النص */
+    }
+    td input {
+        width: 12em; /* تحديد عرض خانة الإدخال */
+        color: white; /* لون النص */
+        font-weight: bold; /* تغيير الفونت إلى بولد */
+        text-align: center; /* تحديد مركز النص */
+        background-color: #22183d; /* لون الخلفية */
+        border: none; /* إزالة حدود الحقول */
+        font-size: 1em; /* تكبير الفونت */
+    }
+    td input::placeholder {
+        color: white; /* لون النص */
+        font-weight: bold; /* تغيير الفونت إلى بولد */
+        text-align: center; /* تحديد مركز النص */
+        font-size: 1em; /* تكبير الفونت */
+    }
+</style>
+</head>
+<body>
+
+ <div class="table">
+
+        <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
+        <div><input class="text" id="row1_col2" placeholder="Name"></div>
+
+
+        <div><input type="number" id="row2_col1" placeholder="R1"></div>
+        <div><input type="number" id="row2_col2" placeholder="R1"></div>
+
+
+        <div><input type="number" id="row3_col1" placeholder="R2"></div>
+        <div><input type="number" id="row3_col2" placeholder="R2"></div>
+
+
+        <div><input type="number" id="row4_col1" placeholder="R3"></div>
+        <div><input type="number" id="row4_col2" placeholder="R3"></div>
+
+
+        <div><input type="number" id="row5_col1" placeholder="R4"></div>
+        <div><input type="number" id="row5_col2" placeholder="R4"></div>
+
+
+        <div><input type="number" id="row6_col1" placeholder="R5"></div>
+        <div><input type="number" id="row6_col2" placeholder="R5"></div>
+
+
+        <div id="score1" class="mnr"></div>
+        <div id="score2"></div>
+
+<script>
+    function updateTotal(input) {
+        var row = input.parentNode.parentNode;
+        var inputs = row.querySelectorAll('.round');
+        var totalCell = row.querySelector('.total span');
+        var total = 0;
+        inputs.forEach(function(input) {
+            total += parseInt(input.value) || 0;
+        });
+        totalCell.textContent = total;
+    }
+</script>
+
+</body>
+</html>
