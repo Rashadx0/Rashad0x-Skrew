@@ -1,4 +1,69 @@
-<table style="height: 100vh;">
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>جدول اللاعبين</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
+   *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Cairo', sans-serif;
+    }
+    body{
+        height: 100vh;
+        background: linear-gradient(rgba(0,0,0,0.7),transparent),
+        url(images/back.jpg);
+        background-size: cover;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1em; /* تكبير الفونت */
+    }
+    @media (max-width: 768px) {
+        body{
+            background-position: top center;
+        }
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #22183d; /* لون الخلفية */
+    }
+    table, th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+        color: white; /* لون النص */
+        font-weight: bold; /* تغيير الفونت إلى بولد */
+    }
+    th {
+        background-color: #22183d; /* لون الخلفية لرأس الجدول */
+        color: white; /* لون النص */
+    }
+    td input {
+        width: 12em; /* تحديد عرض خانة الإدخال */
+        color: white; /* لون النص */
+        font-weight: bold; /* تغيير الفونت إلى بولد */
+        text-align: center; /* تحديد مركز النص */
+        background-color: #22183d; /* لون الخلفية */
+        border: none; /* إزالة حدود الحقول */
+        font-size: 1em; /* تكبير الفونت */
+    }
+    td input::placeholder {
+        color: white; /* لون النص */
+        font-weight: bold; /* تغيير الفونت إلى بولد */
+        text-align: center; /* تحديد مركز النص */
+        font-size: 1em; /* تكبير الفونت */
+    }
+</style>
+</head>
+<body>
+
+<table>
     <thead>
         <tr>
             <th>المجموع</th>
@@ -11,15 +76,43 @@
         </tr>
     </thead>
     <tbody>
+        <!-- صف الجدول الأول -->
         <tr>
             <td class="total"><span>0</span></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
-            <td><input type="text" class="playerName" placeholder="Name"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الخامسة"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الرابعة"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الثالثة"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الثانية"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الأولى"></td>
+            <td><input type="text" class="playerName" placeholder="اسم اللاعب"></td>
         </tr>
-        <!-- الصفوف الأخرى هنا -->
+        <!-- صف الجدول الثاني -->
+        <tr>
+            <td class="total"><span>0</span></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الخامسة"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الرابعة"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الثالثة"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الثانية"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="الجولة الأولى"></td>
+            <td><input type="text" class="playerName" placeholder="اسم اللاعب"></td>
+        </tr>
+        <!-- وهكذا -->
+        <!-- يمكنك تكرار هذا النمط حتى الصف السادس -->
     </tbody>
 </table>
+
+<script>
+    function updateTotal(input) {
+        var row = input.parentNode.parentNode;
+        var inputs = row.querySelectorAll('.round');
+        var totalCell = row.querySelector('.total span');
+        var total = 0;
+        inputs.forEach(function(input) {
+            total += parseInt(input.value) || 0;
+        });
+        totalCell.textContent = total;
+    }
+</script>
+
+</body>
+</html>
