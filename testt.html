@@ -208,10 +208,13 @@ function calculateSums() {
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
 
-const rank1 = 1; // تعيين قيمة مؤقتة للرقم الأول
-const rank2 = 1; // تعيين قيمة مؤقتة للرقم الأول
+    // متغيرات لحساب المجموع
+    let rank1 = 1;
+    let rank2 = 1;
 
 // عرض الترتيب
+const rank1 = document.getElementById('rank1');
+const rank2 = document.getElementById('rank2');
 
 
 if (score1 < score2) {
