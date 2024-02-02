@@ -40,7 +40,8 @@
         font-weight: bold; /* تغيير الفونت إلى بولد */
     }
     th {
-        background-color: #22183d; /* لون الخلفية لرأس الجدول */
+        background-color: #ff9e00; /* لون الخلفية لرأس الجدول */
+        color: #22183d; /* لون النص */
     }
     td input {
         width: 200px; /* تحديد عرض خانة الإدخال */
@@ -62,53 +63,25 @@
 <table>
     <thead>
         <tr>
+            <th style="background-color: #ff9e00; color: #22183d;">اسم اللاعب</th>
             <th>المجموع</th>
             <th>الجولة الخامسة</th>
             <th>الجولة الرابعة</th>
             <th>الجولة الثالثة</th>
             <th>الجولة الثانية</th>
             <th>الجولة الأولى</th>
-            <th>اسم اللاعب</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
             <td><input type="text" class="playerName" placeholder="Name"></td>
-        </tr>
-        <tr>
             <td class="total"><span>0</span></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="playerName" placeholder="Name"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
+            <td><input type="text" class="round" min="0" oninput="updateTotal(this)" placeholder="Score"></td>
         </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="playerName" placeholder="Name"></td>
-        </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="round" min="0" oninput="updateTotal(this)"></td>
-            <td><input type="text" class="playerName" placeholder="Name"></td>
-        </tr>
-          
         <!-- الصفوف الأخرى هنا -->
     </tbody>
 </table>
