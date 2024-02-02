@@ -20,6 +20,9 @@
     td input {
         width: 50px;
     }
+    .zero {
+        color: green;
+    }
 </style>
 </head>
 <body>
@@ -46,42 +49,7 @@
             <td><input type="number" class="round" min="0"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
+        <!-- Add more player rows as needed -->
     </tbody>
 </table>
 
@@ -105,6 +73,35 @@
 
     // Call the function to toggle between th and td
     toggleTableHeaders();
+
+    // Function to update totals and highlight zeros
+    function updateTotals() {
+        var totalCells = document.querySelectorAll('.total span');
+        totalCells.forEach(function(total) {
+            var sum = 0;
+            var rounds = total.parentNode.parentNode.querySelectorAll('.round');
+            rounds.forEach(function(round) {
+                sum += parseInt(round.value) || 0;
+            });
+            total.textContent = sum;
+            if (sum === 0) {
+                total.classList.add('zero');
+            } else {
+                total.classList.remove('zero');
+            }
+        });
+    }
+
+    // Call the function to update totals initially
+    updateTotals();
+
+    // Add event listeners to input fields for dynamic updates
+    var inputFields = document.querySelectorAll('.round');
+    inputFields.forEach(function(input) {
+        input.addEventListener('input', function() {
+            updateTotals();
+        });
+    });
 </script>
 
 </body>
