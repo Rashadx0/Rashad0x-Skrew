@@ -173,7 +173,6 @@ function calculateSums() {
     if (score1 < score2) {
         rank1.textContent = '1';
         rank1.style.backgroundColor = '#2ECC40';
-        rank1.style.backgroundImage = `url(images/crown.png)`;
         rank1.style.color = '#FFF';
 
         rank2.textContent = '2';
@@ -186,8 +185,33 @@ function calculateSums() {
 
         rank2.textContent = '1';
         rank2.style.backgroundColor = '#2ECC40';
-        rank2.style.backgroundImage = `url(images/crown.png)`;
         rank2.style.color = '#FFF';
+    }
+}
+
+function checkAndColorScore3() {
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+    if (score1 < score2) {
+        thScore1.style.backgroundColor = '#2ECC40';
+        thScore1.style.backgroundImage = `url(images/crown.png)`;
+        thScore1.style.color = '#FFF';
+
+        thScore2.style.backgroundColor = '#D32F2F';
+        thScore2.style.backgroundImage = `url(images/cone.png)`;
+        thScore2.style.color = '#FFF';
+    } else {
+        thScore1.style.backgroundColor = '#D32F2F';
+        thScore1.style.backgroundImage = `url(images/cone.png)`;
+        thScore1.style.color = '#FFF';
+
+        thScore2.style.backgroundColor = '#2ECC40';
+        thScore2.style.backgroundImage = `url(images/crown.png)`;
+        thScore2.style.color = '#FFF';
     }
 }
 
