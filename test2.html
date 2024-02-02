@@ -38,7 +38,7 @@
     </thead>
     <tbody>
         <tr>
-            <td><span id="total1">0</span></td>
+            <td class="total"><span>0</span></td>
             <td><input type="number" class="round" min="0"></td>
             <td><input type="number" class="round" min="0"></td>
             <td><input type="number" class="round" min="0"></td>
@@ -47,7 +47,7 @@
             <td><input type="text" class="playerName"></td>
         </tr>
         <tr>
-            <td><span id="total2">0</span></td>
+            <td class="total"><span>0</span></td>
             <td><input type="number" class="round" min="0"></td>
             <td><input type="number" class="round" min="0"></td>
             <td><input type="number" class="round" min="0"></td>
@@ -55,7 +55,15 @@
             <td><input type="number" class="round" min="0"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
-        <!-- Repeat this structure for the desired number of rows -->
+        <tr>
+            <td class="total"><span>0</span></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="text" class="playerName"></td>
+        </tr>
     </tbody>
 </table>
 
@@ -72,7 +80,7 @@
         inputs.forEach(function(input) {
             total += parseInt(input.value) || 0;
         });
-        row.querySelector('.total').innerText = total;
+        row.querySelector('.total span').innerText = total;
     }
 </script>
 
