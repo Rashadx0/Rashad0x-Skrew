@@ -6,280 +6,261 @@
     <link rel="icon" href="images/skrre.jpg">
     <title>Skrew || 2-Players</title>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Cairo', sans-serif;
-}
-body{
-    height: 100vh;
-    width: 100%;
-    background: #252525;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-}
-.table{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(7, 1fr);
-    gap: 10px;
-    height: 100%;
-    padding: 20px;
-}
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
 
-.table input{
-    outline: none;
-    text-align: center;
-    border: none;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: capitalize;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: 0.5s ease;
-    color: #fff;
-    border-radius: 10px 10px 0 0 ;
-}
-.table input:hover{
-    border-bottom: 1px solid #4F709C;
-}
-.table div{
-    position: relative;
-    transition: 0.5s ease;
-    border-radius: 10px 10px 0 0 ;
-}
-.table div:hover::after {
-    background: #4F709C;
-}
-.table div::after{
-    position: absolute;
-    content: "";
-    background:rgba(255,255,255,0.3);
-    width: 80%;
-    height: 1px;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 4px;
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
-}
-input[type="number"]{
-    background: transparent;
-}
-input[type="number"]::placeholder{
-    color: rgba(255,255,255,0.1);
-}
-.text{
-    background: transparent;
-}
-.text::placeholder{
-    color: #999;
-}
+        body {
+            height: 100vh;
+            width: 100%;
+            background: #252525;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+        }
 
+        .table {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* Updated to accommodate additional fields */
+            grid-template-rows: repeat(7, 1fr);
+            gap: 10px;
+            height: 100%;
+            padding: 20px;
+        }
 
-#score1,
-#score2,
-#score3,
-#score4,
-#score5,
-#score6,
-#score7,
-#score8 {
-    display: grid;
-    place-items: center;
-    font-weight: bold;
-    font-size: 18px;
-    /* background: url(images/crown.png); */
-    background-repeat: no-repeat;
-    background-position: 95% 5px;
-}
+        .table input {
+            outline: none;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: capitalize;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: 0.5s ease;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+        }
 
-@media ( max-width : 768px) {
-    body{
-        padding: 5px;
-    }
-    .table{
-        padding: 10px;
-    }
-    #special{
-        font-size: 16px;
-        padding: 4px;
-    }
-    .table input{
-        font-size: 15px;
-    }
-}
-        .table{
-            grid-template-columns: repeat(2, 1fr);
+        .table input:hover {
+            border-bottom: 1px solid #4f709c;
+        }
+
+        .table div {
+            position: relative;
+            transition: 0.5s ease;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .table div:hover::after {
+            background: #4f709c;
+        }
+
+        .table div::after {
+            position: absolute;
+            content: "";
+            background: rgba(255, 255, 255, 0.3);
+            width: 80%;
+            height: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 4px;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            background: transparent;
+        }
+
+        input[type="number"]::placeholder {
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        .text {
+            background: transparent;
+        }
+
+        .text::placeholder {
+            color: #999;
+        }
+
+        #score1,
+        #score2,
+        #score3,
+        #score4,
+        #score5,
+        #score6,
+        #score7,
+        #score8 {
+            display: grid;
+            place-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            background-repeat: no-repeat;
+            background-position: 95% 5px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .table {
+                padding: 10px;
+            }
+
+            #special {
+                font-size: 16px;
+                padding: 4px;
+            }
+
+            .table input {
+                font-size: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="table">
+<div class="table">
+    <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
+    <div><input class="text" id="row1_col2" placeholder="Name"></div>
 
-        <div><input class="text" id="row1_col1" class="mmr" placeholder="Name"></div>
-        <div><input class="text" id="row1_col2" placeholder="Name"></div>
+    <div><input type="number" id="row2_col1" placeholder="R1"></div>
+    <div><input type="number" id="row2_col2" placeholder="R1"></div>
 
+    <div><input type="number" id="row3_col1" placeholder="R2"></div>
+    <div><input type="number" id="row3_col2" placeholder="R2"></div>
 
-        <div><input type="number" id="row2_col1" placeholder="R1"></div>
-        <div><input type="number" id="row2_col2" placeholder="R1"></div>
+    <div><input type="number" id="row4_col1" placeholder="R3"></div>
+    <div><input type="number" id="row4_col2" placeholder="R3"></div>
 
+    <div><input type="number" id="row5_col1" placeholder="R4"></div>
+    <div><input type="number" id="row5_col2" placeholder="R4"></div>
 
-        <div><input type="number" id="row3_col1" placeholder="R2"></div>
-        <div><input type="number" id="row3_col2" placeholder="R2"></div>
+    <div><input type="number" id="row6_col1" placeholder="R5"></div>
+    <div><input type="number" id="row6_col2" placeholder="R5"></div>
 
+    <div id="score1" class="mnr"></div>
+    <div id="score2"></div>
 
-        <div><input type="number" id="row4_col1" placeholder="R3"></div>
-        <div><input type="number" id="row4_col2" placeholder="R3"></div>
+    <!-- Additional fields for sorting -->
+    <div><input type="number" id="row7_col1" placeholder="R6"></div>
+    <div><input type="number" id="row7_col2" placeholder="R6"></div>
 
-
-        <div><input type="number" id="row5_col1" placeholder="R4"></div>
-        <div><input type="number" id="row5_col2" placeholder="R4"></div>
-
-
-        <div><input type="number" id="row6_col1" placeholder="R5"></div>
-        <div><input type="number" id="row6_col2" placeholder="R5"></div>
-
-
-        <div id="score1" class="mnr"></div>
-        <div id="score2"></div>
-
-
-
-    </div>
-    <script>
+    <div><input type="number" id="row8_col1" placeholder="R7"></div>
+    <div><input type="number" id="row8_col2" placeholder="R7"></div>
+</div>
+<script>
     function calculateSums() {
-    const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
-    const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
+        const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1', 'row7_col1', 'row8_col1']; // Added new IDs
+        const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2', 'row7_col2', 'row8_col2']; // Added new IDs
 
+        let sum1 = 0;
+        let sum2 = 0;
 
-    let sum1 = 0;
-    let sum2 = 0;
+        for (let i = 0; i < column1IDs.length; i++) {
+            const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
+            const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
 
+            sum1 += value1;
+            sum2 += value2;
+        }
 
-    for (let i = 0; i < column1IDs.length; i++) {
-        const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
-        const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
+        document.getElementById('score1').textContent = sum1;
+        document.getElementById('score2').textContent = sum2;
 
-
-
-
-        sum1 += value1;
-        sum2 += value2;
-
-
+        checkAndColorScore3();
     }
 
-    document.getElementById('score1').textContent = sum1;
-    document.getElementById('score2').textContent = sum2;
+    function checkAndColorScore3() {
+        const score1 = parseFloat(document.getElementById('score1').textContent);
+        const score2 = parseFloat(document.getElementById('score2').textContent);
 
+        const thScore1 = document.querySelector('#score1');
+        const thScore2 = document.querySelector('#score2');
 
+        const scores = [score1, score2];
+        const thScores = [thScore1, thScore2];
 
-    checkAndColorScore3();
+        const minScore = Math.min(...scores);
+        const minScoreIndices = scores.reduce((indices, score, index) => {
+            if (score === minScore) indices.push(index);
+            return indices;
+        }, []);
 
-    const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
-    const mmrInput = document.querySelector('.mmr');
-    const mnrInput = document.querySelector('.mnr');
-    const score1 = parseFloat(document.getElementById('score1').textContent);
-    const score2 = parseFloat(document.getElementById('score2').textContent);
+        const maxScore = Math.max(...scores);
+        const maxScoreIndices = scores.reduce((indices, score, index) => {
+            if (score === maxScore) indices.push(index);
+            return indices;
+        }, []);
 
-
-    const thScore1 = document.querySelector('#score1');
-    const thScore2 = document.querySelector('#score2');
-
-
+        for (let i = 0; i < scores.length; i++) {
+            if (minScoreIndices.includes(i)) {
+                thScores[i].style.backgroundColor = '#2ECC40';
+                thScores[i].style.backgroundImage = `url(images/crown.png)`;
+                thScores[i].style.color = '#FFF';
+            } else if (maxScoreIndices.includes(i)) {
+                thScores[i].style.backgroundColor = '#D32F2F';
+                thScores[i].style.backgroundImage = `url(images/cone.png)`;
+                thScores[i].style.color = '#FFF';
+            } else {
+                thScores[i].style.backgroundColor = 'orange';
+                thScores[i].style.color = '#FFF';
+                thScores[i].style.backgroundImage = "none";
+            }
+        }
     }
 
-function checkAndColorScore3() {
-    const score1 = parseFloat(document.getElementById('score1').textContent);
-    const score2 = parseFloat(document.getElementById('score2').textContent);
+    const inputFields = document.querySelectorAll('input[type="number"]');
+    inputFields.forEach(input => {
+        input.addEventListener('input', calculateSums);
+    });
 
+    calculateSums();
 
-    const thScore1 = document.querySelector('#score1');
-    const thScore2 = document.querySelector('#score2');
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    const textInputs = document.querySelectorAll('input[type="text"]');
 
-
-    const scores = [score1, score2];
-    const thScores = [thScore1, thScore2];
-
-const minScore = Math.min(...scores);
-const minScoreIndices = scores.reduce((indices, score, index) => {
-if (score === minScore) indices.push(index);
-return indices;
-}, []);
-
-const maxScore = Math.max(...scores);
-const maxScoreIndices = scores.reduce((indices, score, index) => {
-if (score === maxScore) indices.push(index);
-return indices;
-}, []);
-
-
-for (let i = 0; i < scores.length; i++) {
-if (minScoreIndices.includes(i)) {
-    thScores[i].style.backgroundColor = '#2ECC40';
-    thScores[i].style.backgroundImage = `url(images/crown.png)`;
-    thScores[i].style.color = '#FFF'
-} else if(maxScoreIndices.includes(i)){
-    thScores[i].style.backgroundColor = '#D32F2F';
-    thScores[i].style.backgroundImage = `url(images/cone.png)`;
-    thScores[i].style.color = '#FFF'
-} else {
-    thScores[i].style.backgroundColor = 'orange';
-    thScores[i].style.color = '#FFF'
-    thScores[i].style.backgroundImage = "none";
-}
-}
-}
-
-
-const inputFields = document.querySelectorAll('input[type="number"]');
-inputFields.forEach(input => {
-    input.addEventListener('input', calculateSums);
-});
-
-calculateSums();
-
-const numberInputs = document.querySelectorAll('input[type="number"]');
-const textInputs = document.querySelectorAll('input[type="text"]');
-
-function updateBackgroundColor(input) {
-    const inputValue = parseInt(input.value);
-    if(inputValue === 0) {
-        input.style.backgroundColor = '#2ECC40';
-        input.parentElement.style.backgroundColor = '#2ECC40';
-    } else {
-        input.style.backgroundColor = '';
-        input.parentElement.style.backgroundColor = '';
+    function updateBackgroundColor(input) {
+        const inputValue = parseInt(input.value);
+        if (inputValue === 0) {
+            input.style.backgroundColor = '#2ECC40';
+            input.parentElement.style.backgroundColor = '#2ECC40';
+        } else {
+            input.style.backgroundColor = '';
+            input.parentElement.style.backgroundColor = '';
+        }
     }
-}
 
-numberInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        input.value = input.value.replace(/[^0-9]/g, '');
+    numberInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            input.value = input.value.replace(/[^0-9]/g, '');
+            updateBackgroundColor(input);
+        });
+    });
+
+    textInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            input.value = input.value.replace(/[0-9]/g, '');
+        });
+    });
+
+    numberInputs.forEach(input => {
         updateBackgroundColor(input);
     });
-});
-
-textInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        input.value = input.value.replace(/[0-9]/g, '');
-    });
-});
-
-numberInputs.forEach(input => {
-    updateBackgroundColor(input);
-});
-    </script>
+</script>
 </body>
 </html>
