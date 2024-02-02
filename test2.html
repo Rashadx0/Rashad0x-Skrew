@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +19,9 @@
     }
     td input {
         width: 50px;
+    }
+    .winner {
+        color: green;
     }
 </style>
 </head>
@@ -64,47 +67,46 @@
             <td><input type="number" class="round" min="0"></td>
             <td><input type="text" class="playerName"></td>
         </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
-        <tr>
-            <td class="total"><span>0</span></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="number" class="round" min="0"></td>
-            <td><input type="text" class="playerName"></td>
-        </tr>
     </tbody>
 </table>
 
-<script>
-    // Function to toggle between th and td
-    function toggleTableHeaders() {
-        var headers = document.querySelectorAll('thead th');
-        headers.forEach(function(header) {
-            var newElement = document.createElement('td');
-            newElement.innerHTML = header.innerHTML;
-            header.parentNode.replaceChild(newElement, header);
-        });
+<div id="winnerMessage"></div>
 
-        var cells = document.querySelectorAll('tbody td');
-        cells.forEach(function(cell) {
-            var newElement = document.createElement('th');
-            newElement.innerHTML = cell.innerHTML;
-            cell.parentNode.replaceChild(newElement, cell);
+<script>
+    var rounds = document.querySelectorAll('.round');
+    rounds.forEach(function(round) {
+        round.addEventListener('input', calculateTotal);
+    });
+
+    function calculateTotal() {
+        var row = this.parentNode.parentNode;
+        var inputs = row.querySelectorAll('.round');
+        var total = 0;
+        inputs.forEach(function(input) {
+            total += parseInt(input.value) || 0;
         });
+        var totalSpan = row.querySelector('.total span');
+        totalSpan.innerText = total;
+        if (total == 0) {
+            totalSpan.classList.add('winner');
+        } else {
+            totalSpan.classList.remove('winner');
+        }
     }
 
-    // Call the function to toggle between th and td
-    toggleTableHeaders();
+    var winnerMessage = document.getElementById('winnerMessage');
+    var playerNames = document.querySelectorAll('.playerName');
+    playerNames.forEach(function(playerNameInput) {
+        playerNameInput.addEventListener('change', function() {
+            var winnerName = this.value;
+            winnerMessage.innerText = "الفائز في الجولة: " + winnerName;
+            if (winnerName === 'صفر') {
+                winnerMessage.style.color = 'green';
+            } else {
+                winnerMessage.style.color = 'black';
+            }
+        });
+    });
 </script>
 
 </body>
