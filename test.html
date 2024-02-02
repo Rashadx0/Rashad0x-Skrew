@@ -13,13 +13,13 @@
     box-sizing: border-box;
     font-family: 'Cairo', sans-serif;
 }
-.green-button {
+.custom-button {
     background-color: #2ECC40; /* لون خلفية الزر */
     border: 2px solid #2ECC40; /* حافة الزر */
     color: white; /* لون النص */
     font-weight: bold; /* تحديد سماكة الخط */
     padding: 10px 20px; /* تحديد المسافات داخل الزر */
-    border-radius: 20px; /* تحديد شكل حواف الزر (حواف دائرية) */
+    border-radius: 5px; /* تحديد شكل حواف الزر */
     cursor: pointer; /* تحويل المؤشر إلى يد تشير إلى أنه زر قابل للنقر */
 }
 body{
@@ -168,7 +168,7 @@ input[type="number"]::placeholder{
 
 
     </div>
-<button onclick="clearValues()" class="#2ECC40">مسح القيم</button>
+<button onclick="clearValues()" class="custom-button">مسح القيم</button>
 
     <script>
 function clearValues() {
