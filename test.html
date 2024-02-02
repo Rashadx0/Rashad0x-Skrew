@@ -144,61 +144,81 @@
     <div id="rank2"></div>
 </div>
 <script>
-    function calculateSums() {
-        const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
-        const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
+function calculateSums() {
+    const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
+    const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
 
-        let sum1 = 0;
-        let sum2 = 0;
+    let sum1 = 0;
+    let sum2 = 0;
 
-        for (let i = 0; i < column1IDs.length; i++) {
-            const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
-            const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
+    for (let i = 0; i < column1IDs.length; i++) {
+        const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
+        const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
 
-            sum1 += value1;
-            sum2 += value2;
-        }
-
-        document.getElementById('score1').textContent = sum1;
-        document.getElementById('score2').textContent = sum2;
-
-        checkAndColorScore3();
+        sum1 += value1;
+        sum2 += value2;
     }
 
-    function checkAndColorScore3() {
-        const score1 = parseFloat(document.getElementById('score1').textContent);
-        const score2 = parseFloat(document.getElementById('score2').textContent);
+    document.getElementById('score1').textContent = sum1;
+    document.getElementById('score2').textContent = sum2;
 
-        const thScore1 = document.querySelector('#rank1');
-        const thScore2 = document.querySelector('#rank2');
+    checkAndColorScore3();
 
-        if (score1 < score2) {
-            thScore1.textContent = '1';
-            thScore1.style.backgroundColor = '#2ECC40';
-            thScore1.style.backgroundImage = `url(images/crown.png)`;
-            thScore1.style.color = '#FFF';
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
 
-            thScore2.textContent = '2';
-            thScore2.style.backgroundColor = '#D32F2F';
-            thScore2.style.backgroundImage = `url(images/cone.png)`;
-            thScore2.style.color = '#FFF';
-        } else {
-            thScore1.textContent = '2';
-            thScore1.style.backgroundColor = '#D32F2F';
-            thScore1.style.backgroundImage = `url(images/cone.png)`;
-            thScore1.style.color = '#FFF';
+    const rank1 = document.getElementById('rank1');
+    const rank2 = document.getElementById('rank2');
 
-            thScore2.textContent = '1';
-            thScore2.style.backgroundColor = '#2ECC40';
-            thScore2.style.backgroundImage = `url(images/crown.png)`;
-            thScore2.style.color = '#FFF';
-        }
+    if (score1 < score2) {
+        rank1.textContent = '1';
+        rank1.style.backgroundColor = '#2ECC40';
+        rank1.style.backgroundImage = `url(images/crown.png)`;
+        rank1.style.color = '#FFF';
+
+        rank2.textContent = '2';
+        rank2.style.backgroundColor = '#D32F2F';
+        rank2.style.backgroundImage = `url(images/cone.png)`;
+        rank2.style.color = '#FFF';
+    } else {
+        rank1.textContent = '2';
+        rank1.style.backgroundColor = '#D32F2F';
+        rank1.style.backgroundImage = `url(images/cone.png)`;
+        rank1.style.color = '#FFF';
+
+        rank2.textContent = '1';
+        rank2.style.backgroundColor = '#2ECC40';
+        rank2.style.backgroundImage = `url(images/crown.png)`;
+        rank2.style.color = '#FFF';
     }
+}
 
-    const inputFields = document.querySelectorAll('input[type="number"]');
-    inputFields.forEach(input => {
-        input.addEventListener('input', calculateSums);
-    });
+function checkAndColorScore3() {
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+    if (score1 < score2) {
+        thScore1.style.backgroundColor = '#2ECC40';
+        thScore1.style.backgroundImage = `url(images/crown.png)`;
+        thScore1.style.color = '#FFF';
+
+        thScore2.style.backgroundColor = '#D32F2F';
+        thScore2.style.backgroundImage = `url(images/cone.png)`;
+        thScore2.style.color = '#FFF';
+    } else {
+        thScore1.style.backgroundColor = '#D32F2F';
+        thScore1.style.backgroundImage = `url(images/cone.png)`;
+        thScore1.style.color = '#FFF';
+
+        thScore2.style.backgroundColor = '#2ECC40';
+        thScore2.style.backgroundImage = `url(images/crown.png)`;
+        thScore2.style.color = '#FFF';
+    }
+}
+
 
     calculateSums();
 
