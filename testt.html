@@ -222,30 +222,47 @@ const scores = [
     // إضافة المزيد من المتغيرات حسب الحاجة
 ];
 
-// الترتيب
-for (let i = 0; i < ranks.length; i++) {
-    for (let j = i + 1; j < ranks.length; j++) {
-        if (scores[i] < scores[j]) {
-            // تبديل الترتيب إذا كانت النقاط الحالية أقل من النقاط التالية
-            const tempRank = ranks[i].textContent;
-            const tempBackgroundColor = ranks[i].style.backgroundColor;
-            const tempColor = ranks[i].style.color;
+const rank1 = document.getElementById('rank1');
+const rank2 = document.getElementById('rank2');
 
-            ranks[i].textContent = ranks[j].textContent;
-            ranks[i].style.backgroundColor = ranks[j].style.backgroundColor;
-            ranks[i].style.color = ranks[j].style.color;
+// افحص أي من النتائج هو الأعلى
+const maxScore = Math.max(score1, score2);
+// افحص أي من النتائج هو الأدنى
+const minScore = Math.min(score1, score2);
 
-            ranks[j].textContent = tempRank;
-            ranks[j].style.backgroundColor = tempBackgroundColor;
-            ranks[j].style.color = tempColor;
+if (score1 < score2) {
+    // تعيين الترتيب والألوان لكل نتيجة
+    rank1.textContent = '1';
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
 
-            // تبديل النقاط في المصفوفة للحفاظ على الترتيب الصحيح
-            const tempScore = scores[i];
-            scores[i] = scores[j];
-            scores[j] = tempScore;
-        }
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = '#D32F2F';
+    rank2.style.color = '#FFF';
+
+    // تعيين الألوان للمراتب بين الأول والأخير
+    for (let i = minScore + 1; i < maxScore; i++) {
+        const rank = document.getElementById(`rank${i}`);
+        rank.style.backgroundColor = '#FFA500'; // orange color
+        rank.style.color = '#000'; // black color
+    }
+} else {
+    rank1.textContent = '2';
+    rank1.style.backgroundColor = '#D32F2F';
+    rank1.style.color = '#FFF';
+
+    rank2.textContent = '1';
+    rank2.style.backgroundColor = '#2ECC40';
+    rank2.style.color = '#FFF';
+
+    // تعيين الألوان للمراتب بين الأول والأخير
+    for (let i = minScore + 1; i < maxScore; i++) {
+        const rank = document.getElementById(`rank${i}`);
+        rank.style.backgroundColor = '#FFA500'; // orange color
+        rank.style.color = '#000'; // black color
     }
 }
+
 // دالة لفحص وتلوين المجموع الثالث
 function checkAndColorScore3() {
    const score1 = parseFloat(document.getElementById('score1').textContent);
