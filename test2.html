@@ -27,45 +27,52 @@
 <table>
     <thead>
         <tr>
-            <th>اسم اللاعب</th>
-            <th>الجولة الأولى</th>
-            <th>الجولة الثانية</th>
-            <th>الجولة الثالثة</th>
-            <th>الجولة الرابعة</th>
-            <th>الجولة الخامسة</th>
             <th>المجموع</th>
+            <th>الجولة الخامسة</th>
+            <th>الجولة الرابعة</th>
+            <th>الجولة الثالثة</th>
+            <th>الجولة الثانية</th>
+            <th>الجولة الأولى</th>
+            <th>اسم اللاعب</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td><input type="text" id="playerName"></td>
-            <td><input type="number" id="round1" min="0"></td>
-            <td><input type="number" id="round2" min="0"></td>
-            <td><input type="number" id="round3" min="0"></td>
-            <td><input type="number" id="round4" min="0"></td>
-            <td><input type="number" id="round5" min="0"></td>
-            <td><span id="total">0</span></td>
+            <td><span id="total1">0</span></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="text" class="playerName"></td>
         </tr>
+        <tr>
+            <td><span id="total2">0</span></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="number" class="round" min="0"></td>
+            <td><input type="text" class="playerName"></td>
+        </tr>
+        <!-- Repeat this structure for the desired number of rows -->
     </tbody>
 </table>
 
 <script>
-    document.getElementById('playerName').addEventListener('input', calculateTotal);
-    document.getElementById('round1').addEventListener('input', calculateTotal);
-    document.getElementById('round2').addEventListener('input', calculateTotal);
-    document.getElementById('round3').addEventListener('input', calculateTotal);
-    document.getElementById('round4').addEventListener('input', calculateTotal);
-    document.getElementById('round5').addEventListener('input', calculateTotal);
+    var rounds = document.querySelectorAll('.round');
+    rounds.forEach(function(round) {
+        round.addEventListener('input', calculateTotal);
+    });
 
     function calculateTotal() {
-        var round1 = parseInt(document.getElementById('round1').value) || 0;
-        var round2 = parseInt(document.getElementById('round2').value) || 0;
-        var round3 = parseInt(document.getElementById('round3').value) || 0;
-        var round4 = parseInt(document.getElementById('round4').value) || 0;
-        var round5 = parseInt(document.getElementById('round5').value) || 0;
-
-        var total = round1 + round2 + round3 + round4 + round5;
-        document.getElementById('total').innerText = total;
+        var row = this.parentNode.parentNode;
+        var inputs = row.querySelectorAll('.round');
+        var total = 0;
+        inputs.forEach(function(input) {
+            total += parseInt(input.value) || 0;
+        });
+        row.querySelector('.total').innerText = total;
     }
 </script>
 
