@@ -208,28 +208,30 @@ function calculateSums() {
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
 
- // عرض الترتيب
-    const rank1 = document.getElementById('rank1');
-    const rank2 = document.getElementById('rank2');
+const score1 = 1; // تعيين قيمة مؤقتة للرقم الأول
 
-    if (score1 < score2) {
-        rank1.textContent = '1';
-        rank1.style.backgroundColor = '#2ECC40';
-        rank1.style.color = '#FFF';
+// عرض الترتيب
+const rank1 = document.getElementById('rank1');
+const rank2 = document.getElementById('rank2');
 
-        rank2.textContent = '2';
-        rank2.style.backgroundColor = '#D32F2F';
-        rank2.style.color = '#FFF';
-    } else {
-        rank1.textContent = '2';
-        rank1.style.backgroundColor = '#D32F2F';
-        rank1.style.color = '#FFF';
+if (score1 < score2) {
+    rank1.textContent = '1';
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
 
-        rank2.textContent = '1';
-        rank2.style.backgroundColor = '#2ECC40';
-        rank2.style.color = '#FFF';
-    
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = '#D32F2F';
+    rank2.style.color = '#FFF';
+} else {
+    rank1.textContent = '2';
+    rank1.style.backgroundColor = '#D32F2F';
+    rank1.style.color = '#FFF';
+
+    rank2.textContent = '1';
+    rank2.style.backgroundColor = '#2ECC40';
+    rank2.style.color = '#FFF';
 }
+
 
 }
 
