@@ -65,8 +65,11 @@
         <div id="score3"></div>
         <div id="score4"></div>
         <div id="score5"></div>
-
-
+<div id="rank1" class="mnr">1</div>
+<div id="rank2">1</div>
+<div id="rank3">1</div>
+<div id="rank4">1</div>
+<div id="rank5">1</div>
     </div>
     <script>
     function calculateSums() {
@@ -76,13 +79,11 @@
     const column4IDs = ['row6_col4', 'row5_col4', 'row4_col4', 'row3_col4', 'row2_col4'];
     const column5IDs = ['row6_col5', 'row5_col5', 'row4_col5', 'row3_col5', 'row2_col5'];
 
-
     let sum1 = 0;
     let sum2 = 0;
     let sum3 = 0;
     let sum4 = 0;
     let sum5 = 0;
-
 
     for (let i = 0; i < column1IDs.length; i++) {
         const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
@@ -92,14 +93,12 @@
         const value5 = parseFloat(document.getElementById(column5IDs[i]).value) || 0;
 
 
-
-
         sum1 += value1;
         sum2 += value2;
         sum3 += value3;
-        sum4 += value4;                               
-        sum5 += value5;                                               
-
+        sum4 += value4;     
+        sum5 += value5;                               
+                          
     }
 
     document.getElementById('score1').textContent = sum1;
@@ -107,8 +106,6 @@
     document.getElementById('score3').textContent = sum3;
     document.getElementById('score4').textContent = sum4;
     document.getElementById('score5').textContent = sum5;
-
-
 
     checkAndColorScore3();
 
@@ -121,14 +118,135 @@
     const score4 = parseFloat(document.getElementById('score4').textContent);
     const score5 = parseFloat(document.getElementById('score5').textContent);
 
-
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
     const thScore3 = document.querySelector('#score3');
     const thScore4 = document.querySelector('#score4');
     const thScore5 = document.querySelector('#score5');
 
+///////////////////////////////////////////////////////////////
+const rank1 = document.getElementById('rank1');
+const rank2 = document.getElementById('rank2');
+const rank3 = document.getElementById('rank3');
+const rank4 = document.getElementById('rank4');
+const rank5 = document.getElementById('rank5');
 
+// Calculate sums
+const sums = [score1, score2, score3, score4, score5];
+sums.sort((a, b) => a - b); // Sort in ascending order
+
+if (sums[0] === score1) {
+    rank1.textContent = 'WIN';
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
+} else if (sums[4] === score1) {
+    rank1.textContent = 'LOSE';
+    rank1.style.backgroundColor = '#D32F2F';
+    rank1.style.color = '#FFF';
+} else if (sums[3] === score1) {
+    rank1.textContent = '4';
+    rank1.style.backgroundColor = 'orange';
+    rank1.style.color = '#FFF';
+} else if (sums[1] === score1) {
+    rank1.textContent = '2';
+    rank1.style.backgroundColor = 'orange';
+    rank1.style.color = '#FFF';
+} else {
+    rank1.textContent = '3';
+    rank1.style.backgroundColor = 'orange';
+    rank1.style.color = '#FFF';
+}
+
+if (sums[0] === score2) {
+    rank2.textContent = 'WIN';
+    rank2.style.backgroundColor = '#2ECC40';
+    rank2.style.color = '#FFF';
+} else if (sums[4] === score2) {
+    rank2.textContent = 'LOSE';
+    rank2.style.backgroundColor = '#D32F2F';
+    rank2.style.color = '#FFF';
+} else if (sums[3] === score2) {
+    rank2.textContent = '4';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+} else if (sums[1] === score2) {
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+} else {
+    rank2.textContent = '3';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+}
+
+if (sums[0] === score3) {
+    rank3.textContent = 'WIN';
+    rank3.style.backgroundColor = '#2ECC40';
+    rank3.style.color = '#FFF';
+} else if (sums[4] === score3) {
+    rank3.textContent = 'LOSE';
+    rank3.style.backgroundColor = '#D32F2F';
+    rank3.style.color = '#FFF';
+} else if (sums[3] === score3) {
+    rank3.textContent = '4';
+    rank3.style.backgroundColor = 'orange';
+    rank3.style.color = '#FFF';
+} else if (sums[1] === score3) {
+    rank3.textContent = '2';
+    rank3.style.backgroundColor = 'orange';
+    rank3.style.color = '#FFF';
+} else {
+    rank3.textContent = '3';
+    rank3.style.backgroundColor = 'orange';
+    rank3.style.color = '#FFF';
+}
+
+if (sums[0] === score4) {
+    rank4.textContent = 'WIN';
+    rank4.style.backgroundColor = '#2ECC40';
+    rank4.style.color = '#FFF';
+} else if (sums[4] === score4) {
+    rank4.textContent = 'LOSE';
+    rank4.style.backgroundColor = '#D32F2F';
+    rank4.style.color = '#FFF';
+} else if (sums[3] === score4) {
+    rank4.textContent = '4';
+    rank4.style.backgroundColor = 'orange';
+    rank4.style.color = '#FFF';
+} else if (sums[1] === score4) {
+    rank4.textContent = '2';
+    rank4.style.backgroundColor = 'orange';
+    rank4.style.color = '#FFF';
+} else {
+    rank4.textContent = '3';
+    rank4.style.backgroundColor = 'orange';
+    rank4.style.color = '#FFF';
+}
+
+if (sums[0] === score5) {
+    rank5.textContent = 'WIN';
+    rank5.style.backgroundColor = '#2ECC40';
+    rank5.style.color = '#FFF';
+} else if (sums[4] === score5) {
+    rank5.textContent = 'LOSE';
+    rank5.style.backgroundColor = '#D32F2F';
+    rank5.style.color = '#FFF';
+} else if (sums[3] === score5) {
+    rank5.textContent = '4';
+    rank5.style.backgroundColor = 'orange';
+    rank5.style.color = '#FFF';
+} else if (sums[1] === score5) {
+    rank5.textContent = '2';
+    rank5.style.backgroundColor = 'orange';
+    rank5.style.color = '#FFF';
+} else {
+    rank5.textContent = '3';
+    rank5.style.backgroundColor = 'orange';
+    rank5.style.color = '#FFF';
+}
+
+
+///////////////////////////////////
     }
 
 function checkAndColorScore3() {
@@ -138,13 +256,11 @@ function checkAndColorScore3() {
     const score4 = parseFloat(document.getElementById('score4').textContent);
     const score5 = parseFloat(document.getElementById('score5').textContent);
 
-
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
     const thScore3 = document.querySelector('#score3');
     const thScore4 = document.querySelector('#score4');
     const thScore5 = document.querySelector('#score5');
-
 
     const scores = [score1, score2, score3, score4, score5];
     const thScores = [thScore1, thScore2, thScore3, thScore4, thScore5];
