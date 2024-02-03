@@ -72,23 +72,29 @@ function calculateSums() {
     // قائمة بمعرفات حقول الإدخال للأعمدة
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
+    const column3IDs = ['row6_col3', 'row5_col3', 'row4_col3', 'row3_col3', 'row2_col3'];
 
     // متغيرات لحساب المجموع
     let sum1 = 0;
     let sum2 = 0;
+    let sum3 = 0;
 
     // حلقة لحساب المجموع
     for (let i = 0; i < column1IDs.length; i++) {
         const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
         const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
+        const value3 = parseFloat(document.getElementById(column3IDs[i]).value) || 0;
 
         sum1 += value1;
         sum2 += value2;
+        sum3 += value3;
+
     }
 
     // عرض المجموع
     document.getElementById('score1').textContent = sum1;
     document.getElementById('score2').textContent = sum2;
+    document.getElementById('score3').textContent = sum3;
 
     // فحص وتلوين نتيجة المجموع
     checkAndColorScore3();
@@ -99,10 +105,12 @@ function calculateSums() {
     const mnrInput = document.querySelector('.mnr');
     const score1 = parseFloat(document.getElementById('score1').textContent);
     const score2 = parseFloat(document.getElementById('score2').textContent);
+    const score3 = parseFloat(document.getElementById('score3').textContent);
 
 
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
+    const thScore3 = document.querySelector('#score3');
 
 
 
@@ -143,14 +151,16 @@ if (score1 === score2) {
 function checkAndColorScore3() {
    const score1 = parseFloat(document.getElementById('score1').textContent);
     const score2 = parseFloat(document.getElementById('score2').textContent);
+    const score3 = parseFloat(document.getElementById('score3').textContent);
 
 
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
+    const thScore3 = document.querySelector('#score3');
 
 
-    const scores = [score1, score2];
-    const thScores = [thScore1, thScore2];
+    const scores = [score1, score2, score3];
+    const thScores = [thScore1, thScore2, thScore3];
 
 const minScore = Math.min(...scores);
 const minScoreIndices = scores.reduce((indices, score, index) => {
