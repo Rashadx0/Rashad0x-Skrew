@@ -68,47 +68,63 @@
     </div>
     <script>
 // دالة لحساب المجموعات
-function calculateSums() {
-    const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
-    const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
-    const column3IDs = ['row6_col3', 'row5_col3', 'row4_col3', 'row3_col3', 'row2_col3'];
+// عرض المجموع
+    document.getElementById('score1').textContent = sum1;
+    document.getElementById('score2').textContent = sum2;
+    document.getElementById('score3').textContent = sum3;
 
-    let scores = [0, 0, 0]; // مصفوفة لتخزين قيم الأسكور
-    let ranks = ['', '', '']; // مصفوفة لتخزين الرانك
+    // فحص وتلوين نتيجة المجموع
+    checkAndColorScore3();
 
-    for (let i = 0; i < column1IDs.length; i++) {
-        const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
-        const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
-        const value3 = parseFloat(document.getElementById(column3IDs[i]).value) || 0;
+    // استخلاص قيمة المجموع
+    const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
+    const mmrInput = document.querySelector('.mmr');
+    const mnrInput = document.querySelector('.mnr');
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+    const score3 = parseFloat(document.getElementById('score3').textContent);
 
-        scores[0] += value1;
-        scores[1] += value2;
-        scores[2] += value3;
-    }
 
-    document.getElementById('score1').textContent = scores[0];
-    document.getElementById('score2').textContent = scores[1];
-    document.getElementById('score3').textContent = scores[2];
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+    const thScore3 = document.querySelector('#score3');
 
-    const thScores = [document.getElementById('score1'), document.getElementById('score2'), document.getElementById('score3')];
-    const ranks = [document.getElementById('rank1'), document.getElementById('rank2'), document.getElementById('rank3')];
 
-    // تحديث الرانك بناءً على مجموع الأسكور
-    const maxScore = Math.max(...scores);
-    const minScore = Math.min(...scores);
-    for (let i = 0; i < scores.length; i++) {
-        if (scores[i] === maxScore) {
-            ranks[i].textContent = 'LOSE';
-            ranks[i].style.backgroundColor = '#D32F2F';
-        } else if (scores[i] === minScore) {
-            ranks[i].textContent = 'WIN';
-            ranks[i].style.backgroundColor = '#2ECC40';
-        } else {
-            ranks[i].textContent = 'PLAY FIRST';
-            ranks[i].style.backgroundColor = '#27ae60'; // اللون الأخضر
-        }
-        ranks[i].style.color = '#FFF';
-    }
+
+const rank1 = document.getElementById('rank1');
+const rank2 = document.getElementById('rank2');
+const rank3 = document.getElementById('rank3');
+
+if (score1 === score2 && score2 === score3) {
+    rank1.textContent = 'WIN';
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
+    rank2.textContent = 'WIN';
+    rank2.style.backgroundColor = '#2ECC40';
+    rank2.style.color = '#FFF';
+    rank3.textContent = 'WIN';
+    rank3.style.backgroundColor = '#2ECC40';
+    rank3.style.color = '#FFF';
+} else if (score1 < score2 && score1 < score3) { // تغيير الشرط هنا
+    rank1.textContent = 'WIN'; // تغيير هنا
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+    rank3.textContent = 'LOSE'; // تغيير هنا
+    rank3.style.backgroundColor = '#D32F2F';
+    rank3.style.color = '#FFF';
+} else {
+    rank1.textContent = 'LOSE'; // تغيير هنا
+    rank1.style.backgroundColor = '#D32F2F';
+    rank1.style.color = '#FFF';
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+    rank3.textContent = 'WIN'; // تغيير هنا
+    rank3.style.backgroundColor = '#2ECC40';
+    rank3.style.color = '#FFF';
 }
 
 
