@@ -128,18 +128,8 @@ if (score1 === score2 && score2 === score3) {
     rank3.textContent = 'WIN';
     rank3.style.backgroundColor = '#2ECC40';
     rank3.style.color = '#FFF';
-} else if (score1 < score2 && score2 < score3) {
-    rank1.textContent = 'LOSE'; // تغيير هنا
-    rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = 'orange';
-    rank2.style.color = '#FFF';
-    rank3.textContent = 'WIN'; // وهنا
-    rank3.style.backgroundColor = '#2ECC40';
-    rank3.style.color = '#FFF';
-} else {
-    rank1.textContent = 'WIN'; // وهنا
+} else if (score1 < score2 && score1 < score3) { // تغيير الشرط هنا
+    rank1.textContent = 'WIN'; // تغيير هنا
     rank1.style.backgroundColor = '#2ECC40';
     rank1.style.color = '#FFF';
     rank2.textContent = '2';
@@ -148,17 +138,15 @@ if (score1 === score2 && score2 === score3) {
     rank3.textContent = 'LOSE'; // تغيير هنا
     rank3.style.backgroundColor = '#D32F2F';
     rank3.style.color = '#FFF';
-}
-
- else {
-    rank1.textContent = '2'; // وهنا
-    rank1.style.backgroundColor = 'orange';
+} else {
+    rank1.textContent = 'LOSE'; // تغيير هنا
+    rank1.style.backgroundColor = '#D32F2F';
     rank1.style.color = '#FFF';
-    rank2.textContent = 'WIN';
-    rank2.style.backgroundColor = '#2ECC40';
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = 'orange';
     rank2.style.color = '#FFF';
-    rank3.textContent = 'LOSE'; // تغيير هنا
-    rank3.style.backgroundColor = '#D32F2F';
+    rank3.textContent = 'WIN'; // تغيير هنا
+    rank3.style.backgroundColor = '#2ECC40';
     rank3.style.color = '#FFF';
 }
 
