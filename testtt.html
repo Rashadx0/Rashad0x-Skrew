@@ -59,9 +59,12 @@
         <div id="score3"></div>
 
 
+
 <!-- عرض الترتيب -->
 <div id="rank1" class="mnr">1</div>
 <div id="rank2">1</div>
+<div id="rank3">1</div>
+
     </div>
     <script>
 // دالة لحساب المجموعات
@@ -105,6 +108,7 @@ function calculateSums() {
 
 const rank1 = document.getElementById('rank1');
 const rank2 = document.getElementById('rank2');
+const rank3 = document.getElementById('rank2');
 if (score1 === score2) {
     rank1.textContent = '1';
     rank1.style.backgroundColor = '#2ECC40';
