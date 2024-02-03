@@ -119,40 +119,35 @@ const rank1 = document.getElementById('rank1');
 const rank2 = document.getElementById('rank2');
 const rank3 = document.getElementById('rank3');
 
-// تحديد الفائز والخاسر بناءً على قيم النقاط
-if (score1 < score2 && score1 < score3) {
-    // إذا كان سكور1 أقل من الباقي يأخذ WIN
+if (score1 === score2 && score2 === score3) {
     rank1.textContent = 'WIN';
     rank1.style.backgroundColor = '#2ECC40';
     rank1.style.color = '#FFF';
-} else {
-    // إذا كان سكور1 أكبر من أحد الباقين يأخذ LOSE
-    rank1.textContent = 'LOSE';
-    rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
-}
-
-if ((score2 < score1 && score2 < score3) || (score2 > score1 && score2 > score3)) {
-    // إذا كان سكور2 أقل من الباقي أو أكبر من الباقي يأخذ مركز 2
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = 'orange';
+    rank2.textContent = 'WIN';
+    rank2.style.backgroundColor = '#2ECC40';
     rank2.style.color = '#FFF';
-} else {
-    // إذا كان سكور2 أكبر من أحد الباقين يأخذ LOSE
-    rank2.textContent = 'LOSE';
-    rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
-}
-
-if (score3 < score1 && score3 < score2) {
-    // إذا كان سكور3 أقل من الباقي يأخذ WIN
     rank3.textContent = 'WIN';
     rank3.style.backgroundColor = '#2ECC40';
     rank3.style.color = '#FFF';
-} else {
-    // إذا كان سكور3 أكبر من أحد الباقين يأخذ LOSE
-    rank3.textContent = 'LOSE';
+} else if (score1 < score2 && score1 < score3) { // تغيير الشرط هنا
+    rank1.textContent = 'WIN'; // تغيير هنا
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+    rank3.textContent = 'LOSE'; // تغيير هنا
     rank3.style.backgroundColor = '#D32F2F';
+    rank3.style.color = '#FFF';
+} else {
+    rank1.textContent = 'LOSE'; // تغيير هنا
+    rank1.style.backgroundColor = '#D32F2F';
+    rank1.style.color = '#FFF';
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+    rank3.textContent = 'WIN'; // تغيير هنا
+    rank3.style.backgroundColor = '#2ECC40';
     rank3.style.color = '#FFF';
 }
 
