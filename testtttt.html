@@ -135,77 +135,26 @@ const rank5 = document.getElementById('rank5');
 const sums = [score1, score2, score3, score4, score5];
 sums.sort((a, b) => a - b); // Sort in ascending order
 
-if (sums[0] === score1) {
-    rank1.textContent = 'WIN';
-    rank1.style.backgroundColor = '#2ECC40';
-    rank1.style.color = '#FFF';
-} else if (sums[3] === score1) {
-    rank1.textContent = 'LOSE';
-    rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
-} else if (sums[2] === score1) {
-    rank1.textContent = '3';
-    rank1.style.backgroundColor = 'orange';
-    rank1.style.color = '#FFF';
-} else {
-    rank1.textContent = '2';
-    rank1.style.backgroundColor = 'orange';
-    rank1.style.color = '#FFF';
-}
+// Assign ranks and styles
+rank1.textContent = sums[0] === score1 ? 'WIN' : sums[3] === score1 ? 'LOSE' : sums[2] === score1 ? '4' : sums[1] === score1 ? '3' : '2';
+rank1.style.backgroundColor = sums[0] === score1 ? '#2ECC40' : sums[3] === score1 ? '#D32F2F' : 'orange';
+rank1.style.color = '#FFF';
 
-if (sums[0] === score2) {
-    rank2.textContent = 'WIN';
-    rank2.style.backgroundColor = '#2ECC40';
-    rank2.style.color = '#FFF';
-} else if (sums[3] === score2) {
-    rank2.textContent = 'LOSE';
-    rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
-} else if (sums[2] === score2) {
-    rank2.textContent = '3';
-    rank2.style.backgroundColor = 'orange';
-    rank2.style.color = '#FFF';
-} else {
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = 'orange';
-    rank2.style.color = '#FFF';
-}
+rank2.textContent = sums[0] === score2 ? 'WIN' : sums[3] === score2 ? 'LOSE' : sums[2] === score2 ? '4' : sums[1] === score2 ? '3' : '2';
+rank2.style.backgroundColor = sums[0] === score2 ? '#2ECC40' : sums[3] === score2 ? '#D32F2F' : 'orange';
+rank2.style.color = '#FFF';
 
-if (sums[0] === score3) {
-    rank3.textContent = 'WIN';
-    rank3.style.backgroundColor = '#2ECC40';
-    rank3.style.color = '#FFF';
-} else if (sums[3] === score3) {
-    rank3.textContent = 'LOSE';
-    rank3.style.backgroundColor = '#D32F2F';
-    rank3.style.color = '#FFF';
-} else if (sums[2] === score3) {
-    rank3.textContent = '3';
-    rank3.style.backgroundColor = 'orange';
-    rank3.style.color = '#FFF';
-} else {
-    rank3.textContent = '2';
-    rank3.style.backgroundColor = 'orange';
-    rank3.style.color = '#FFF';
-}
+rank3.textContent = sums[0] === score3 ? 'WIN' : sums[3] === score3 ? 'LOSE' : sums[2] === score3 ? '4' : sums[1] === score3 ? '3' : '2';
+rank3.style.backgroundColor = sums[0] === score3 ? '#2ECC40' : sums[3] === score3 ? '#D32F2F' : 'orange';
+rank3.style.color = '#FFF';
 
-if (sums[0] === score4) {
-    rank4.textContent = 'WIN';
-    rank4.style.backgroundColor = '#2ECC40';
-    rank4.style.color = '#FFF';
-} else if (sums[3] === score4) {
-    rank4.textContent = 'LOSE';
-    rank4.style.backgroundColor = '#D32F2F';
-    rank4.style.color = '#FFF';
-} else if (sums[2] === score4) {
-    rank4.textContent = '3';
-    rank4.style.backgroundColor = 'orange';
-    rank4.style.color = '#FFF';
-} else {
-    rank4.textContent = '2';
-    rank4.style.backgroundColor = 'orange';
-    rank4.style.color = '#FFF';
-}
+rank4.textContent = sums[0] === score4 ? 'WIN' : sums[3] === score4 ? 'LOSE' : sums[2] === score4 ? '4' : sums[1] === score4 ? '3' : '2';
+rank4.style.backgroundColor = sums[0] === score4 ? '#2ECC40' : sums[3] === score4 ? '#D32F2F' : 'orange';
+rank4.style.color = '#FFF';
+
+rank5.textContent = '4';
+rank5.style.backgroundColor = 'orange';
+rank5.style.color = '#FFF';
 
 
 ///////////////////////////////////
