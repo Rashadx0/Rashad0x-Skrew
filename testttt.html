@@ -96,14 +96,13 @@
     const thScore2 = document.querySelector('#score2');
     const thScore3 = document.querySelector('#score3');
     const thScore4 = document.querySelector('#score4');
-    }
+///////////////////////////////////////////////////////////////
 const rank1 = document.getElementById('rank1');
 const rank2 = document.getElementById('rank2');
 const rank3 = document.getElementById('rank3');
-const rank3 = document.getElementById('rank3');
 
 // Calculate sums
-const sums = [score1, score2, score3, score4];
+const sums = [score1, score2, score3];
 sums.sort((a, b) => a - b);
 
 if (sums[0] === score1) {
@@ -147,7 +146,9 @@ if (sums[0] === score3) {
     rank3.style.backgroundColor = 'orange';
     rank3.style.color = '#FFF';
 }
-/////////////////////////////////////////
+///////////////////////////////////
+    }
+
 function checkAndColorScore3() {
     const score1 = parseFloat(document.getElementById('score1').textContent);
     const score2 = parseFloat(document.getElementById('score2').textContent);
