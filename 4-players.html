@@ -50,7 +50,10 @@
         <div id="score2"></div>
         <div id="score3"></div>
         <div id="score4"></div>
-
+<div id="rank1" class="mnr">1</div>
+<div id="rank2">1</div>
+<div id="rank3">1</div>
+<div id="rank4">1</div>
     </div>
     <script>
     function calculateSums() {
@@ -93,6 +96,90 @@
     const thScore2 = document.querySelector('#score2');
     const thScore3 = document.querySelector('#score3');
     const thScore4 = document.querySelector('#score4');
+///////////////////////////////////////////////////////////////
+const rank1 = document.getElementById('rank1');
+const rank2 = document.getElementById('rank2');
+const rank3 = document.getElementById('rank3');
+const rank4 = document.getElementById('rank4');
+
+// Calculate sums
+const sums = [score1, score2, score3, score4];
+sums.sort((a, b) => a - b); // Sort in ascending order
+
+if (sums[0] === score1) {
+    rank1.textContent = 'WIN';
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
+} else if (sums[3] === score1) {
+    rank1.textContent = 'LOSE';
+    rank1.style.backgroundColor = '#D32F2F';
+    rank1.style.color = '#FFF';
+} else if (sums[2] === score1) {
+    rank1.textContent = '3';
+    rank1.style.backgroundColor = 'orange';
+    rank1.style.color = '#FFF';
+} else {
+    rank1.textContent = '2';
+    rank1.style.backgroundColor = 'orange';
+    rank1.style.color = '#FFF';
+}
+
+if (sums[0] === score2) {
+    rank2.textContent = 'WIN';
+    rank2.style.backgroundColor = '#2ECC40';
+    rank2.style.color = '#FFF';
+} else if (sums[3] === score2) {
+    rank2.textContent = 'LOSE';
+    rank2.style.backgroundColor = '#D32F2F';
+    rank2.style.color = '#FFF';
+} else if (sums[2] === score2) {
+    rank2.textContent = '3';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+} else {
+    rank2.textContent = '2';
+    rank2.style.backgroundColor = 'orange';
+    rank2.style.color = '#FFF';
+}
+
+if (sums[0] === score3) {
+    rank3.textContent = 'WIN';
+    rank3.style.backgroundColor = '#2ECC40';
+    rank3.style.color = '#FFF';
+} else if (sums[3] === score3) {
+    rank3.textContent = 'LOSE';
+    rank3.style.backgroundColor = '#D32F2F';
+    rank3.style.color = '#FFF';
+} else if (sums[2] === score3) {
+    rank3.textContent = '3';
+    rank3.style.backgroundColor = 'orange';
+    rank3.style.color = '#FFF';
+} else {
+    rank3.textContent = '2';
+    rank3.style.backgroundColor = 'orange';
+    rank3.style.color = '#FFF';
+}
+
+if (sums[0] === score4) {
+    rank4.textContent = 'WIN';
+    rank4.style.backgroundColor = '#2ECC40';
+    rank4.style.color = '#FFF';
+} else if (sums[3] === score4) {
+    rank4.textContent = 'LOSE';
+    rank4.style.backgroundColor = '#D32F2F';
+    rank4.style.color = '#FFF';
+} else if (sums[2] === score4) {
+    rank4.textContent = '3';
+    rank4.style.backgroundColor = 'orange';
+    rank4.style.color = '#FFF';
+} else {
+    rank4.textContent = '2';
+    rank4.style.backgroundColor = 'orange';
+    rank4.style.color = '#FFF';
+}
+
+
+///////////////////////////////////
     }
 
 function checkAndColorScore3() {
