@@ -111,6 +111,10 @@ function calculateSums() {
     const thScore2 = document.querySelector('#score2');
     const thScore3 = document.querySelector('#score3');
 
+const score1 = /* قيمة السكور الأول */;
+const score2 = /* قيمة السكور الثاني */;
+const score3 = /* قيمة السكور الثالث */;
+
 const rank1 = document.getElementById('rank1');
 const rank2 = document.getElementById('rank2');
 const rank3 = document.getElementById('rank3');
@@ -135,12 +139,22 @@ if (score1 === score2 && score2 === score3) {
     rank3.textContent = 'WIN';
     rank3.style.backgroundColor = '#2ECC40';
     rank3.style.color = '#FFF';
-} else if (score2 > score1 && score2 > score3) { // تغيير الشرط هنا
+} else if (score2 > score1 && score2 > score3) {
     rank1.textContent = 'WIN';
     rank1.style.backgroundColor = '#2ECC40';
     rank1.style.color = '#FFF';
-    rank2.textContent = 'LOSE'; // تغيير هنا
+    rank2.textContent = 'LOSE';
     rank2.style.backgroundColor = '#D32F2F';
+    rank2.style.color = '#FFF';
+    rank3.textContent = 'WIN';
+    rank3.style.backgroundColor = '#2ECC40';
+    rank3.style.color = '#FFF';
+} else if (score2 < score1 && score2 < score3) {
+    rank1.textContent = 'LOSE';
+    rank1.style.backgroundColor = '#D32F2F';
+    rank1.style.color = '#FFF';
+    rank2.textContent = 'WIN';
+    rank2.style.backgroundColor = '#2ECC40';
     rank2.style.color = '#FFF';
     rank3.textContent = 'WIN';
     rank3.style.backgroundColor = '#2ECC40';
