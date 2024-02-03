@@ -77,10 +77,14 @@
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
     const column3IDs = ['row6_col3', 'row5_col3', 'row4_col3', 'row3_col3', 'row2_col3'];
     const column4IDs = ['row6_col4', 'row5_col4', 'row4_col4', 'row3_col4', 'row2_col4'];
+    const column5IDs = ['row6_col5', 'row5_col5', 'row4_col5', 'row3_col5', 'row2_col5'];
+
     let sum1 = 0;
     let sum2 = 0;
     let sum3 = 0;
     let sum4 = 0;
+    let sum5 = 0;
+
     for (let i = 0; i < column1IDs.length; i++) {
         const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
         const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
