@@ -110,6 +110,7 @@ function calculateSums() {
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
     const thScore3 = document.querySelector('#score3');
+
 const rank1 = document.getElementById('rank1');
 const rank2 = document.getElementById('rank2');
 const rank3 = document.getElementById('rank3');
@@ -124,24 +125,34 @@ if (score1 === score2 && score2 === score3) {
     rank3.textContent = 'WIN';
     rank3.style.backgroundColor = '#2ECC40';
     rank3.style.color = '#FFF';
-} else if (score1 < score2 && score1 < score3) { // تغيير الشرط هنا
-    rank1.textContent = 'WIN'; // تغيير هنا
-    rank1.style.backgroundColor = '#2ECC40';
-    rank1.style.color = '#FFF';
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = 'orange';
-    rank2.style.color = '#FFF';
-    rank3.textContent = 'LOSE'; // تغيير هنا
-    rank3.style.backgroundColor = '#D32F2F';
-    rank3.style.color = '#FFF';
-} else {
-    rank1.textContent = 'LOSE'; // تغيير هنا
+} else if (score3 > score1 && score3 > score2) {
+    rank1.textContent = 'LOSE';
     rank1.style.backgroundColor = '#D32F2F';
     rank1.style.color = '#FFF';
     rank2.textContent = '2';
     rank2.style.backgroundColor = 'orange';
     rank2.style.color = '#FFF';
-    rank3.textContent = 'WIN'; // تغيير هنا
+    rank3.textContent = 'WIN';
+    rank3.style.backgroundColor = '#2ECC40';
+    rank3.style.color = '#FFF';
+} else if (score2 > score1 && score2 > score3) { // تغيير الشرط هنا
+    rank1.textContent = 'WIN';
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
+    rank2.textContent = 'LOSE'; // تغيير هنا
+    rank2.style.backgroundColor = '#D32F2F';
+    rank2.style.color = '#FFF';
+    rank3.textContent = 'WIN';
+    rank3.style.backgroundColor = '#2ECC40';
+    rank3.style.color = '#FFF';
+} else {
+    rank1.textContent = 'WIN';
+    rank1.style.backgroundColor = '#2ECC40';
+    rank1.style.color = '#FFF';
+    rank2.textContent = 'LOSE';
+    rank2.style.backgroundColor = '#D32F2F';
+    rank2.style.color = '#FFF';
+    rank3.textContent = 'WIN';
     rank3.style.backgroundColor = '#2ECC40';
     rank3.style.color = '#FFF';
 }
