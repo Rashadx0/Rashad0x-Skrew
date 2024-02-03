@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- علامات ميتا لتعيين تعيينات اللغة والعرض -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <!-- رابط لصورة الرمز المميز -->
     <link rel="icon" href="images/skrre.jpg">
-    <title>Skrew || 3-Players</title>
+    <!-- عنوان الصفحة -->
+    <title>Skrew || 2-Players</title>
+    <!-- تنسيق CSS داخلي -->
     <style>
+
+        /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
         .table{
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
         }
     </style>
 </head>
@@ -65,8 +71,10 @@
 <div id="rank2">1</div>
 <div id="rank3">1</div>
 
-    </div>
-    <script>
+</div>
+<!-- جافا سكريبت -->
+<script>
+// دالة لحساب المجموعات
 function calculateSums() {
     // قائمة بمعرفات حقول الإدخال للأعمدة
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
@@ -108,49 +116,35 @@ function calculateSums() {
 
 
     const thScore1 = document.querySelector('#score1');
-    const thScore2 = document.querySelector('#score2');
-    const thScore3 = document.querySelector('#score3');
+        const thScore3 = document.querySelector('#score3');
+const thScore2 = document.querySelector('#score2');
 
-const score1 = /* قيمة السكور الأول */;
-const score2 = /* قيمة السكور الثاني */;
-const score3 = /* قيمة السكور الثالث */;
+
 
 const rank1 = document.getElementById('rank1');
 const rank2 = document.getElementById('rank2');
-const rank3 = document.getElementById('rank3');
-
-if (score1 === score2 && score2 === score3) {
+if (score1 === score2) {
     rank1.textContent = 'WIN';
     rank1.style.backgroundColor = '#2ECC40';
     rank1.style.color = '#FFF';
     rank2.textContent = 'WIN';
     rank2.style.backgroundColor = '#2ECC40';
     rank2.style.color = '#FFF';
-    rank3.textContent = 'WIN';
-    rank3.style.backgroundColor = '#2ECC40';
-    rank3.style.color = '#FFF';
-} else if (score1 < score2 && score1 < score3) { // تغيير الشرط هنا
-    rank1.textContent = 'WIN'; // تغيير هنا
+} else if (score1 < score2) {
+    rank1.textContent = 'WIN';
     rank1.style.backgroundColor = '#2ECC40';
     rank1.style.color = '#FFF';
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = 'orange';
+    rank2.textContent = 'LOSE';
+    rank2.style.backgroundColor = '#D32F2F';
     rank2.style.color = '#FFF';
-    rank3.textContent = 'LOSE'; // تغيير هنا
-    rank3.style.backgroundColor = '#D32F2F';
-    rank3.style.color = '#FFF';
 } else {
-    rank1.textContent = 'LOSE'; // تغيير هنا
+    rank1.textContent = 'LOSE';
     rank1.style.backgroundColor = '#D32F2F';
     rank1.style.color = '#FFF';
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = 'orange';
+    rank2.textContent = 'WIN';
+    rank2.style.backgroundColor = '#2ECC40';
     rank2.style.color = '#FFF';
-    rank3.textContent = 'WIN'; // تغيير هنا
-    rank3.style.backgroundColor = '#2ECC40';
-    rank3.style.color = '#FFF';
 }
-
 /////////////////////////////////////////////////
 
 
@@ -248,6 +242,6 @@ numberInputs.forEach(input => {
 });
 
 calculateSums(); // حساب أولي
-    </script>
+</script>
 </body>
 </html>
