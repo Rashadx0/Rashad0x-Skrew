@@ -131,26 +131,54 @@ const scores = [score1, score2, score3, score4, score5];
 // Calculate sums
 const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
 const lowestScore = sortedScores[0];
+const highestScore = sortedScores[sortedScores.length - 1];
+
+let winnersCount = 0;
+let losersCount = 0;
+let drawCount = 0;
 
 for (let i = 0; i < ranks.length; i++) {
     const rankElement = ranks[i];
     const score = scores[i];
 
-    if (score === lowestScore) {
+    if (score === highestScore) {
+        winnersCount++;
+    } else if (score === lowestScore) {
+        losersCount++;
+    } else {
+        drawCount++;
+    }
+}
+
+let drawRank = 2;
+for (let i = 0; i < ranks.length; i++) {
+    const rankElement = ranks[i];
+    const score = scores[i];
+
+    if (score === highestScore) {
         rankElement.textContent = 'WIN';
         rankElement.style.backgroundColor = '#2ECC40';
-    } else if (sortedScores[sortedScores.length - 1] === score) {
+    } else if (score === lowestScore) {
         rankElement.textContent = 'LOSE';
         rankElement.style.backgroundColor = '#D32F2F';
     } else {
-        // Find the rank based on the sortedScores array
-        const rank = sortedScores.indexOf(score) + 1;
-        rankElement.textContent = rank.toString();
-        rankElement.style.backgroundColor = 'orange';
+        if (winnersCount > 1) {
+            rankElement.textContent = '1';
+            rankElement.style.backgroundColor = '#2ECC40';
+        } else if (drawCount > 0) {
+            rankElement.textContent = drawRank.toString();
+            rankElement.style.backgroundColor = 'orange';
+            drawRank++;
+            drawCount--;
+        } else {
+            rankElement.textContent = 'LOSE';
+            rankElement.style.backgroundColor = '#D32F2F';
+        }
     }
     
     rankElement.style.color = '#FFF'; // Common color setting for all conditions
 }
+
 
 
 
