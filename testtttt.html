@@ -135,21 +135,24 @@ const rank5 = document.getElementById('rank5');
 const sums = [score1, score2, score3, score4, score5];
 sums.sort((a, b) => a - b); // Sort in ascending order
 
-if (sums[0] === score1) {
+const ranks = { win: 0, draw: 0, lose: 0 }; // Object to track win, draw, lose counts
+
+for (let i = 0; i < sums.length; i++) {
+    if (sums[i] === score1) {
+        ranks.win++;
+    } else if (sums[i] === score5) {
+        ranks.lose++;
+    }
+}
+
+// Set ranks based on counts
+if (ranks.win === 2) {
     rank1.textContent = 'WIN';
     rank1.style.backgroundColor = '#2ECC40';
     rank1.style.color = '#FFF';
-} else if (sums[4] === score1) {
+} else if (ranks.lose === 2) {
     rank1.textContent = 'LOSE';
     rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
-} else if (sums[3] === score1) {
-    rank1.textContent = '3';
-    rank1.style.backgroundColor = 'orange';
-    rank1.style.color = '#FFF';
-} else if (sums[1] === score1) {
-    rank1.textContent = '2';
-    rank1.style.backgroundColor = 'orange';
     rank1.style.color = '#FFF';
 } else {
     rank1.textContent = '4';
@@ -157,21 +160,13 @@ if (sums[0] === score1) {
     rank1.style.color = '#FFF';
 }
 
-if (sums[0] === score2) {
+if (ranks.win === 2) {
     rank2.textContent = 'WIN';
     rank2.style.backgroundColor = '#2ECC40';
     rank2.style.color = '#FFF';
-} else if (sums[4] === score2) {
+} else if (ranks.lose === 2) {
     rank2.textContent = 'LOSE';
     rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
-} else if (sums[3] === score2) {
-    rank2.textContent = '3';
-    rank2.style.backgroundColor = 'orange';
-    rank2.style.color = '#FFF';
-} else if (sums[1] === score2) {
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = 'orange';
     rank2.style.color = '#FFF';
 } else {
     rank2.textContent = '4';
@@ -179,21 +174,13 @@ if (sums[0] === score2) {
     rank2.style.color = '#FFF';
 }
 
-if (sums[0] === score3) {
+if (ranks.win === 2) {
     rank3.textContent = 'WIN';
     rank3.style.backgroundColor = '#2ECC40';
     rank3.style.color = '#FFF';
-} else if (sums[4] === score3) {
+} else if (ranks.lose === 2) {
     rank3.textContent = 'LOSE';
     rank3.style.backgroundColor = '#D32F2F';
-    rank3.style.color = '#FFF';
-} else if (sums[3] === score3) {
-    rank3.textContent = '3';
-    rank3.style.backgroundColor = 'orange';
-    rank3.style.color = '#FFF';
-} else if (sums[1] === score3) {
-    rank3.textContent = '2';
-    rank3.style.backgroundColor = 'orange';
     rank3.style.color = '#FFF';
 } else {
     rank3.textContent = '4';
@@ -201,21 +188,13 @@ if (sums[0] === score3) {
     rank3.style.color = '#FFF';
 }
 
-if (sums[0] === score4) {
+if (ranks.win === 2) {
     rank4.textContent = 'WIN';
     rank4.style.backgroundColor = '#2ECC40';
     rank4.style.color = '#FFF';
-} else if (sums[4] === score4) {
+} else if (ranks.lose === 2) {
     rank4.textContent = 'LOSE';
     rank4.style.backgroundColor = '#D32F2F';
-    rank4.style.color = '#FFF';
-} else if (sums[3] === score4) {
-    rank4.textContent = '3';
-    rank4.style.backgroundColor = 'orange';
-    rank4.style.color = '#FFF';
-} else if (sums[1] === score4) {
-    rank4.textContent = '2';
-    rank4.style.backgroundColor = 'orange';
     rank4.style.color = '#FFF';
 } else {
     rank4.textContent = '4';
@@ -223,27 +202,20 @@ if (sums[0] === score4) {
     rank4.style.color = '#FFF';
 }
 
-if (sums[0] === score5) {
+if (ranks.win === 2) {
     rank5.textContent = 'WIN';
     rank5.style.backgroundColor = '#2ECC40';
     rank5.style.color = '#FFF';
-} else if (sums[4] === score5) {
+} else if (ranks.lose === 2) {
     rank5.textContent = 'LOSE';
     rank5.style.backgroundColor = '#D32F2F';
-    rank5.style.color = '#FFF';
-} else if (sums[3] === score5) {
-    rank5.textContent = '3';
-    rank5.style.backgroundColor = 'orange';
-    rank5.style.color = '#FFF';
-} else if (sums[1] === score5) {
-    rank5.textContent = '2';
-    rank5.style.backgroundColor = 'orange';
     rank5.style.color = '#FFF';
 } else {
     rank5.textContent = '4';
     rank5.style.backgroundColor = 'orange';
     rank5.style.color = '#FFF';
 }
+
 
 
 ///////////////////////////////////
