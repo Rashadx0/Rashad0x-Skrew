@@ -51,33 +51,38 @@
         }
 
         .numbers {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            background-color: #252525;
-            padding: 20px;
-            border-radius: 20px;
-            max-width: 300px;
-            margin: 20px auto;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #252525;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 300px;
+    margin: 20px auto;
+}
 
-        .number {
-            color: #fff;
-            text-decoration: none;
-            background: rgba(0,0,0,0.5);
-            padding: 10px 20px;
-            transition: 0.5s ease;
-            font-size: 17px;
-            border-radius: 50%;
-            border: 1px solid #fff;
-        }
+.number {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    transition: 0.5s ease;
+    font-size: 17px;
+    border-radius: 10px; /* تغيير الشكل إلى مربع عن طريق زيادة قيمة الحدود */
+    border: 1px solid #fff;
+    width: 50px; /* تحديد عرض وارتفاع متساويين للمربع */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .number:hover {
-            background: rgba(0,0,0,0.2);
-            transform: scale(1.1);
-        }
+.number:hover {
+    background: rgba(0,0,0,0.2);
+    transform: scale(1.1);
+}
 
         .marquee {
             position: absolute;
