@@ -113,55 +113,33 @@ const thScore2 = document.querySelector('#score2');
 
 
 
-const rank1 = document.getElementById('rank1');
-const rank2 = document.getElementById('rank2');
-const rank3 = document.getElementById('rank3');
+const ranks = [rank1, rank2, rank3];
+const scores = [score1, score2, score3];
 
 // Calculate sums
-const sums = [score1, score2, score3];
-sums.sort((a, b) => a - b);
+const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
+const lowestScore = sortedScores[0];
 
-if (sums[0] === score1) {
-    rank1.textContent = 'WIN';
-    rank1.style.backgroundColor = '#2ECC40';
-    rank1.style.color = '#FFF';
-} else if (sums[2] === score1) {
-    rank1.textContent = 'LOSE';
-    rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
-} else {
-    rank1.textContent = '2';
-    rank1.style.backgroundColor = 'orange';
-    rank1.style.color = '#FFF';
+for (let i = 0; i < ranks.length; i++) {
+    const rankElement = ranks[i];
+    const score = scores[i];
+
+    if (score === lowestScore) {
+        rankElement.textContent = 'WIN';
+        rankElement.style.backgroundColor = '#2ECC40';
+    } else if (sortedScores[sortedScores.length - 1] === score) {
+        rankElement.textContent = 'LOSE';
+        rankElement.style.backgroundColor = '#D32F2F';
+    } else {
+        // Find the rank based on the sortedScores array
+        const rank = sortedScores.indexOf(score) + 1;
+        rankElement.textContent = rank.toString();
+        rankElement.style.backgroundColor = 'orange';
+    }
+    
+    rankElement.style.color = '#FFF'; // Common color setting for all conditions
 }
 
-if (sums[0] === score2) {
-    rank2.textContent = 'WIN';
-    rank2.style.backgroundColor = '#2ECC40';
-    rank2.style.color = '#FFF';
-} else if (sums[2] === score2) {
-    rank2.textContent = 'LOSE';
-    rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
-} else {
-    rank2.textContent = '2';
-    rank2.style.backgroundColor = 'orange';
-    rank2.style.color = '#FFF';
-}
-
-if (sums[0] === score3) {
-    rank3.textContent = 'WIN';
-    rank3.style.backgroundColor = '#2ECC40';
-    rank3.style.color = '#FFF';
-} else if (sums[2] === score3) {
-    rank3.textContent = 'LOSE';
-    rank3.style.backgroundColor = '#D32F2F';
-    rank3.style.color = '#FFF';
-} else {
-    rank3.textContent = '2';
-    rank3.style.backgroundColor = 'orange';
-    rank3.style.color = '#FFF';
-}
 
 /////////////////////////////////////////////////
 
