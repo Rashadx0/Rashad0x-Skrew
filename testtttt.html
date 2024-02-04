@@ -129,31 +129,29 @@ const ranks = [rank1, rank2, rank3, rank4, rank5];
 const scores = [score1, score2, score3, score4, score5];
 
 // Calculate sums
-const sums = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
+const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
+const lowestScore = sortedScores[0];
 
 for (let i = 0; i < ranks.length; i++) {
     const rankElement = ranks[i];
     const score = scores[i];
 
-    if (sums[0] === score) {
+    if (score === lowestScore) {
         rankElement.textContent = 'WIN';
         rankElement.style.backgroundColor = '#2ECC40';
-    } else if (sums[4] === score) {
+    } else if (sortedScores[sortedScores.length - 1] === score) {
         rankElement.textContent = 'LOSE';
         rankElement.style.backgroundColor = '#D32F2F';
-    } else if (sums[3] === score) {
-        rankElement.textContent = '4';
-        rankElement.style.backgroundColor = 'orange';
-    } else if (sums[1] === score) {
-        rankElement.textContent = '2';
-        rankElement.style.backgroundColor = 'orange';
     } else {
-        rankElement.textContent = '3';
+        // Find the rank based on the sortedScores array
+        const rank = sortedScores.indexOf(score) + 1;
+        rankElement.textContent = rank.toString();
         rankElement.style.backgroundColor = 'orange';
     }
     
     rankElement.style.color = '#FFF'; // Common color setting for all conditions
 }
+
 
 
 
