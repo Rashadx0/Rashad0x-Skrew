@@ -84,48 +84,47 @@
     transform: scale(1.1);
 }
 
-       .marquee {
-    position: fixed; /* تغيير القيمة من absolute إلى fixed */
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    top: 0; /* تأكد من وضعها في الجزء العلوي */
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0);
-    color: #fff;
-    padding: 20px;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 1000; /* تأكد من أنها تظهر فوق أي عناصر أخرى */
-}
+ .marquee {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            color: #fff;
+            padding: 20px;
+            overflow: hidden;
+            pointer-events: none;
+        }
 
-.marquee > div {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    animation: move 15s infinite linear;
-}
+        .marquee > div {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: move 15s infinite linear;
+        }
 
-@keyframes move {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    } 
-}
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            } 
+        }
 
-.marquee span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
+        .marquee span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-.marquee img {
-    width: 30px;
-    margin-right: 20px;
-}
+        .marquee img {
+            width: 30px;
+            margin-right: 20px;
+        }
 
     </style>
 </head>
