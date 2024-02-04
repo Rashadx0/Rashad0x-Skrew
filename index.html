@@ -32,51 +32,52 @@
         }
 
         .container {
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.5s ease;
-    position: relative;
-    z-index: 2;
-    max-width: fit-content; /* تم تغيير هذا */
-    max-height: fit-content; /* تمت إضافته */
-    margin: 0 auto;
-}
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.5s ease;
+            position: relative;
+            z-index: 2;
+            max-width: 300px;
+            margin: 0 auto;
+        }
 
+        .container:hover {
+            filter: brightness(0.8);
+        }
 
-       .numbers {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    background-color: #252525;
-    padding: 20px;
-    border-radius: 20px;
-    max-width: fit-content; /* تم تغيير هذا */
-    max-height: fit-content; /* تمت إضافته */
-    margin: 20px auto;
-}
+        .numbers {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background-color: #252525;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 300px;
+            margin: 20px auto;
+        }
 
-.number {
-    color: #fff;
-    text-decoration: none;
-    background: rgba(0,0,0,0.5);
-    padding: 10px 20px;
-    transition: 0.5s ease;
-    font-size: 17px;
-    border-radius: 50%;
-    border: 1px solid #fff;
-}
+        .number {
+            color: #fff;
+            text-decoration: none;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            transition: 0.5s ease;
+            font-size: 17px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+        }
 
-.number:hover {
-    background: rgba(0,0,0,0.2);
-    transform: scale(1.1);
-}
-
+        .number:hover {
+            background: rgba(0,0,0,0.2);
+            transform: scale(1.1);
+        }
 
         .marquee {
             position: absolute;
