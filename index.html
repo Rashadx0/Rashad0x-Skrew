@@ -21,21 +21,23 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        body {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7),transparent), url(images/back.jpg);
-            background-size: cover;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+body {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7),transparent), url(images/back.jpg);
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* إضافة الخاصية التالية */
+    background-blend-mode: multiply;
+}
 
-        @media (max-width : 768px) {
-            body {
-                background-position: top center;
-            }  
-        }
+@media (max-width: 768px) {
+    body {
+        background-position: top center;
+    }  
+}
 
         .container {
             background-color: #fff;
