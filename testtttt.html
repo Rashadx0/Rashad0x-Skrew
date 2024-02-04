@@ -125,40 +125,43 @@
     const thScore5 = document.querySelector('#score5');
 
 ///////////////////////////////////////////////////////////////
-// Define elements
-const ranks = [document.getElementById('rank1'), 
-               document.getElementById('rank2'), 
-               document.getElementById('rank3'), 
-               document.getElementById('rank4'), 
-               document.getElementById('rank5')];
+const rank1 = document.getElementById('rank1');
+const rank2 = document.getElementById('rank2');
+const rank3 = document.getElementById('rank3');
+const rank4 = document.getElementById('rank4');
+const rank5 = document.getElementById('rank5');
 
-// Define scores
-const scores = [score1, score2, score3, score4, score5];
+const ranks = [rank1, rank2, rank3, rank4, rank5];
+const playersScores = [score1, score2, score3, score4, score5];
 
-// Define results
-const results = ['WIN', '2', '3', '4', 'LOSE'];
+// Sort the playersScores array in descending order to get the highest score at index 0
+const sortedScores = playersScores.slice().sort((a, b) => b - a);
 
-// Loop through each rank
+// Find the index of the winning player in the original array
+const winningIndex = playersScores.indexOf(sortedScores[0]);
+
+// Set the winning rank
+ranks[winningIndex].textContent = 'WIN';
+ranks[winningIndex].style.backgroundColor = '#2ECC40';
+ranks[winningIndex].style.color = '#FFF';
+
+// Set the ranks for the rest of the players
 for (let i = 0; i < ranks.length; i++) {
-    // Get the corresponding score
-    const score = scores[i];
-    // Get the rank element
-    const rankElement = ranks[i];
-    // Get the index of the score in sorted array
-    const rankIndex = scores.indexOf(score);
-    // Set the text content based on rank index
-    rankElement.textContent = results[rankIndex];
-    // Set background color and text color based on result
-    if (results[rankIndex] === 'WIN') {
-        rankElement.style.backgroundColor = '#2ECC40';
-    } else if (results[rankIndex] === 'LOSE') {
-        rankElement.style.backgroundColor = '#D32F2F';
-    } else {
-        rankElement.style.backgroundColor = 'orange';
+    if (i !== winningIndex) {
+        if (sortedScores.indexOf(playersScores[i]) === 0) {
+            ranks[i].textContent = '2';
+        } else if (sortedScores.indexOf(playersScores[i]) === 1) {
+            ranks[i].textContent = '3';
+        } else if (sortedScores.indexOf(playersScores[i]) === 2) {
+            ranks[i].textContent = '4';
+        } else {
+            ranks[i].textContent = 'LOSE';
+            ranks[i].style.backgroundColor = '#D32F2F';
+        }
+        ranks[i].style.backgroundColor = 'orange';
+        ranks[i].style.color = '#FFF';
     }
-    rankElement.style.color = '#FFF';
 }
-
 
 
 ///////////////////////////////////
