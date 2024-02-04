@@ -9,16 +9,7 @@
             font-family: 'Cairo', sans-serif;
         }
         /* تنسيق الجسم */
-        body{
-            height: 100vh;
-            /* خلفية بتدرج خطي وصورة */
-            background: linear-gradient(rgba(0,0,0,0.7),transparent), url(images/back.jpg);
-            background-size: cover;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+  
         /* تخطيط الجدول */
         .table{
             display: grid;
