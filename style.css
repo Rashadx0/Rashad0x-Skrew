@@ -15,7 +15,7 @@
     justify-content: center;
     align-items: center;
     padding: 50px;
-    background: linear-gradient(to bottom right, #1A0D1F, #935240, #301923);
+    background: linear-gradient(to bottom right, #1A0D1F, #935240);
 }
         /* تخطيط الجدول */
         .table{
