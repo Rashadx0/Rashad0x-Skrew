@@ -7,12 +7,14 @@
     <title>Skrew</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
+
         *{
             padding: 0;
             margin: 0;
             box-sizing: border-box;
             font-family: 'Cairo', sans-serif;
         }
+
         body{
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.7),transparent),
@@ -23,12 +25,13 @@
             align-items: center;
             justify-content: center;
         }
+
         @media (max-width : 768px) {
             body{
                 background-position: top center;
-            }
-            
+            }  
         }
+
         .container {
             background-color: #fff;
             display: flex;
@@ -41,12 +44,15 @@
             position: relative;
             z-index: 2;
         }
+
         .container:hover{
             filter: brightness(0.8);
         }
+
         .box{
             position: relative;
         }
+
         .numbers{
             display: flex;
             align-items: center;
@@ -57,6 +63,7 @@
             padding: 10px;
             border-radius: 0 0 20px 20px;
         }
+
         .number{
             color: #fff;
             text-decoration: none;
@@ -67,24 +74,26 @@
             border-radius: 50%;
             border: 1px solid #fff;
         }
+
         .number:hover{
             background: rgba(0,0,0,0.2);
             transform: scale(1.1);
         }
-.marquee{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0); /* جعل الشفافية صفر هنا */
-    color: #fff;
-    padding: 20px;
-    overflow: hidden;
-    pointer-events: none;
-}
+
+        .marquee{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0); /* جعل الشفافية صفر هنا */
+            color: #fff;
+            padding: 20px;
+            overflow: hidden;
+            pointer-events: none;
+        }
 
         .marquee > div{
             display: flex;
@@ -92,21 +101,22 @@
             gap: 20px;
             animation: move 15s infinite linear;
         }
+
         @keyframes move {
             0%{
                 transform: translateX(0);
             }
             100%{
                 transform: translateX(-100%);
-            }
-            
-        } 
-    
+            } 
+        }
+
         .marquee span{
-            display: flex;        
+            display: flex;
             align-items: center;
             gap: 5px;
         }
+
         .marquee img{
             width: 30px;
             margin-right: 20px;
@@ -137,22 +147,18 @@
         </div>
     </div>
     <div class="box">
-    <div class="container">
-        <h1>كام لاعب</h1>
+        <div class="container">
+            <h1>كام لاعب</h1>
+        </div>
+        <div class="numbers">
+            <a href="2-players.html" class="number">2</a>
+            <a href="3-players.html" class="number">3</a>
+            <a href="4-players.html" class="number">4</a>
+            <a href="5-players.html" class="number">5</a>
+            <a href="6-players.html" class="number">6</a>
+            <a href="7-players.html" class="number">7</a>
+            <a href="8-players.html" class="number">8</a>
+        </div>
     </div>
-
-    <div class="numbers">
-        <a href="2-players.html" class="number">2</a>
-        <a href="3-players.html" class="number">3</a>
-        <a href="4-players.html" class="number">4</a>
-        <a href="5-players.html" class="number">5</a>
-        <a href="6-players.html" class="number">6</a>
-        <a href="7-players.html" class="number">7</a>
-        <a href="8-players.html" class="number">8</a>
-    </div>
-</div>
-
-    
-
 </body>
 </html>
