@@ -79,6 +79,13 @@
         <div id="score5"></div>
         <div id="score6"></div>
         <div id="score7"></div>
+<div id="rank1" class="mnr">1</div>
+<div id="rank2">1</div>
+<div id="rank3">1</div>
+<div id="rank4">1</div>
+<div id="rank5">1</div>
+<div id="rank6">1</div>
+<div id="rank7">1</div>
 
     </div>
     <script>
@@ -149,7 +156,35 @@
     const thScore5 = document.querySelector('#score5');
     const thScore6 = document.querySelector('#score6');
     const thScore7 = document.querySelector('#score7');
+////////////////////////////////////////
+const ranks = [rank1, rank2, rank3, rank4, rank5, rank6, rank7];
+const scores = [score1, score2, score3, score4, score5, score6, score7];
 
+// Calculate sums
+const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
+const lowestScore = sortedScores[0];
+
+for (let i = 0; i < ranks.length; i++) {
+    const rankElement = ranks[i];
+    const score = scores[i];
+
+    if (score === lowestScore) {
+        rankElement.textContent = 'WIN';
+        rankElement.style.backgroundColor = '#2ECC40';
+    } else if (sortedScores[sortedScores.length - 1] === score) {
+        rankElement.textContent = 'LOSE';
+        rankElement.style.backgroundColor = '#D32F2F';
+    } else {
+        // Find the rank based on the sortedScores array
+        const rank = sortedScores.indexOf(score) + 1;
+        rankElement.textContent = rank.toString();
+        rankElement.style.backgroundColor = 'orange';
+    }
+    
+    rankElement.style.color = '#FFF'; // Common color setting for all conditions
+}
+
+////////////////////////////////////////
     }
 
 function checkAndColorScore3() {
