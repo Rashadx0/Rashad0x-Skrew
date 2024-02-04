@@ -89,30 +89,33 @@ function calculateSums() {
 
 
 
-const rank1 = document.getElementById('rank1');
-const rank2 = document.getElementById('rank2');
-if (score1 === score2) {
-    rank1.textContent = 'WIN';
-    rank1.style.backgroundColor = '#2ECC40';
-    rank1.style.color = '#FFF';
-    rank2.textContent = 'WIN';
-    rank2.style.backgroundColor = '#2ECC40';
-    rank2.style.color = '#FFF';
-} else if (score1 < score2) {
-    rank1.textContent = 'WIN';
-    rank1.style.backgroundColor = '#2ECC40';
-    rank1.style.color = '#FFF';
-    rank2.textContent = 'LOSE';
-    rank2.style.backgroundColor = '#D32F2F';
-    rank2.style.color = '#FFF';
-} else {
-    rank1.textContent = 'LOSE';
-    rank1.style.backgroundColor = '#D32F2F';
-    rank1.style.color = '#FFF';
-    rank2.textContent = 'WIN';
-    rank2.style.backgroundColor = '#2ECC40';
-    rank2.style.color = '#FFF';
+const ranks = [rank1, rank2];
+const scores = [score1, score2];
+
+// Calculate sums
+const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
+const lowestScore = sortedScores[0];
+
+for (let i = 0; i < ranks.length; i++) {
+    const rankElement = ranks[i];
+    const score = scores[i];
+
+    if (score === lowestScore) {
+        rankElement.textContent = 'WIN';
+        rankElement.style.backgroundColor = '#2ECC40';
+    } else if (sortedScores[sortedScores.length - 1] === score) {
+        rankElement.textContent = 'LOSE';
+        rankElement.style.backgroundColor = '#D32F2F';
+    } else {
+        // Find the rank based on the sortedScores array
+        const rank = sortedScores.indexOf(score) + 1;
+        rankElement.textContent = rank.toString();
+        rankElement.style.backgroundColor = 'orange';
+    }
+    
+    rankElement.style.color = '#FFF'; // Common color setting for all conditions
 }
+
 /////////////////////////////////////////////////
 
 
