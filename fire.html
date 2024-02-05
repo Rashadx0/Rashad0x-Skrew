@@ -166,6 +166,11 @@ function showWinner() {
 
     document.getElementById('winnerName').textContent = winnerName;
     document.getElementById('winnerModal').style.display = 'block';
+
+    // إخفاء الاحتفال بعد 10 ثوانٍ
+    setTimeout(() => {
+        document.getElementById('winnerModal').style.display = 'none';
+    }, 10000); // 10000 مللي ثانية تعادل 10 ثوانٍ
 }
 
 const inputFields = document.querySelectorAll('input[type="number"]');
