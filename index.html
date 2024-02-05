@@ -132,23 +132,35 @@
             width: 30px;
             margin-right: 20px;
         }
-  #video-container {
-            display: none;
-        }
+#video-container {
+    display: none;
+    text-align: center; /* محاذاة الفيديو في وسط العرض */
+    margin-top: 20px; /* تباعد بادئ من الأعلى لتجنب الاندماج مع العناصر السابقة */
+}
+
+#video-container video {
+    max-width: 100%; /* جعل الفيديو يأخذ عرضًا مقاسًا مع العرض الأقصى للحاوية */
+    max-height: 80vh; /* تقليل ارتفاع الفيديو لتجنب تجاوز مساحة العرض */
+}
+
 #toggle-video-btn {
-    background-color: #4CAF50; /* لون خلفية الزر */
-    color: white; /* لون النص */
-    padding: 15px 20px; /* حجم الزر */
-    border: none; /* إزالة حدود الزر */
-    border-radius: 10px; /* تدوير الحواف لجعلها مستديرة */
-    cursor: pointer; /* تغيير شكل المؤشر عند التحويل إلى زر */
-    margin-top: 20px; /* تباعد الزر عن العناصر الأخرى */
-    transition: background-color 0.3s; /* تغيير لون الخلفية بشكل سلس */
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    display: block; /* تحويل الزر إلى عنصر كتلة لجعله يظهر في المنتصف */
+    margin: 0 auto; /* تحديد المسافات من الأعلى والأسفل، وتلقائيًا يتم وضع الزر في المنتصف */
+    font-weight: bold; /* جعل النص عريضًا */
 }
 
 #toggle-video-btn:hover {
-    background-color: #45a049; /* لون خلفية الزر عند التحويل إليه */
+    background-color: #45a049;
 }
+
 
     </style>
 </head>
@@ -198,18 +210,23 @@
     </div>
 
     <script>
-        var videoContainer = document.getElementById('video-container');
+    var videoContainer = document.getElementById('video-container');
+    var videoShown = false;
 
-        function toggleVideo() {
-            if (videoContainer.style.display === 'none') {
-                videoContainer.style.display = 'block';
-                setTimeout(function(){
-                    videoContainer.style.display = 'none';
-                }, 120000); // Hide video after 2 minutes
-            } else {
+    function toggleVideo() {
+        if (!videoShown) {
+            videoContainer.style.display = 'block';
+            setTimeout(function(){
                 videoContainer.style.display = 'none';
-            }
+                videoShown = false;
+            }, 120000); // Hide video after 2 minutes
+            videoShown = true;
+        } else {
+            videoContainer.style.display = 'none';
+            videoShown = false;
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
