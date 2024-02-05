@@ -16,7 +16,6 @@
         .table{
             grid-template-columns: repeat(2, 1fr);
         }
-
         /* تنسيق لنافذة الاحتفال */
         dialog {
             position: fixed;
@@ -56,129 +55,12 @@
     <div id="score1" class="mnr"></div>
     <div id="score2"></div>
 
-    <!-- عرض الترتيب -->
-    <div id="rank1" class="mnr"></div>
-    <div id="rank2" class="mnr"></div>
+<!-- عرض الترتيب -->
+<div id="rank1" class="mnr">1</div>
+<div id="rank2">1</div>
 </div>
 <!-- جافا سكريبت -->
 <script>
-    // دالة لحساب المجموعات
-    function calculateSums() {
-        // قائمة بمعرفات حقول الإدخال للأعمدة
-        const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
-        const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
-
-        // متغيرات لحساب المجموع
-        let sum1 = 0;
-        let sum2 = 0;
-
-        // حلقة لحساب المجموع
-        for (let i = 0; i < column1IDs.length; i++) {
-            const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
-            const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
-
-            sum1 += value1;
-            sum2 += value2;
-        }
-
-        // عرض المجموع
-        document.getElementById('score1').textContent = sum1;
-        document.getElementById('score2').textContent = sum2;
-
-        // فحص وتلوين نتيجة المجموع
-        checkAndColorScore3();
-
-
-
-    // دالة لحساب الفائز بناءً على أقل مجموع
-    function calculateWinner() {
-        const score1 = parseFloat(document.getElementById('score1').textContent);
-        const score2 = parseFloat(document.getElementById('score2').textContent);
-        return score1 < score2 ? document.getElementById('row1_col1').value : document.getElementById('row1_col2').value;
-    }
-
-    // دالة لفحص وتلوين المجموع الثالث
-    function checkAndColorScore3() {
-        const score1 = parseFloat(document.getElementById('score1').textContent);
-        const score2 = parseFloat(document.getElementById('score2').textContent);
-
-        const thScore1 = document.querySelector('#score1');
-        const thScore2 = document.querySelector('#score2');
-
-        const scores = [score1, score2];
-        const thScores = [thScore1, thScore2];
-
-        const minScore = Math.min(...scores);
-        const minScoreIndices = scores.reduce((indices, score, index) => {
-            if (score === minScore) indices.push(index);
-            return indices;
-        }, []);
-
-        const maxScore = Math.max(...scores);
-        const maxScoreIndices = scores.reduce((indices, score, index) => {
-            if (score === maxScore) indices.push(index);
-            return indices;
-        }, []);
-
-        for (let i = 0; i < scores.length; i++) {
-            if (minScoreIndices.includes(i)) {
-                thScores[i].textContent = 'WIN';
-                thScores[i].style.backgroundColor = '#2ECC40';
-            } else if(maxScoreIndices.includes(i)){
-                thScores[i].textContent = 'LOSE';
-                thScores[i].style.backgroundColor = '#D32F2F';
-            } else {
-                // Find the rank based on the sortedScores array
-                const rank = minScoreIndices.indexOf(i) + 1;
-                thScores[i].textContent = rank.toString();
-                thScores[i].style.backgroundColor = 'orange';
-            }
-            thScores[i].style.color = '#FFF'; // Common color setting for all conditions
-        }
-    }
-
-    const inputFields = document.querySelectorAll('input[type="number"]');
-    inputFields.forEach(input => {
-        input.addEventListener('input', calculateSums);
-    });
-
-    // تحديث لون خلفية الحقول عند التغيير
-    const numberInputs = document.querySelectorAll('input[type="number"]');
-    const textInputs = document.querySelectorAll('input[type="text"]');
-
-    function updateBackgroundColor(input) {
-        const inputValue = parseInt(input.value);
-        if(inputValue === 0) {
-            input.style.backgroundColor = '#2ECC40';
-            input.parentElement.style.backgroundColor = '#2ECC40';
-        } else {
-            input.style.backgroundColor = '';
-            input.parentElement.style.backgroundColor = '';
-        }
-    }
-
-    // استماع لتحركات المستخدم وتحديث اللون
-    numberInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            input.value = input.value.replace(/[^0-9]/g, '');
-            updateBackgroundColor(input);
-            calculateSums(); // حساب المجموع عند التغيير
-        });
-    });
-
-    // استماع لتحركات المستخدم وتحديث اللون
-    textInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            input.value = input.value.replace(/[^a-zA-Z\s]/g, ''); // السماح بالحروف والمسافات فقط
-        });
-    });
-
-    // تحديث لون الخلفية لكل حقل عند التحميل
-    numberInputs.forEach(input => {
-        updateBackgroundColor(input);
-    });
-
-    calculateSums(); // حساب أولي
         // إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية، قم بفحص الفائز وعرض نافذة الاحتفال
         if (areAllInputFieldsFilledWithNumbers()) {
             // احتساب النتيجة
@@ -213,6 +95,168 @@
 
         return allFilled;
     }
+
+// دالة لحساب المجموعات
+function calculateSums() {
+    // قائمة بمعرفات حقول الإدخال للأعمدة
+    const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
+    const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
+
+    // متغيرات لحساب المجموع
+    let sum1 = 0;
+    let sum2 = 0;
+
+    // حلقة لحساب المجموع
+    for (let i = 0; i < column1IDs.length; i++) {
+        const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
+        const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
+
+        sum1 += value1;
+        sum2 += value2;
+    }
+
+    // عرض المجموع
+    document.getElementById('score1').textContent = sum1;
+    document.getElementById('score2').textContent = sum2;
+
+    // فحص وتلوين نتيجة المجموع
+    checkAndColorScore3();
+
+    // استخلاص قيمة المجموع
+    const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
+    const mmrInput = document.querySelector('.mmr');
+    const mnrInput = document.querySelector('.mnr');
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+
+
+const ranks = [rank1, rank2];
+const scores = [score1, score2];
+
+// Calculate sums
+const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
+const lowestScore = sortedScores[0];
+
+for (let i = 0; i < ranks.length; i++) {
+    const rankElement = ranks[i];
+    const score = scores[i];
+
+    if (score === lowestScore) {
+        rankElement.textContent = 'WIN';
+        rankElement.style.backgroundColor = '#2ECC40';
+    } else if (sortedScores[sortedScores.length - 1] === score) {
+        rankElement.textContent = 'LOSE';
+        rankElement.style.backgroundColor = '#D32F2F';
+    } else {
+        // Find the rank based on the sortedScores array
+        const rank = sortedScores.indexOf(score) + 1;
+        rankElement.textContent = rank.toString();
+        rankElement.style.backgroundColor = 'orange';
+    }
+    
+    rankElement.style.color = '#FFF'; // Common color setting for all conditions
+}
+
+/////////////////////////////////////////////////
+
+
+
+
+
+
+}
+// دالة لفحص وتلوين المجموع الثالث
+function checkAndColorScore3() {
+   const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+
+    const scores = [score1, score2];
+    const thScores = [thScore1, thScore2];
+
+const minScore = Math.min(...scores);
+const minScoreIndices = scores.reduce((indices, score, index) => {
+if (score === minScore) indices.push(index);
+return indices;
+}, []);
+
+const maxScore = Math.max(...scores);
+const maxScoreIndices = scores.reduce((indices, score, index) => {
+if (score === maxScore) indices.push(index);
+return indices;
+}, []);
+
+
+for (let i = 0; i < scores.length; i++) {
+if (minScoreIndices.includes(i)) {
+    thScores[i].style.backgroundColor = '#2ECC40';
+    thScores[i].style.backgroundImage = `url(images/crown.png)`;
+    thScores[i].style.color = '#FFF'
+} else if(maxScoreIndices.includes(i)){
+    thScores[i].style.backgroundColor = '#D32F2F';
+    thScores[i].style.backgroundImage = `url(images/cone.png)`;
+    thScores[i].style.color = '#FFF'
+} else {
+    thScores[i].style.backgroundColor = 'orange';
+    thScores[i].style.color = '#FFF'
+    thScores[i].style.backgroundImage = "none";
+}
+}
+}
+
+
+const inputFields = document.querySelectorAll('input[type="number"]');
+inputFields.forEach(input => {
+    input.addEventListener('input', calculateSums);
+});
+calculateSums();
+
+// تحديث لون خلفية الحقول عند التغيير
+const numberInputs = document.querySelectorAll('input[type="number"]');
+const textInputs = document.querySelectorAll('input[type="text"]');
+
+function updateBackgroundColor(input) {
+    const inputValue = parseInt(input.value);
+    if(inputValue === 0) {
+        input.style.backgroundColor = '#2ECC40';
+        input.parentElement.style.backgroundColor = '#2ECC40';
+    } else {
+        input.style.backgroundColor = '';
+        input.parentElement.style.backgroundColor = '';
+    }
+}
+
+// استماع لتحركات المستخدم وتحديث اللون
+numberInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        updateBackgroundColor(input);
+        calculateSums(); // حساب المجموع عند التغيير
+    });
+});
+
+// استماع لتحركات المستخدم وتحديث اللون
+textInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^a-zA-Z\s]/g, ''); // السماح بالحروف والمسافات فقط
+    });
+});
+
+// تحديث لون الخلفية لكل حقل عند التحميل
+numberInputs.forEach(input => {
+    updateBackgroundColor(input);
+});
+
+calculateSums(); // حساب أولي
 </script>
 </body>
 </html>
