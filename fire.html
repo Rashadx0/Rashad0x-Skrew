@@ -10,6 +10,42 @@
         .table{
             grid-template-columns: repeat(2, 1fr);
         }
+
+        /* نمط للنافذة المنبثقة */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -37,26 +73,25 @@
 
     <div id="rank1" class="mnr">1</div>
     <div id="rank2">1</div>
+</div>
 
-    <!-- عرض اسم الفائز -->
-    <div id="winner"></div>
+<!-- نافذة المنبثقة -->
+<div id="winnerModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Winner!</h2>
+    <p>The winner is: <span id="winnerName"></span></p>
+  </div>
 </div>
 
 <script>
-
-// دالة لحساب المجموعات وتحديد الفائز
 function calculateSums() {
-    // قائمة بمعرفات حقول الإدخال للأعمدة
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
 
-    // متغيرات لحساب المجموع وأسماء اللاعبين
     let sum1 = 0;
     let sum2 = 0;
-    let player1Name = document.getElementById('row1_col1').value.trim();
-    let player2Name = document.getElementById('row1_col2').value.trim();
 
-    // حلقة لحساب المجموع وجلب أسماء اللاعبين
     for (let i = 0; i < column1IDs.length; i++) {
         const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
         const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
@@ -65,57 +100,86 @@ function calculateSums() {
         sum2 += value2;
     }
 
-    // عرض المجموع
     document.getElementById('score1').textContent = sum1;
     document.getElementById('score2').textContent = sum2;
 
-    // فحص وتلوين نتيجة المجموع
     checkAndColorScore3();
 
-    // تحديد الفائز وعرضه
-    let winner;
-    if (sum1 > sum2) {
-        winner = player1Name;
-    } else if (sum2 > sum1) {
-        winner = player2Name;
-    } else {
-        winner = "No winner"; // في حالة التعادل
-    }
-    document.getElementById('winner').textContent = "Winner: " + winner;
+    showWinner(); // اضافة دالة لإظهار الفائز بعد حساب المجموعات
 }
 
-// استماع لتحركات المستخدم وحساب المجموع وتحديد الفائز
+function checkAndColorScore3() {
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+    const scores = [score1, score2];
+    const thScores = [thScore1, thScore2];
+
+    const minScore = Math.min(...scores);
+    const minScoreIndices = scores.reduce((indices, score, index) => {
+        if (score === minScore) indices.push(index);
+        return indices;
+    }, []);
+
+    const maxScore = Math.max(...scores);
+    const maxScoreIndices = scores.reduce((indices, score, index) => {
+        if (score === maxScore) indices.push(index);
+        return indices;
+    }, []);
+
+    for (let i = 0; i < scores.length; i++) {
+        if (minScoreIndices.includes(i)) {
+            thScores[i].style.backgroundColor = '#2ECC40';
+            thScores[i].style.backgroundImage = `url(images/crown.png)`;
+            thScores[i].style.color = '#FFF'
+        } else if (maxScoreIndices.includes(i)) {
+            thScores[i].style.backgroundColor = '#D32F2F';
+            thScores[i].style.backgroundImage = `url(images/cone.png)`;
+            thScores[i].style.color = '#FFF'
+        } else {
+            thScores[i].style.backgroundColor = 'orange';
+            thScores[i].style.color = '#FFF';
+            thScores[i].style.backgroundImage = "none";
+        }
+    }
+}
+
+function showWinner() {
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+    const playerName1 = document.getElementById('row1_col1').value;
+    const playerName2 = document.getElementById('row1_col2').value;
+
+    let winnerName = '';
+
+    if (score1 < score2) {
+        winnerName = playerName1;
+    } else if (score2 < score1) {
+        winnerName = playerName2;
+    } else {
+        winnerName = 'Tie';
+    }
+
+    document.getElementById('winnerName').textContent = winnerName;
+    document.getElementById('winnerModal').style.display = 'block';
+}
+
 const inputFields = document.querySelectorAll('input[type="number"]');
 inputFields.forEach(input => {
-    input.addEventListener('input', () => {
-        // حساب المجموع وتحديد الفائز عندما يتم ملء جميع الحقول
-        if (checkAllFieldsFilled()) {
-            calculateSums();
-        }
-    });
+    input.addEventListener('input', calculateSums);
 });
+calculateSums();
 
-// دالة للتحقق مما إذا كانت جميع الحقول ممتلئة
-function checkAllFieldsFilled() {
-    let allFilled = true;
-    const allInputs = document.querySelectorAll('input');
-    allInputs.forEach(input => {
-        if (input.value.trim() === '') {
-            allFilled = false;
-        }
-    });
-    return allFilled;
-}
-
-
-
-// تحديث لون خلفية الحقول عند التغيير
 const numberInputs = document.querySelectorAll('input[type="number"]');
 const textInputs = document.querySelectorAll('input[type="text"]');
 
 function updateBackgroundColor(input) {
     const inputValue = parseInt(input.value);
-    if(inputValue === 0) {
+    if (inputValue === 0) {
         input.style.backgroundColor = '#2ECC40';
         input.parentElement.style.backgroundColor = '#2ECC40';
     } else {
@@ -124,28 +188,25 @@ function updateBackgroundColor(input) {
     }
 }
 
-// استماع لتحركات المستخدم وتحديث اللون
 numberInputs.forEach(input => {
     input.addEventListener('input', () => {
         input.value = input.value.replace(/[^0-9]/g, '');
         updateBackgroundColor(input);
-        calculateSums(); // حساب المجموع عند التغيير
+        calculateSums();
     });
 });
 
-// استماع لتحركات المستخدم وتحديث اللون
 textInputs.forEach(input => {
     input.addEventListener('input', () => {
-        input.value = input.value.replace(/[^a-zA-Z\s]/g, ''); // السماح بالحروف والمسافات فقط
+        input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
     });
 });
 
-// تحديث لون الخلفية لكل حقل عند التحميل
 numberInputs.forEach(input => {
     updateBackgroundColor(input);
 });
 
-calculateSums(); // حساب أولي
+calculateSums();
 </script>
 </body>
 </html>
