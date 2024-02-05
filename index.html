@@ -132,7 +132,9 @@
             width: 30px;
             margin-right: 20px;
         }
-
+  #video-container {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -171,6 +173,28 @@
             <a href="7-players.html" class="number">7</a>
             <a href="8-players.html" class="number">8</a>
         </div>
+    <button id="toggle-video-btn" onclick="toggleVideo()">Toggle Video</button>
+    <div id="video-container">
+        <video controls autoplay>
+            <source src="your_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
+    </div>
+
+    <script>
+        var videoContainer = document.getElementById('video-container');
+
+        function toggleVideo() {
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                setTimeout(function(){
+                    videoContainer.style.display = 'none';
+                }, 120000); // Hide video after 2 minutes
+            } else {
+                videoContainer.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
