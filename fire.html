@@ -16,17 +16,13 @@
         .table{
             grid-template-columns: repeat(2, 1fr);
         }
-        /* تنسيق لنافذة الاحتفال */
-        dialog {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-        }
+.text {
+    background-color: #65001A;
+}
+
+input[type="number"] {
+    background-color: #23183E;
+}
     </style>
 </head>
 <body>
@@ -61,8 +57,6 @@
 </div>
 <!-- جافا سكريبت -->
 <script>
-
-
 // دالة لحساب المجموعات
 function calculateSums() {
     // قائمة بمعرفات حقول الإدخال للأعمدة
@@ -186,40 +180,7 @@ inputFields.forEach(input => {
     input.addEventListener('input', calculateSums);
 });
 calculateSums();
-        // إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية، قم بفحص الفائز وعرض نافذة الاحتفال
-        if (areAllInputFieldsFilledWithNumbers()) {
-            // احتساب النتيجة
-            const winner = calculateWinner();
 
-            // إنشاء نافذة الاحتفال
-            const celebrationDialog = document.createElement('dialog');
-            celebrationDialog.innerHTML = `
-                <p>تهانينا، الفائز هو ${winner} بأقل مجموع!</p>
-            `;
-
-            document.body.appendChild(celebrationDialog);
-
-            // إظهار النافذة لمدة 10 ثوانٍ
-            celebrationDialog.showModal();
-            setTimeout(() => {
-                celebrationDialog.close();
-            }, 10000);
-        }
-    }
-
-    // دالة للتحقق مما إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية
-    function areAllInputFieldsFilledWithNumbers() {
-        const inputFields = document.querySelectorAll('input[type="number"]');
-        let allFilled = true;
-
-        inputFields.forEach(input => {
-            if (!input.value.trim()) {
-                allFilled = false;
-            }
-        });
-
-        return allFilled;
-    }
 // تحديث لون خلفية الحقول عند التغيير
 const numberInputs = document.querySelectorAll('input[type="number"]');
 const textInputs = document.querySelectorAll('input[type="text"]');
