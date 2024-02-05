@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/skrre.jpg">
+    <title>Skrew || 2-Players</title>
+    <style>
+        .table{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    </style>
+</head>
+<body>
+<div class="table">
+    <div><input class="text" id="row1_col1" placeholder="Name"></div>
+    <div><input class="text" id="row1_col2" placeholder="Name"></div>
+    <div><input type="number" id="row2_col1" placeholder="R1"></div>
+    <div><input type="number" id="row2_col2" placeholder="R1"></div>
+    <div><input type="number" id="row3_col1" placeholder="R2"></div>
+    <div><input type="number" id="row3_col2" placeholder="R2"></div>
+    <div><input type="number" id="row4_col1" placeholder="R3"></div>
+    <div><input type="number" id="row4_col2" placeholder="R3"></div>
+    <div><input type="number" id="row5_col1" placeholder="R4"></div>
+    <div><input type="number" id="row5_col2" placeholder="R4"></div>
+    <div><input type="number" id="row6_col1" placeholder="R5"></div>
+    <div><input type="number" id="row6_col2" placeholder="R5"></div>
+    <div id="score1" class="mnr"></div>
+    <div id="score2"></div>
+    <div id="rank1" class="mnr">1</div>
+    <div id="rank2">1</div>
+</div>
+
+<script>
+function calculateSums() {
+    const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
+    const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
+
+    let sum1 = 0;
+    let sum2 = 0;
+
+    for (let i = 0; i < column1IDs.length; i++) {
+        const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
+        const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
+
+        sum1 += value1;
+        sum2 += value2;
+    }
+
+    document.getElementById('score1').textContent = sum1;
+    document.getElementById('score2').textContent = sum2;
+
+    checkAndColorScore3();
+
+    const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
+    const mmrInput = document.querySelector('.mmr');
+    const mnrInput = document.querySelector('.mnr');
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+    const ranks = [rank1, rank2];
+    const scores = [score1, score2];
+
+    const playerNames = [];
+    const playerNameInputs = document.querySelectorAll('input[type="text"]');
+    playerNameInputs.forEach(input => {
+        playerNames.push(input.value);
+    });
+
+    const minScoreIndex = scores.indexOf(Math.min(...scores));
+    const playerName = playerNames[minScoreIndex];
+    const winnerDisplay = document.createElement('div');
+    winnerDisplay.textContent = playerName + ' is the winner!';
+    winnerDisplay.style.position = 'fixed';
+    winnerDisplay.style.top = '50%';
+    winnerDisplay.style.left = '50%';
+    winnerDisplay.style.transform = 'translate(-50%, -50%)';
+    winnerDisplay.style.fontSize = '24px';
+    document.body.appendChild(winnerDisplay);
+
+    setTimeout(() => {
+        winnerDisplay.remove();
+    }, 10000);
+
+    for (let i = 0; i < ranks.length; i++) {
+        const rankElement = ranks[i];
+        const score = scores[i];
+
+        if (score === Math.min(...scores)) {
+            rankElement.textContent = 'WIN';
+            rankElement.style.backgroundColor = '#2ECC40';
+        } else if (score === Math.max(...scores)) {
+            rankElement.textContent = 'LOSE';
+            rankElement.style.backgroundColor = '#D32F2F';
+        } else {
+            const rank = scores.indexOf(score) + 1;
+            rankElement.textContent = rank.toString();
+            rankElement.style.backgroundColor = 'orange';
+        }
+
+        rankElement.style.color = '#FFF';
+    }
+}
+
+function checkAndColorScore3() {
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+    const scores = [score1, score2];
+    const thScores = [thScore1, thScore2];
+
+    const minScore = Math.min(...scores);
+    const minScoreIndices = scores.reduce((indices, score, index) => {
+        if (score === minScore) indices.push(index);
+        return indices;
+    }, []);
+
+    const maxScore = Math.max(...scores);
+    const maxScoreIndices = scores.reduce((indices, score, index) => {
+        if (score === maxScore) indices.push(index);
+        return indices;
+    }, []);
+
+    for (let i = 0; i < scores.length; i++) {
+        if (minScoreIndices.includes(i)) {
+            thScores[i].style.backgroundColor = '#2ECC40';
+            thScores[i].style.backgroundImage = `url(images/crown.png)`;
+            thScores[i].style.color = '#FFF';
+        } else if (maxScoreIndices.includes(i)) {
+            thScores[i].style.backgroundColor = '#D32F2F';
+            thScores[i].style.backgroundImage = `url(images/cone.png)`;
+            thScores[i].style.color = '#FFF';
+        } else {
+            thScores[i].style.backgroundColor = 'orange';
+            thScores[i].style.color = '#FFF';
+            thScores[i].style.backgroundImage = "none";
+        }
+    }
+}
+
+const inputFields = document.querySelectorAll('input[type="number"]');
+inputFields.forEach(input => {
+    input.addEventListener('input', calculateSums);
+});
+calculateSums();
+
+const numberInputs = document.querySelectorAll('input[type="number"]');
+const textInputs = document.querySelectorAll('input[type="text"]');
+
+function updateBackgroundColor(input) {
+    const inputValue = parseInt(input.value);
+    if (inputValue === 0) {
+        input.style.backgroundColor = '#2ECC40';
+        input.parentElement.style.backgroundColor = '#2ECC40';
+    } else {
+        input.style.backgroundColor = '';
+        input.parentElement.style.backgroundColor = '';
+    }
+}
+
+numberInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        updateBackgroundColor(input);
+        calculateSums();
+    });
+});
+
+textInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
+    });
+});
+
+numberInputs.forEach(input => {
+    updateBackgroundColor(input);
+});
+
+calculateSums();
+</script>
+</body>
+</html>
