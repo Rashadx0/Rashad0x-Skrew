@@ -214,23 +214,7 @@ numberInputs.forEach(input => {
 });
 
 calculateSums(); // حساب أولي
-    const score1 = parseFloat(document.getElementById('row2_col1').value);
-    const score2 = parseFloat(document.getElementById('row2_col2').value);
 
-    const thScore1 = document.getElementById('row2_col1');
-    const thScore2 = document.getElementById('row2_col2');
-
-    if (score1 === score2) {
-        thScore1.style.backgroundColor = '#D32F2F';
-        thScore2.style.backgroundColor = '#D32F2F';
-    } else if (score1 > score2) {
-        thScore1.style.backgroundColor = '#D32F2F';
-        thScore2.style.backgroundColor = '';
-    } else {
-        thScore1.style.backgroundColor = '';
-        thScore2.style.backgroundColor = '#D32F2F';
-    }
-}
 
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
