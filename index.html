@@ -211,22 +211,19 @@
     </div>
 
     <script>
-    var videoContainer = document.getElementById('video-container');
+var videoContainer = document.getElementById('video-container');
 var videoShown = false;
 
 function toggleVideo() {
     if (!videoShown) {
         videoContainer.style.display = 'block';
-        setTimeout(function(){
-            videoContainer.style.display = 'none';
-            videoShown = false;
-        }, 180000); // Hide video after 3 minutes
         videoShown = true;
     } else {
         videoContainer.style.display = 'none';
         videoShown = false;
     }
 }
+
 
 </script>
 
