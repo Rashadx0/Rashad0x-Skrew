@@ -135,6 +135,21 @@
   #video-container {
             display: none;
         }
+#toggle-video-btn {
+    background-color: #4CAF50; /* لون خلفية الزر */
+    color: white; /* لون النص */
+    padding: 15px 20px; /* حجم الزر */
+    border: none; /* إزالة حدود الزر */
+    border-radius: 10px; /* تدوير الحواف لجعلها مستديرة */
+    cursor: pointer; /* تغيير شكل المؤشر عند التحويل إلى زر */
+    margin-top: 20px; /* تباعد الزر عن العناصر الأخرى */
+    transition: background-color 0.3s; /* تغيير لون الخلفية بشكل سلس */
+}
+
+#toggle-video-btn:hover {
+    background-color: #45a049; /* لون خلفية الزر عند التحويل إليه */
+}
+
     </style>
 </head>
 <body>
@@ -173,7 +188,7 @@
             <a href="7-players.html" class="number">7</a>
             <a href="8-players.html" class="number">8</a>
         </div>
-    <button id="toggle-video-btn" onclick="toggleVideo()">Toggle Video</button>
+    <button id="toggle-video-btn" onclick="toggleVideo()">قوانين اللعبة</button>
     <div id="video-container">
         <video controls autoplay>
             <source src="your_video.mp4" type="video/mp4">
