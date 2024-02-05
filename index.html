@@ -139,8 +139,8 @@
 }
 
 #video-container video {
-    max-width: 100%; /* جعل الفيديو يأخذ عرضًا مقاسًا مع العرض الأقصى للحاوية */
-    max-height: calc(80vh - 40px); /* احتساب الارتفاع بناءً على النسبة المئوية للعرض الظاهر والحواف العلوية والسفلية للحاوية */
+    max-width: 80%; /* تقليل عرض الفيديو إلى 80٪ من العرض الأصلي */
+    max-height: 80vh; /* تقليل ارتفاع الفيديو لتجنب تجاوز مساحة العرض */
 }
 
 #toggle-video-btn {
@@ -202,6 +202,8 @@
         </div>
     <button id="toggle-video-btn" onclick="toggleVideo()">قوانين اللعبة</button>
 <div id="video-container">
+    <video id="autoplayVideo" controls autoplay>
+
     <video controls autoplay>
         <source src="videos/RULES.mp4" type="video/mp4">
         Your browser does not support the video tag.
@@ -215,11 +217,17 @@ var videoContainer = document.getElementById('video-container');
 var videoShown = false;
 
 function toggleVideo() {
+    var video = document.getElementById('autoplayVideo');
+
     if (!videoShown) {
         videoContainer.style.display = 'block';
+        video.play(); // Autoplay the video
+
         videoShown = true;
     } else {
         videoContainer.style.display = 'none';
+        video.pause(); // Pause the video if it's shown
+
         videoShown = false;
     }
 }
