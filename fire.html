@@ -88,40 +88,7 @@
         // فحص وتلوين نتيجة المجموع
         checkAndColorScore3();
 
-        // إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية، قم بفحص الفائز وعرض نافذة الاحتفال
-        if (areAllInputFieldsFilledWithNumbers()) {
-            // احتساب النتيجة
-            const winner = calculateWinner();
 
-            // إنشاء نافذة الاحتفال
-            const celebrationDialog = document.createElement('dialog');
-            celebrationDialog.innerHTML = `
-                <p>تهانينا، الفائز هو ${winner} بأقل مجموع!</p>
-            `;
-
-            document.body.appendChild(celebrationDialog);
-
-            // إظهار النافذة لمدة 10 ثوانٍ
-            celebrationDialog.showModal();
-            setTimeout(() => {
-                celebrationDialog.close();
-            }, 10000);
-        }
-    }
-
-    // دالة للتحقق مما إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية
-    function areAllInputFieldsFilledWithNumbers() {
-        const inputFields = document.querySelectorAll('input[type="number"]');
-        let allFilled = true;
-
-        inputFields.forEach(input => {
-            if (!input.value.trim()) {
-                allFilled = false;
-            }
-        });
-
-        return allFilled;
-    }
 
     // دالة لحساب الفائز بناءً على أقل مجموع
     function calculateWinner() {
@@ -212,6 +179,40 @@
     });
 
     calculateSums(); // حساب أولي
+        // إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية، قم بفحص الفائز وعرض نافذة الاحتفال
+        if (areAllInputFieldsFilledWithNumbers()) {
+            // احتساب النتيجة
+            const winner = calculateWinner();
+
+            // إنشاء نافذة الاحتفال
+            const celebrationDialog = document.createElement('dialog');
+            celebrationDialog.innerHTML = `
+                <p>تهانينا، الفائز هو ${winner} بأقل مجموع!</p>
+            `;
+
+            document.body.appendChild(celebrationDialog);
+
+            // إظهار النافذة لمدة 10 ثوانٍ
+            celebrationDialog.showModal();
+            setTimeout(() => {
+                celebrationDialog.close();
+            }, 10000);
+        }
+    }
+
+    // دالة للتحقق مما إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية
+    function areAllInputFieldsFilledWithNumbers() {
+        const inputFields = document.querySelectorAll('input[type="number"]');
+        let allFilled = true;
+
+        inputFields.forEach(input => {
+            if (!input.value.trim()) {
+                allFilled = false;
+            }
+        });
+
+        return allFilled;
+    }
 </script>
 </body>
 </html>
