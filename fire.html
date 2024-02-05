@@ -43,6 +43,7 @@
 </div>
 
 <script>
+
 // دالة لحساب المجموعات وتحديد الفائز
 function calculateSums() {
     // قائمة بمعرفات حقول الإدخال للأعمدة
@@ -52,8 +53,8 @@ function calculateSums() {
     // متغيرات لحساب المجموع وأسماء اللاعبين
     let sum1 = 0;
     let sum2 = 0;
-    let player1Name = "";
-    let player2Name = "";
+    let player1Name = document.getElementById('row1_col1').value.trim();
+    let player2Name = document.getElementById('row1_col2').value.trim();
 
     // حلقة لحساب المجموع وجلب أسماء اللاعبين
     for (let i = 0; i < column1IDs.length; i++) {
@@ -62,12 +63,6 @@ function calculateSums() {
 
         sum1 += value1;
         sum2 += value2;
-
-        // جلب أسماء اللاعبين من حقول النصوص في العمود الأول
-        if (i === 0) {
-            player1Name = document.getElementById(column1IDs[i].replace('col1', 'col2')).value.trim();
-            player2Name = document.getElementById(column2IDs[i].replace('col1', 'col2')).value.trim();
-        }
     }
 
     // عرض المجموع
@@ -92,9 +87,25 @@ function calculateSums() {
 // استماع لتحركات المستخدم وحساب المجموع وتحديد الفائز
 const inputFields = document.querySelectorAll('input[type="number"]');
 inputFields.forEach(input => {
-    input.addEventListener('input', calculateSums);
+    input.addEventListener('input', () => {
+        // حساب المجموع وتحديد الفائز عندما يتم ملء جميع الحقول
+        if (checkAllFieldsFilled()) {
+            calculateSums();
+        }
+    });
 });
-calculateSums(); // حساب أولي
+
+// دالة للتحقق مما إذا كانت جميع الحقول ممتلئة
+function checkAllFieldsFilled() {
+    let allFilled = true;
+    const allInputs = document.querySelectorAll('input');
+    allInputs.forEach(input => {
+        if (input.value.trim() === '') {
+            allFilled = false;
+        }
+    });
+    return allFilled;
+}
 
 
 
