@@ -186,7 +186,40 @@ inputFields.forEach(input => {
     input.addEventListener('input', calculateSums);
 });
 calculateSums();
+        // إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية، قم بفحص الفائز وعرض نافذة الاحتفال
+        if (areAllInputFieldsFilledWithNumbers()) {
+            // احتساب النتيجة
+            const winner = calculateWinner();
 
+            // إنشاء نافذة الاحتفال
+            const celebrationDialog = document.createElement('dialog');
+            celebrationDialog.innerHTML = `
+                <p>تهانينا، الفائز هو ${winner} بأقل مجموع!</p>
+            `;
+
+            document.body.appendChild(celebrationDialog);
+
+            // إظهار النافذة لمدة 10 ثوانٍ
+            celebrationDialog.showModal();
+            setTimeout(() => {
+                celebrationDialog.close();
+            }, 10000);
+        }
+    }
+
+    // دالة للتحقق مما إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية
+    function areAllInputFieldsFilledWithNumbers() {
+        const inputFields = document.querySelectorAll('input[type="number"]');
+        let allFilled = true;
+
+        inputFields.forEach(input => {
+            if (!input.value.trim()) {
+                allFilled = false;
+            }
+        });
+
+        return allFilled;
+    }
 // تحديث لون خلفية الحقول عند التغيير
 const numberInputs = document.querySelectorAll('input[type="number"]');
 const textInputs = document.querySelectorAll('input[type="text"]');
@@ -222,40 +255,7 @@ textInputs.forEach(input => {
 numberInputs.forEach(input => {
     updateBackgroundColor(input);
 });
-        // إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية، قم بفحص الفائز وعرض نافذة الاحتفال
-        if (areAllInputFieldsFilledWithNumbers()) {
-            // احتساب النتيجة
-            const winner = calculateWinner();
 
-            // إنشاء نافذة الاحتفال
-            const celebrationDialog = document.createElement('dialog');
-            celebrationDialog.innerHTML = `
-                <p>تهانينا، الفائز هو ${winner} بأقل مجموع!</p>
-            `;
-
-            document.body.appendChild(celebrationDialog);
-
-            // إظهار النافذة لمدة 10 ثوانٍ
-            celebrationDialog.showModal();
-            setTimeout(() => {
-                celebrationDialog.close();
-            }, 10000);
-        }
-    }
-
-    // دالة للتحقق مما إذا كانت جميع حقول الإدخال مملوءة بالقيم الرقمية
-    function areAllInputFieldsFilledWithNumbers() {
-        const inputFields = document.querySelectorAll('input[type="number"]');
-        let allFilled = true;
-
-        inputFields.forEach(input => {
-            if (!input.value.trim()) {
-                allFilled = false;
-            }
-        });
-
-        return allFilled;
-    }
 calculateSums(); // حساب أولي
 </script>
 </body>
