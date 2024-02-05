@@ -201,31 +201,33 @@
             <a href="8-players.html" class="number">8</a>
         </div>
     <button id="toggle-video-btn" onclick="toggleVideo()">قوانين اللعبة</button>
-    <div id="video-container">
-        <video controls autoplay>
-            <source src="your_video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+<div id="video-container">
+    <video controls autoplay>
+        <source src="videos/RULES.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
     </div>
 
     <script>
     var videoContainer = document.getElementById('video-container');
-    var videoShown = false;
+var videoShown = false;
 
-    function toggleVideo() {
-        if (!videoShown) {
-            videoContainer.style.display = 'block';
-            setTimeout(function(){
-                videoContainer.style.display = 'none';
-                videoShown = false;
-            }, 120000); // Hide video after 2 minutes
-            videoShown = true;
-        } else {
+function toggleVideo() {
+    if (!videoShown) {
+        videoContainer.style.display = 'block';
+        setTimeout(function(){
             videoContainer.style.display = 'none';
             videoShown = false;
-        }
+        }, 180000); // Hide video after 3 minutes
+        videoShown = true;
+    } else {
+        videoContainer.style.display = 'none';
+        videoShown = false;
     }
+}
+
 </script>
 
 </body>
