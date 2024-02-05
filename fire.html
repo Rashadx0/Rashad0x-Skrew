@@ -16,6 +16,18 @@
         .table{
             grid-template-columns: repeat(2, 1fr);
         }
+
+        /* تنسيق لنافذة الاحتفال */
+        dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -45,8 +57,8 @@
     <div id="score2"></div>
 
     <!-- عرض الترتيب -->
-    <div id="rank1" class="mnr">1</div>
-    <div id="rank2">1</div>
+    <div id="rank1" class="mnr"></div>
+    <div id="rank2" class="mnr"></div>
 </div>
 <!-- جافا سكريبت -->
 <script>
@@ -143,18 +155,18 @@
 
         for (let i = 0; i < scores.length; i++) {
             if (minScoreIndices.includes(i)) {
+                thScores[i].textContent = 'WIN';
                 thScores[i].style.backgroundColor = '#2ECC40';
-                thScores[i].style.backgroundImage = `url(images/crown.png)`;
-                thScores[i].style.color = '#FFF'
             } else if(maxScoreIndices.includes(i)){
+                thScores[i].textContent = 'LOSE';
                 thScores[i].style.backgroundColor = '#D32F2F';
-                thScores[i].style.backgroundImage = `url(images/cone.png)`;
-                thScores[i].style.color = '#FFF'
             } else {
+                // Find the rank based on the sortedScores array
+                const rank = minScoreIndices.indexOf(i) + 1;
+                thScores[i].textContent = rank.toString();
                 thScores[i].style.backgroundColor = 'orange';
-                thScores[i].style.color = '#FFF'
-                thScores[i].style.backgroundImage = "none";
             }
+            thScores[i].style.color = '#FFF'; // Common color setting for all conditions
         }
     }
 
