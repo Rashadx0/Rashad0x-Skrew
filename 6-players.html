@@ -82,6 +82,18 @@
 <div id="rank6">1</div>
     </div>
     <script>
+// تعطيل النقر بالزر الأيمن
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+// تعطيل فتح صفحة F12
+document.addEventListener('keydown', function(e) {
+    // القيمة 123 تمثل مفتاح F12
+    if (e.keyCode == 123) {
+        e.preventDefault();
+    }
+});
     function calculateSums() {
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
