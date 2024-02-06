@@ -69,7 +69,7 @@
             transform: translateX(-50%);
             bottom: 4px;
         }
-        /* إخفاء الأسهم الصغيرة في حقول الإدخال من النوع number */
+/* إخفاء الأسهم الصغيرة في حقول الإدخال من النوع number */
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
@@ -84,22 +84,15 @@
         input[type="number"]::placeholder{
             color: rgba(255,255,255,0.1);
         }
-   /* تنسيق حقول الإدخال من النوع text */
-.text {
-    background: transparent;
-}
+        /* تنسيق حقول الإدخال من النوع text */
+        .text{
+            background: transparent;
 
-/* تنسيق النص الافتراضي في حقول الإدخال من النوع text */
-.text::placeholder {
-    color: #999;
-}
-
-/* تكييف عرض حقل الإدخال مع عدد الحروف */
-.text {
-    width: auto; /* يمكنك تعيين قيمة افتراضية للعرض */
-    min-width: 50px; /* يمكنك تعيين حد أدنى للعرض */
-    max-width: 100%; /* يمكنك تعيين حد أقصى للعرض */
-}
+        }
+        /* تنسيق النص الافتراضي في حقول الإدخال من النوع text */
+        .text::placeholder{
+            color: #999;
+        }
 
 
         /* تنسيق عناصر العرض للنتيجة والترتيب */
