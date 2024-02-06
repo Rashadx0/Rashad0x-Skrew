@@ -84,15 +84,23 @@
         input[type="number"]::placeholder{
             color: rgba(255,255,255,0.1);
         }
-        /* تنسيق حقول الإدخال من النوع text */
-        .text{
-            background: transparent;
+.text {
+    background: transparent;
+    transition: width 0.3s ease; /* إضافة تأثير انتقالي لتغيير عرض الحقل */
+}
 
-        }
-        /* تنسيق النص الافتراضي في حقول الإدخال من النوع text */
-        .text::placeholder{
-            color: #999;
-        }
+.text:focus {
+    width: 300px; /* تحديد العرض الافتراضي عند التركيز على الحقل */
+}
+
+.text:valid {
+    width: auto; /* استرجاع العرض الافتراضي بعد إدخال قيمة صالحة */
+}
+
+.text::placeholder {
+    color: #999;
+}
+
 
 
         /* تنسيق عناصر العرض للنتيجة والترتيب */
