@@ -84,23 +84,23 @@
         input[type="number"]::placeholder{
             color: rgba(255,255,255,0.1);
         }
-     /* إخفاء الأسهم الصغيرة في حقول الإدخال من النوع text */
-input[type="text"]::-webkit-inner-spin-button,
-input[type="text"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
-}
-
-/* تنسيق حقول الإدخال من النوع text */
-input[type="text"] {
+   /* تنسيق حقول الإدخال من النوع text */
+.text {
     background: transparent;
 }
 
 /* تنسيق النص الافتراضي في حقول الإدخال من النوع text */
-input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.1);
+.text::placeholder {
+    color: #999;
 }
+
+/* تكييف عرض حقل الإدخال مع عدد الحروف */
+.text {
+    width: auto; /* يمكنك تعيين قيمة افتراضية للعرض */
+    min-width: 50px; /* يمكنك تعيين حد أدنى للعرض */
+    max-width: 100%; /* يمكنك تعيين حد أقصى للعرض */
+}
+
 
         /* تنسيق عناصر العرض للنتيجة والترتيب */
         #score1,
