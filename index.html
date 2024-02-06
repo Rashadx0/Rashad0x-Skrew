@@ -12,14 +12,7 @@
     <link rel="manifest" href="/path/to/manifest.json">
     <title>Skrew</title>
     <style>
-.adblock-warning {
-  display: none;
-  background-color: #ffc107;
-  color: #333;
-  padding: 10px;
-  text-align: center;
-  font-size: 18px;
-}
+
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
 
         * {
@@ -233,19 +226,12 @@
         متصفحك لا يدعم عنصر الفيديو.
     </video>
 </div>
-<div class="adblock-warning" id="adblock-warning">
-  الرجاء تعطيل مانع الإعلانات لعرض المحتوى.
-</div>
 
 
     </div>
 
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-  if (!document.getElementById('adblock-warning').offsetHeight) {
-    document.getElementById('adblock-warning').style.display = 'block';
-  }
-});
+
 // تعطيل النقر بالزر الأيمن
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
