@@ -84,15 +84,24 @@
         input[type="number"]::placeholder{
             color: rgba(255,255,255,0.1);
         }
-        /* تنسيق حقول الإدخال من النوع text */
-        .text{
-            background: transparent;
+     /* إخفاء الأسهم الصغيرة في حقول الإدخال من النوع text */
+input[type="text"]::-webkit-inner-spin-button,
+input[type="text"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
 
-        }
-        /* تنسيق النص الافتراضي في حقول الإدخال من النوع text */
-        .text::placeholder{
-            color: #999;
-        }
+/* تنسيق حقول الإدخال من النوع text */
+input[type="text"] {
+    background: transparent;
+}
+
+/* تنسيق النص الافتراضي في حقول الإدخال من النوع text */
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.1);
+}
+
         /* تنسيق عناصر العرض للنتيجة والترتيب */
         #score1,
         #score2,
