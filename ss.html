@@ -12,30 +12,29 @@
     <link rel="manifest" href="/path/to/manifest.json">
     <title>Skrew</title>
     <style>
-         /* تنسيق شاشة التحميل */
+          /* تنسيق شاشة التحميل */
         .loading-container {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
             z-index: 9999; /* يتأكد أن شاشة التحميل تظهر فوق جميع العناصر الأخرى */
+        }
+        .loading-content {
+            text-align: center;
+            color: white;
         }
         .loading-text {
             font-size: 24px;
-            margin-top: 20px;
-            color: white;
+            margin-bottom: 20px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* استخدمت خطوطاً معروفة */
             font-weight: bold; /* نص بولد */
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* تأثير الظل لجاذبية أكبر */
-            margin-bottom: 20px;
-        }
-        .spinner-container {
-            display: inline-block;
-            margin-bottom: 20px;
         }
         .spinner {
             width: 50px;
@@ -220,11 +219,11 @@
     </style>
 </head>
 <body>
-   <!-- شاشة التحميل -->
+    <!-- شاشة التحميل -->
     <div class="loading-container">
-        <div class="loading-text">صلي على النبي</div>
-        <div class="spinner"></div>
-    </div>
+        <div class="loading-content">
+            <div class="loading-text">صلي على النبي</div>
+            <div class="spinner"></div>
     <div class="table" style="display: none;"> <!-- أضفت خاصية العرض: none لإخفاء المحتوى الأصلي -->
 
     <div class="marquee">
