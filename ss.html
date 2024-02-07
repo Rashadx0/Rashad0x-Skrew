@@ -16,7 +16,7 @@
     <title>Skrew</title>
     <style>
           /* تنسيق شاشة التحميل */
-        .loading-container {
+        .loader-container {
              text-align: center;
               position: fixed; /* تغيير من absolute إلى fixed */
               top: 50%;
@@ -26,7 +26,7 @@
             z-index: 9999; /* يتأكد أن شاشة التحميل تظهر فوق جميع العناصر الأخرى */
         }
    
-.loading-text {
+.prayer-message {
   font-size: 24px;
   color: white;
   display: block;
@@ -209,8 +209,8 @@
 <body>
     <!-- شاشة التحميل -->
   <!-- شاشة التحميل -->
-<div class="loading-container">
-    <div class="loading-text">صلي على النبي <i class="fa fa-spinner fa-spin"></i></div>
+<div class="loader-container" id="loader-container">
+    <div class="prayer-message">صلي على النبي</div>
 </div>
     <div class="table" style="display: none;"> <!-- أضفت خاصية العرض: none لإخفاء المحتوى الأصلي -->
 
@@ -297,7 +297,7 @@ function toggleVideo() {
             document.querySelector('.loading-container').style.display = 'none';
             // إظهار المحتوى الأصلي
             document.querySelector('.table').style.display = 'block';
-        }, 2000); // زمن التأخير بالميلي ثانية (هنا 2000 ميلي ثانية تعادل 2 ثانية)
+        }, 1000); // زمن التأخير بالميلي ثانية (هنا 2000 ميلي ثانية تعادل 2 ثانية)
     </script>
 
 </script>
