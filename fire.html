@@ -19,6 +19,8 @@
     </style>
 </head>
 <body>
+<button id="clearValuesButton">مسح القيم</button>
+
 <div class="table">
     <!-- حقول الإدخال لأسماء اللاعبين -->
     <div><input class="text" id="row1_col1" placeholder="Name" style="background-color: #65001A;"></div>
@@ -223,8 +225,7 @@ numberInputs.forEach(input => {
 });
 
 calculateSums(); // حساب أولي
-const clearValuesButton = document.getElementById('clearValuesButton');
-clearValuesButton.addEventListener('click', clearValues);
+
 function clearValues() {
     const inputFields = document.querySelectorAll('input[type="number"]');
     inputFields.forEach(input => {
@@ -234,10 +235,10 @@ function clearValues() {
     calculateSums(); // أعد حساب المجموع بعد حذف القيم
 }
 
-
+const clearValuesButton = document.getElementById('clearValuesButton');
+clearValuesButton.addEventListener('click', clearValues);
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
-<button id="clearValuesButton">مسح القيم</button>
 
 </body>
 </html>
