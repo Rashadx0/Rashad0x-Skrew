@@ -1,102 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- علامات ميتا لتعيين تعيينات اللغة والعرض -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <!-- رابط لصورة الرمز المميز -->
     <link rel="icon" href="images/skrre.jpg">
-    <title>Skrew || 8-Players</title>
+    <!-- عنوان الصفحة -->
+    <title>Skrew || 2-Players</title>
+    <!-- تنسيق CSS داخلي -->
     <style>
+
+        /* استيراد الخطوط من Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
+        /* إعادة تعيين الأنماط الافتراضية */
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        /* تنسيق الجسم */
+ 
+        /* تخطيط الجدول */
         .table{
-            grid-template-columns: repeat(8, 1fr);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(7, 1fr);
+            gap: 10px;
+            height: 100%;
+            padding: 20px;
+        }
+        /* تنسيق حقول الإدخال */
+        .table input{
+            outline: none;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: capitalize;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: 0.5s ease;
+            color: #fff;
+            border-radius: 10px 10px 0 0 ;
+            background: transparent;
+        }
+        /* تنسيق حقول الإدخال عند المرور عليها بالفأرة */
+        .table input:hover{
+            border-bottom: 1px solid #4F709C;
+        }
+        /* تنسيق الخلفية للخلية عند التحريك فوقها */
+        .table div{
+            position: relative;
+            transition: 0.5s ease;
+            border-radius: 10px 10px 0 0 ;
+        }
+        /* تنسيق الخلفية للخلية عند التحريك فوقها */
+        .table div:hover::after {
+            background: #4F709C;
+        }
+        /* تنسيق العنصر ::after للخلية */
+        .table div::after{
+            position: absolute;
+            content: "";
+            background:rgba(255,255,255,0.3);
+            width: 80%;
+            height: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 4px;
+        }
+/* إخفاء الأسهم الصغيرة في حقول الإدخال من النوع number */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+        /* تنسيق حقول الإدخال من النوع number */
+        input[type="number"]{
+            background: transparent;
+        }
+        /* تنسيق النص الافتراضي في حقول الإدخال */
+        input[type="number"]::placeholder{
+            color: rgba(255,255,255,0.1);
+        }
+
+        /* تنسيق حقول الإدخال من النوع text */
+        .text{
+            background: transparent;
+
+        }
+        /* تنسيق النص الافتراضي في حقول الإدخال من النوع text */
+        .text::placeholder{
+            color: #999;
+        }
+
+        /* تنسيق عناصر العرض للنتيجة والترتيب */
+        #score1,
+        #score2,
+        #score3,
+        #score4,
+        #score5,
+        #score6,
+        #score7,
+        #score8,
+        #rank1,
+        #rank2,
+        #rank3,
+        #rank4,
+        #rank5,
+        #rank6,
+        #rank7,
+        #rank8
+             {
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    /* background: url(images/crown.png); */
+    background-repeat: no-repeat;
+    background-position: 95% 5px;
+
+        }
+        /* تنسيق الصفحة عندما يكون عرض الشاشة أقل من 768 بكسل */
+        @media (max-width: 768px) {
+            body{
+                padding: 5px;
+            }
+            .table{
+                padding: 10px;
+            }
+            #special{
+                font-size: 16px;
+                padding: 4px;
+            }
+            .table input{
+                font-size: 15px;
+            }
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap');
+
+        /* Basic CSS for styling the table */
+        /* Basic CSS for styling the table */
+body {
+background-color: #6E54A3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+}
+
+
+    
+        /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
+        .table{
+            grid-template-columns: repeat(2, 1fr);
         }
     </style>
 </head>
 <body>
-    <div class="table">
+<div class="table">
+    <!-- حقول الإدخال لأسماء اللاعبين -->
+    <div><input class="text" id="row1_col1" placeholder="Name" style="background-color: #65001A;"></div>
+    <div><input class="text" id="row1_col2" placeholder="Name" style="background-color: #65001A;"></div>
 
+    <!-- حقول الإدخال للنقاط -->
+    <div><input type="number" id="row2_col1" placeholder="R1"></div>
+    <div><input type="number" id="row2_col2" placeholder="R1"></div>
 
-        <div><input class="text" id="row1_col1" class="mmr" placeholder="Name" style="background-color: #65001A;"></div>
-        <div><input class="text" id="row1_col2" placeholder="Name" style="background-color: #65001A;"></div>
-        <div><input class="text" id="row1_col3" placeholder="Name" style="background-color: #65001A;"></div>
-        <div><input class="text" id="row1_col4" placeholder="Name" style="background-color: #65001A;"></div>
-        <div><input class="text" id="row1_col5" placeholder="Name" style="background-color: #65001A;"></div>
-        <div><input class="text" id="row1_col6" placeholder="Name" style="background-color: #65001A;"></div>
-        <div><input class="text" id="row1_col7" placeholder="Name" style="background-color: #65001A;"></div>
-        <div><input class="text" id="row1_col8" placeholder="Name" style="background-color: #65001A;"></div>
+    <div><input type="number" id="row3_col1" placeholder="R2"></div>
+    <div><input type="number" id="row3_col2" placeholder="R2"></div>
 
+    <div><input type="number" id="row4_col1" placeholder="R3"></div>
+    <div><input type="number" id="row4_col2" placeholder="R3"></div>
 
+    <div><input type="number" id="row5_col1" placeholder="R4"></div>
+    <div><input type="number" id="row5_col2" placeholder="R4"></div>
 
-        <div><input type="number" id="row2_col1" placeholder="R1"></div>
-        <div><input type="number" id="row2_col2" placeholder="R1"></div>
-        <div><input type="number" id="row2_col3" placeholder="R1"></div>
-        <div><input type="number" id="row2_col4" placeholder="R1"></div>
-        <div><input type="number" id="row2_col5" placeholder="R1"></div>
-        <div><input type="number" id="row2_col6" placeholder="R1"></div>
-        <div><input type="number" id="row2_col7" placeholder="R1"></div>
-        <div><input type="number" id="row2_col8" placeholder="R1"></div>
+    <div><input type="number" id="row6_col1" placeholder="R5"></div>
+    <div><input type="number" id="row6_col2" placeholder="R5"></div>
 
+    <!-- عرض نتيجة النقاط -->
+    <div id="score1" class="mnr"></div>
+    <div id="score2"></div>
 
-
-        <div><input type="number" id="row3_col1" placeholder="R2"></div>
-        <div><input type="number" id="row3_col2" placeholder="R2"></div>
-        <div><input type="number" id="row3_col3" placeholder="R2"></div>
-        <div><input type="number" id="row3_col4" placeholder="R2"></div>
-        <div><input type="number" id="row3_col5" placeholder="R2"></div>
-        <div><input type="number" id="row3_col6" placeholder="R2"></div>
-        <div><input type="number" id="row3_col7" placeholder="R2"></div>
-        <div><input type="number" id="row3_col8" placeholder="R2"></div>
-
-
-        <div><input type="number" id="row4_col1" placeholder="R3"></div>
-        <div><input type="number" id="row4_col2" placeholder="R3"></div>
-        <div><input type="number" id="row4_col3" placeholder="R3"></div>
-        <div><input type="number" id="row4_col4" placeholder="R3"></div>
-        <div><input type="number" id="row4_col5" placeholder="R3"></div>
-        <div><input type="number" id="row4_col6" placeholder="R3"></div>
-        <div><input type="number" id="row4_col7" placeholder="R3"></div>
-        <div><input type="number" id="row4_col8" placeholder="R3"></div>
-
-
-        <div><input type="number" id="row5_col1" placeholder="R4"></div>
-        <div><input type="number" id="row5_col2" placeholder="R4"></div>
-        <div><input type="number" id="row5_col3" placeholder="R4"></div>
-        <div><input type="number" id="row5_col4" placeholder="R4"></div>
-        <div><input type="number" id="row5_col5" placeholder="R4"></div>
-        <div><input type="number" id="row5_col6" placeholder="R4"></div>
-        <div><input type="number" id="row5_col7" placeholder="R4"></div>
-        <div><input type="number" id="row5_col8" placeholder="R4"></div>
-
-
-        <div><input type="number" id="row6_col1" placeholder="R5"></div>
-        <div><input type="number" id="row6_col2" placeholder="R5"></div>
-        <div><input type="number" id="row6_col3" placeholder="R5"></div>
-        <div><input type="number" id="row6_col4" placeholder="R5"></div>
-        <div><input type="number" id="row6_col5" placeholder="R5"></div>
-        <div><input type="number" id="row6_col6" placeholder="R5"></div>
-        <div><input type="number" id="row6_col7" placeholder="R5"></div>
-        <div><input type="number" id="row6_col8" placeholder="R5"></div>
-
-
-        <div id="score1" class="mnr"></div>
-        <div id="score2"></div>
-        <div id="score3"></div>
-        <div id="score4"></div>
-        <div id="score5"></div>
-        <div id="score6"></div>
-        <div id="score7"></div>
-        <div id="score8"></div>
+<!-- عرض الترتيب -->
 <div id="rank1" class="mnr">1</div>
 <div id="rank2">1</div>
-<div id="rank3">1</div>
-<div id="rank4">1</div>
-<div id="rank5">1</div>
-<div id="rank6">1</div>
-<div id="rank7">1</div>
-<div id="rank8">1</div>
-
-    </div>
-    <script>
+</div>
+<!-- جافا سكريبت -->
+<script>
 // تعطيل النقر بالزر الأيمن
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
@@ -109,77 +209,47 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 });
-    function calculateSums() {
+// دالة لحساب المجموعات
+function calculateSums() {
+    // قائمة بمعرفات حقول الإدخال للأعمدة
     const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
     const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
-    const column3IDs = ['row6_col3', 'row5_col3', 'row4_col3', 'row3_col3', 'row2_col3'];
-    const column4IDs = ['row6_col4', 'row5_col4', 'row4_col4', 'row3_col4', 'row2_col4'];
-    const column5IDs = ['row6_col5', 'row5_col5', 'row4_col5', 'row3_col5', 'row2_col5'];
-    const column6IDs = ['row6_col6', 'row5_col6', 'row4_col6', 'row3_col6', 'row2_col6'];
-    const column7IDs = ['row6_col7', 'row5_col7', 'row4_col7', 'row3_col7', 'row2_col7'];
-    const column8IDs = ['row6_col8', 'row5_col8', 'row4_col8', 'row3_col8', 'row2_col8'];
+
+    // متغيرات لحساب المجموع
     let sum1 = 0;
     let sum2 = 0;
-    let sum3 = 0;
-    let sum4 = 0;
-    let sum5 = 0;
-    let sum6 = 0;
-    let sum7 = 0;
-    let sum8 = 0;
+
+    // حلقة لحساب المجموع
     for (let i = 0; i < column1IDs.length; i++) {
         const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
         const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
-        const value3 = parseFloat(document.getElementById(column3IDs[i]).value) || 0;
-        const value4 = parseFloat(document.getElementById(column4IDs[i]).value) || 0;
-        const value5 = parseFloat(document.getElementById(column5IDs[i]).value) || 0;
-        const value6 = parseFloat(document.getElementById(column6IDs[i]).value) || 0;
-        const value7 = parseFloat(document.getElementById(column7IDs[i]).value) || 0;
-        const value8 = parseFloat(document.getElementById(column8IDs[i]).value) || 0;
-
 
         sum1 += value1;
         sum2 += value2;
-        sum3 += value3;
-        sum4 += value4;                               
-        sum5 += value5;                               
-        sum6 += value6;                               
-        sum7 += value7;                               
-        sum8 += value8;                               
     }
 
+    // عرض المجموع
     document.getElementById('score1').textContent = sum1;
     document.getElementById('score2').textContent = sum2;
-    document.getElementById('score3').textContent = sum3;
-    document.getElementById('score4').textContent = sum4;
-    document.getElementById('score5').textContent = sum5;
-    document.getElementById('score6').textContent = sum6;
-    document.getElementById('score7').textContent = sum7;
-    document.getElementById('score8').textContent = sum8;
 
+    // فحص وتلوين نتيجة المجموع
     checkAndColorScore3();
 
+    // استخلاص قيمة المجموع
     const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
     const mmrInput = document.querySelector('.mmr');
     const mnrInput = document.querySelector('.mnr');
     const score1 = parseFloat(document.getElementById('score1').textContent);
     const score2 = parseFloat(document.getElementById('score2').textContent);
-    const score3 = parseFloat(document.getElementById('score3').textContent);
-    const score4 = parseFloat(document.getElementById('score4').textContent);
-    const score5 = parseFloat(document.getElementById('score5').textContent);
-    const score6 = parseFloat(document.getElementById('score6').textContent);
-    const score7 = parseFloat(document.getElementById('score7').textContent);
-    const score8 = parseFloat(document.getElementById('score8').textContent);
+
+
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
-    const thScore3 = document.querySelector('#score3');
-    const thScore4 = document.querySelector('#score4');
-    const thScore5 = document.querySelector('#score5');
-    const thScore6 = document.querySelector('#score6');
-    const thScore7 = document.querySelector('#score7');
-    const thScore8 = document.querySelector('#score8');
-//////////////////////////////////////////////////
-const ranks = [rank1, rank2, rank3, rank4, rank5, rank6, rank7, rank8];
-const scores = [score1, score2, score3, score4, score5, score6, score7, score8];
+
+
+
+const ranks = [rank1, rank2];
+const scores = [score1, score2];
 
 // Calculate sums
 const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
@@ -204,28 +274,27 @@ for (let i = 0; i < ranks.length; i++) {
     
     rankElement.style.color = '#FFF'; // Common color setting for all conditions
 }
-///////////////////////////////////////////////////
-    }
 
+/////////////////////////////////////////////////
+
+
+
+
+
+
+}
+// دالة لفحص وتلوين المجموع الثالث
 function checkAndColorScore3() {
-    const score1 = parseFloat(document.getElementById('score1').textContent);
+   const score1 = parseFloat(document.getElementById('score1').textContent);
     const score2 = parseFloat(document.getElementById('score2').textContent);
-    const score3 = parseFloat(document.getElementById('score3').textContent);
-    const score4 = parseFloat(document.getElementById('score4').textContent);
-    const score5 = parseFloat(document.getElementById('score5').textContent);
-    const score6 = parseFloat(document.getElementById('score6').textContent);
-    const score7 = parseFloat(document.getElementById('score7').textContent);
-    const score8 = parseFloat(document.getElementById('score8').textContent);
+
+
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
-    const thScore3 = document.querySelector('#score3');
-    const thScore4 = document.querySelector('#score4');
-    const thScore5 = document.querySelector('#score5');
-    const thScore6 = document.querySelector('#score6');
-    const thScore7 = document.querySelector('#score7');
-    const thScore8 = document.querySelector('#score8');
-    const scores = [score1, score2, score3, score4, score5, score6, score7, score8];
-    const thScores = [thScore1, thScore2, thScore3, thScore4, thScore5, thScore6, thScore7, thScore8];
+
+
+    const scores = [score1, score2];
+    const thScores = [thScore1, thScore2];
 
 const minScore = Math.min(...scores);
 const minScoreIndices = scores.reduce((indices, score, index) => {
@@ -251,7 +320,7 @@ if (minScoreIndices.includes(i)) {
     thScores[i].style.color = '#FFF'
 } else {
     thScores[i].style.backgroundColor = 'orange';
-    thScores[i].style.color = "#FFF"
+    thScores[i].style.color = '#FFF'
     thScores[i].style.backgroundImage = "none";
 }
 }
@@ -262,9 +331,9 @@ const inputFields = document.querySelectorAll('input[type="number"]');
 inputFields.forEach(input => {
     input.addEventListener('input', calculateSums);
 });
-
 calculateSums();
 
+// تحديث لون خلفية الحقول عند التغيير
 const numberInputs = document.querySelectorAll('input[type="number"]');
 const textInputs = document.querySelectorAll('input[type="text"]');
 
@@ -279,44 +348,30 @@ function updateBackgroundColor(input) {
     }
 }
 
+// استماع لتحركات المستخدم وتحديث اللون
 numberInputs.forEach(input => {
     input.addEventListener('input', () => {
         input.value = input.value.replace(/[^0-9]/g, '');
         updateBackgroundColor(input);
+        calculateSums(); // حساب المجموع عند التغيير
     });
 });
 
+// استماع لتحركات المستخدم وتحديث اللون
 textInputs.forEach(input => {
     input.addEventListener('input', () => {
-        input.value = input.value.replace(/[0-9]/g, '');
+        input.value = input.value.replace(/[^a-zA-Z\s]/g, ''); // السماح بالحروف والمسافات فقط
     });
 });
 
+// تحديث لون الخلفية لكل حقل عند التحميل
 numberInputs.forEach(input => {
     updateBackgroundColor(input);
 });
- document.addEventListener('DOMContentLoaded', function() {
-            const table = document.querySelector('.table');
-            const addColumnButton = document.getElementById('addColumnButton');
 
-            addColumnButton.addEventListener('click', function() {
-                const hiddenColumns = document.querySelectorAll('.hidden');
-
-                // Check if there's a hidden column
-                if (hiddenColumns.length > 0) {
-                    // Make the first hidden column visible
-                    hiddenColumns[0].classList.remove('hidden');
-                } else {
-                    // Create a new column
-                    const column = document.createElement('div');
-                    column.innerHTML = '<input type="number" placeholder="New Column">';
-                    table.appendChild(column);
-                }
-            });
-        });
-    </script>
+calculateSums(); // حساب أولي
+</script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
-        <button id="addColumnButton">Add Column</button>
 
 </body>
 </html>
