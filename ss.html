@@ -15,7 +15,7 @@
 
     <title>Skrew</title>
     <style>
-          /* تنسيق شاشة التحميل */
+             /* تنسيق شاشة التحميل */
         .loading-container {
             position: fixed;
             top: 0;
@@ -26,19 +26,24 @@
             justify-content: center;
             align-items: center;
             z-index: 9999; /* يتأكد أن شاشة التحميل تظهر فوق جميع العناصر الأخرى */
+            background-color: rgba(255, 255, 255, 0.5); /* خلفية شفافة مع تأثير غامق */
         }
+
         .loading-content {
             text-align: center;
             color: white;
         }
-.loading-text {
-    color: white; /* تحديد اللون الأبيض */
-    font-size: 24px;
-    margin-bottom: 20px;
-    font-family: 'Cairo', sans-serif; /* استخدام خط Cairo */
-    font-weight: bold; /* نص بولد */
-}
 
+        .loading-spinner {
+            font-size: 40px; /* حجم الرمز */
+            color: #007bff; /* لون الرمز */
+            animation: spin 1s linear infinite; /* دوران الرمز بشكل متواصل */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
       
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
 
@@ -211,11 +216,13 @@
     </style>
 </head>
 <body>
-    <!-- شاشة التحميل -->
   <!-- شاشة التحميل -->
-<div class="loading-container">
-    <div class="loading-text">صلي على النبي <i class="fa fa-spinner fa-spin"></i></div>
-</div>
+    <div class="loading-container">
+        <div class="loading-content">
+            <p>صلي على النبي</p>
+            <i class="loading-spinner fas fa-spinner"></i> <!-- الرمز مع الفئة spinner -->
+        </div>
+    </div>
     <div class="table" style="display: none;"> <!-- أضفت خاصية العرض: none لإخفاء المحتوى الأصلي -->
 
     <div class="marquee">
