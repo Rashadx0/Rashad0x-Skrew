@@ -17,7 +17,6 @@
     <style>
     .loader-container {
       text-align: center;
-      display: none; /* يتم إخفاءه افتراضيًا */
     }
 
     .loader {
@@ -38,6 +37,7 @@
     .prayer-message {
       font-size: 24px;
       color: #333;
+      display: none; /* Start by hiding the message */
     }
       
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
@@ -296,12 +296,10 @@ function toggleVideo() {
 }
 
     // تأخير إخفاء شاشة التحميل
-        setTimeout(function() {
-            // إخفاء شاشة التحميل
-            document.querySelector('.loading-container').style.display = 'none';
-            // إظهار المحتوى الأصلي
-            document.querySelector('.table').style.display = 'block';
-        }, 2000); // زمن التأخير بالميلي ثانية (هنا 2000 ميلي ثانية تعادل 2 ثانية)
+     // Wait for 2 seconds before showing the content
+    setTimeout(function() {
+      document.querySelector('.prayer-message').style.display = 'block';
+    }, 2000);
     </script>
 
 </script>
