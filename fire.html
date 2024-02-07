@@ -200,6 +200,24 @@ function updateBackgroundColor(input) {
         input.parentElement.style.backgroundColor = '';
     }
 }
+/////////////
+    // استخراج قائمة بجميع حقول الإدخال التي تحتوي على الأرقام
+    const scoreInputs = document.querySelectorAll('input[type="number"]');
+
+    // تحديث اللون لكل حقل بناءً على القيم المدخلة
+    scoreInputs.forEach((input, index) => {
+        // القيم المدخلة في كل حقل
+        const value1 = parseFloat(input.value) || 0; // قيمة الحقل الحالي
+        const value2 = parseFloat(document.getElementById('row' + (index + 1) + '_col2').value) || 0; // قيمة الحقل المقابل له
+
+        // التحقق من أي من القيم أكبر وتلوين الحقل باللون المناسب
+        if (value1 > value2) {
+            input.style.backgroundColor = 'red'; // تلوين الحقل باللون الأحمر إذا كان رقمه أكبر
+        } else {
+            input.style.backgroundColor = ''; // استعادة اللون الافتراضي إذا كان الرقم في الحقل الأول أصغر
+        }
+    });
+}
 
 // استماع لتحركات المستخدم وتحديث اللون
 numberInputs.forEach(input => {
@@ -224,24 +242,6 @@ numberInputs.forEach(input => {
 
 calculateSums(); // حساب أولي
 // دالة لفحص وتلوين المجموع الثالث
-function checkAndColorScore3() {
-    // استخراج قائمة بجميع حقول الإدخال التي تحتوي على الأرقام
-    const scoreInputs = document.querySelectorAll('input[type="number"]');
-
-    // تحديث اللون لكل حقل بناءً على القيم المدخلة
-    scoreInputs.forEach((input, index) => {
-        // القيم المدخلة في كل حقل
-        const value1 = parseFloat(input.value) || 0; // قيمة الحقل الحالي
-        const value2 = parseFloat(document.getElementById('row' + (index + 1) + '_col2').value) || 0; // قيمة الحقل المقابل له
-
-        // التحقق من أي من القيم أكبر وتلوين الحقل باللون المناسب
-        if (value1 > value2) {
-            input.style.backgroundColor = 'red'; // تلوين الحقل باللون الأحمر إذا كان رقمه أكبر
-        } else {
-            input.style.backgroundColor = ''; // استعادة اللون الافتراضي إذا كان الرقم في الحقل الأول أصغر
-        }
-    });
-}
 
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
