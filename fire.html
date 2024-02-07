@@ -11,26 +11,7 @@
     <title>Skrew || 2-Players</title>
     <!-- تنسيق CSS داخلي -->
     <style>
-   /* تنسيق زر الإزالة */
-        #removeAllNumbersButton {
-            background-color: #2ECC40;
-            color: white;
-            font-family: Arial, sans-serif;
-            font-size: larger;
-            font-weight: bold;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
-            cursor: pointer;
-            float: right; /* توجيه الزر إلى اليمين */
-        }
-   /* تنسيق العنصر الذي يحتوي على النص */
-        #winnerMessage {
-            font-family: Arial, sans-serif;
-            color: white;
-            text-align: center;
-            margin-bottom: 10px;
-        }
+
         /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
         .table{
             grid-template-columns: repeat(2, 1fr);
@@ -69,23 +50,193 @@
 </div>
 <!-- جافا سكريبت -->
 <script>
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('h v(){3 1e=[\'2b\',\'T\',\'2c\',\'U\',\'#2d\',\'G\',\'.2e\',\'V\',\'2f\',\'2g\',\'2h\',\'2i\',\'2j\',\'G[1f=\\2k\\1g]\',\'2l\',\'2m\',\'2n\',\'2o\',\'1h(1i/2p.1j)\',\'w\',\'H\',\'2q\',\'2r\',\'2s\',\'2t\',\'2u\',\'G[1f=\\2v\\1g]\',\'1k\',\'1l\',\'2w\',\'#I\',\'2x\',\'2y\',\'#1m\',\'2z\',\'2A\',\'2B\',\'1n\',\'2C\',\'2D\',\'2E\',\'2F\',\'#w\',\'2G\',\'2H\',\'I\',\'2I\',\'1o\',\'2J\',\'1p\',\'J\',\'1q\',\'1h(1i/2K.1j)\',\'m\',\'2L\',\'#2M\',\'1r\',\'2N\'];v=h(){o 1e};o v()}3 4=x;(h(a,b){3 8=x,y=a();2O(!![]){2P{3 1s=-e(8(2Q))/W*(-e(8(2R))/2S)+-e(8(2T))/2U+-e(8(2V))/2W+e(8(2X))/2Y*(-e(8(2Z))/30)+-e(8(31))/32*(e(8(33))/34)+e(8(35))/36+-e(8(37))/38*(-e(8(39))/3a);p(1s===b)3b;K y[\'U\'](y[\'1t\']())}3c(3d){y[\'U\'](y[\'1t\']())}}}(v,3e),5[\'1q\'](4(3f),h(a){3 1u=4;a[1u(3g)]()}),5[4(L)](\'3h\',h(a){a[\'3i\']==3j&&a[\'1r\']()}));h z(){3 1=4,X=[1(3k),1(3l),1(3m),\'3n\',1(1v)],1w=[\'3o\',1(3p),\'3q\',1(3r),1(3s)];A Y=j,10=j;11(A B=j;B<X[\'1l\'];B++){3 1x=q(5[1(n)](X[B])[\'V\'])||j,1y=q(5[\'T\'](1w[B])[\'V\'])||j;Y+=1x,10+=1y}5[1(n)](\'w\')[1(r)]=Y,5[1(n)](1(1z))[1(r)]=10,1A();3 3t=5[1(n)](\'w\')[1(f)][\'H\'],3u=5[1(t)](\'.3v\'),3w=5[1(t)](1(3x)),1B=q(5[1(n)](1(1C))[1(r)]),1D=q(5[1(n)](1(1z))[\'J\']),3y=5[1(t)](\'#w\'),3z=5[1(t)](1(3A)),12=[3B,3C],13=[1B,1D],C=13[\'3D\']()[\'3E\']((1E,1F)=>1E-1F),1G=C[j];11(A D=j;D<12[1(14)];D++){3 k=12[D],M=13[D];p(M===1G)k[\'J\']=1(3F),k[1(f)][1(l)]=1(N);K{p(C[C[1(14)]-W]===M)k[1(r)]=1(3G),k[1(f)][\'H\']=1(1H);K{3 1I=C[1(3H)](M)+W;k[\'J\']=1I[1(3I)](),k[\'m\'][1(l)]=1(1J)}}k[\'m\'][1(O)]=1(15)}}h 1A(){3 2=4,1K=q(5[\'T\'](2(1C))[2(r)]),1L=q(5[2(n)](\'I\')[2(r)]),1M=5[2(t)](2(3J)),1N=5[2(t)](\'#I\'),u=[1K,1L],i=[1M,1N],1O=1P[2(3K)](...u),1Q=u[2(3L)]((16,1R,1S)=>{3 1T=2;p(1R===1O)16[1T(1U)](1S);o 16},[]),1V=1P[2(3M)](...u),1W=u[\'1o\']((17,1X,1Y)=>{3 1Z=2;p(1X===1V)17[1Z(1U)](1Y);o 17},[]);11(A 6=j;6<u[2(14)];6++){p(1Q[\'1k\'](6))i[6][2(f)][2(l)]=2(N),i[6][2(f)][\'1p\']=2(3N),i[6][2(f)][2(O)]=2(15);K 1W[2(3O)](6)?(i[6][2(f)][2(l)]=2(1H),i[6][\'m\'][2(20)]=2(3P),i[6][2(f)][2(O)]=2(15)):(i[6][\'m\'][2(l)]=2(1J),i[6][\'m\'][2(O)]=\'#1m\',i[6][\'m\'][2(20)]=2(3Q))}}h x(c,d){3 21=v();o x=h(a,b){a=a-1v;A 22=21[a];o 22},x(c,d)}3 23=5[4(18)](4(24));23[4(P)](25=>{3 19=4;25[19(L)](19(26),z)}),z();3 1a=5[4(18)](4(24)),27=5[4(18)](4(3R));h 1b(a){3 7=4,28=e(a[7(E)]);28===j?(a[7(f)][7(l)]=7(N),a[7(29)][7(f)][7(l)]=7(N)):(a[7(f)][\'H\']=\'\',a[7(29)][7(f)][7(l)]=\'\')}1a[4(P)](F=>{3 Q=4;F[Q(L)](Q(26),()=>{3 R=Q;F[R(E)]=F[R(E)][R(3S)](/[^0-9]/g,\'\'),1b(F),z()})}),27[4(P)](S=>{3 1c=4;S[1c(L)](\'G\',()=>{3 1d=1c;S[1d(E)]=S[1d(E)][\'1n\'](/[^a-3T-Z\\s]/g,\'\')})}),1a[4(P)](2a=>{1b(2a)}),z();',62,242,'|_0x238035|_0x9149dc|const|_0xaa039c|document|_0x573692|_0x3b7bc9|_0x5151d8||||||parseInt|0x161||function|_0x5b4b63|0x0|_0x309876|0x17a|style|0x167|return|if|parseFloat|0x15e||0x14b|_0x1faba4|_0x2047|score1|_0x256a|_0x245dca|calculateSums|let|_0x52f7c0|_0x48c7c6|_0xfc4192|0x16d|_0x918a47|input|backgroundColor|score2|textContent|else|0x15f|_0xe672fd|0x16a|0x168|0x162|_0x12c3ac|_0x30dce5|_0x1188a7|getElementById|push|value|0x1|_0x291e8b|_0xad3159||_0x2b139f|for|_0x453122|_0x4b4a65|0x182|0x14d|_0x36c682|_0x1c8474|0x166|_0x3c45e9|numberInputs|updateBackgroundColor|_0x20478f|_0x1f726b|_0x3fe331|type|x22|url|images|png|includes|length|FFF|replace|reduce|backgroundImage|addEventListener|preventDefault|_0x446d20|shift|_0x4ea734|0x149|_0x4925ee|_0x2e3c98|_0x407679|0x159|checkAndColorScore3|_0x985b59|0x179|_0x3273d8|_0x3b31df|_0x567263|_0x531df5|0x163|_0xa5b0f1|0x172|_0x249b49|_0x5ca592|_0x3f0829|_0x5a6118|_0xd3d782|Math|_0x2e835e|_0x22ec8d|_0x1004ac|_0x219099|0x169|_0x43e765|_0x21158d|_0x288ed8|_0x544ee9|_0x1e87de|0x15d|_0x20476b|_0x86fb91|inputFields|0x180|_0x94684c|0x16b|textInputs|_0x356643|0x171|_0x210029|querySelectorAll|color|2ECC40|mnr|1863570BWqCRz|842911mbhnVj|contextmenu|parentElement|orange|x22text|5MKKbmP|2834079KotaQT|none|row6_col1|cone|min|indexOf|21740PwKSqd|row2_col2|row5_col2|x22number|row2_col1|querySelector|8363988LWzlOC|16UkzbUv|2pBuVQY|LOSE|row5_col1|WIN|toString|row3_col2|max|2957524xeYpRu|7260KlHyZX|971201TtQMhB|crown|forEach|D32F2F|row4_col1|while|try|0x16f|0x14f|0x2|0x175|0x3|0x158|0x4|0x174|0x5|0x16e|0x6|0x15c|0x7|0x14e|0x8|0x14c|0x9|0x17d|0xa|0x15a|0xb|break|catch|_0x17ac48|0xe4410|0x170|0x164|keydown|keyCode|0x7b|0x177|0x152|0x165|row3_col1|row6_col2|0x17f|row4_col2|0x155|0x17e|_0x574c7d|_0x4f0789|mmr|_0x3c920c|0x16c|_0x1b55a2|_0x794965|0x14a|rank1|rank2|slice|sort|0x153|0x150|0x17c|0x154|0x156|0x17b|0x15b|0x157|0x160|0x181|0x178|0x176|0x173|0x151|zA'.split('|'),0,{}))
-    // دالة لإزالة جميع حقول الأرقام
-    function removeAllNumbers() {
-        const numberInputs = document.querySelectorAll('input[type="number"]');
-        numberInputs.forEach(input => {
-            input.value = ''; // قم بتفريغ قيمة الحقول
-        });
+// تعطيل النقر بالزر الأيمن
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+// تعطيل فتح صفحة F12
+document.addEventListener('keydown', function(e) {
+    // القيمة 123 تمثل مفتاح F12
+    if (e.keyCode == 123) {
+        e.preventDefault();
+    }
+});
+// دالة لحساب المجموعات
+function calculateSums() {
+    // قائمة بمعرفات حقول الإدخال للأعمدة
+    const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
+    const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
+
+    // متغيرات لحساب المجموع
+    let sum1 = 0;
+    let sum2 = 0;
+
+    // حلقة لحساب المجموع
+    for (let i = 0; i < column1IDs.length; i++) {
+        const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
+        const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
+
+        sum1 += value1;
+        sum2 += value2;
     }
 
-    // تعيين حدث النقر على الزر لتشغيل دالة إزالة الأرقام
-    const removeAllNumbersButton = document.getElementById('removeAllNumbersButton');
-    removeAllNumbersButton.addEventListener('click', removeAllNumbers);
+    // عرض المجموع
+    document.getElementById('score1').textContent = sum1;
+    document.getElementById('score2').textContent = sum2;
+
+    // فحص وتلوين نتيجة المجموع
+    checkAndColorScore3();
+
+    // استخلاص قيمة المجموع
+    const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
+    const mmrInput = document.querySelector('.mmr');
+    const mnrInput = document.querySelector('.mnr');
+    const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+
+
+const ranks = [rank1, rank2];
+const scores = [score1, score2];
+
+// Calculate sums
+const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
+const lowestScore = sortedScores[0];
+
+for (let i = 0; i < ranks.length; i++) {
+    const rankElement = ranks[i];
+    const score = scores[i];
+
+    if (score === lowestScore) {
+        rankElement.textContent = 'WIN';
+        rankElement.style.backgroundColor = '#2ECC40';
+    } else if (sortedScores[sortedScores.length - 1] === score) {
+        rankElement.textContent = 'LOSE';
+        rankElement.style.backgroundColor = '#D32F2F';
+    } else {
+        // Find the rank based on the sortedScores array
+        const rank = sortedScores.indexOf(score) + 1;
+        rankElement.textContent = rank.toString();
+        rankElement.style.backgroundColor = 'orange';
+    }
+    
+    rankElement.style.color = '#FFF'; // Common color setting for all conditions
+}
+
+/////////////////////////////////////////////////
+
+
+
+
+
+
+}
+// دالة لفحص وتلوين المجموع الثالث
+function checkAndColorScore3() {
+   const score1 = parseFloat(document.getElementById('score1').textContent);
+    const score2 = parseFloat(document.getElementById('score2').textContent);
+
+
+    const thScore1 = document.querySelector('#score1');
+    const thScore2 = document.querySelector('#score2');
+
+
+    const scores = [score1, score2];
+    const thScores = [thScore1, thScore2];
+
+const minScore = Math.min(...scores);
+const minScoreIndices = scores.reduce((indices, score, index) => {
+if (score === minScore) indices.push(index);
+return indices;
+}, []);
+
+const maxScore = Math.max(...scores);
+const maxScoreIndices = scores.reduce((indices, score, index) => {
+if (score === maxScore) indices.push(index);
+return indices;
+}, []);
+
+
+for (let i = 0; i < scores.length; i++) {
+if (minScoreIndices.includes(i)) {
+    thScores[i].style.backgroundColor = '#2ECC40';
+    thScores[i].style.backgroundImage = `url(images/crown.png)`;
+    thScores[i].style.color = '#FFF'
+} else if(maxScoreIndices.includes(i)){
+    thScores[i].style.backgroundColor = '#D32F2F';
+    thScores[i].style.backgroundImage = `url(images/cone.png)`;
+    thScores[i].style.color = '#FFF'
+} else {
+    thScores[i].style.backgroundColor = 'orange';
+    thScores[i].style.color = '#FFF'
+    thScores[i].style.backgroundImage = "none";
+}
+}
+}
+
+
+const inputFields = document.querySelectorAll('input[type="number"]');
+inputFields.forEach(input => {
+    input.addEventListener('input', calculateSums);
+});
+calculateSums();
+
+// تحديث لون خلفية الحقول عند التغيير
+const numberInputs = document.querySelectorAll('input[type="number"]');
+const textInputs = document.querySelectorAll('input[type="text"]');
+
+function updateBackgroundColor(input) {
+    const inputValue = parseInt(input.value);
+    if(inputValue === 0) {
+        input.style.backgroundColor = '#2ECC40';
+        input.parentElement.style.backgroundColor = '#2ECC40';
+    } else {
+        input.style.backgroundColor = '';
+        input.parentElement.style.backgroundColor = '';
+    }
+}
+
+// استماع لتحركات المستخدم وتحديث اللون
+numberInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        updateBackgroundColor(input);
+        calculateSums(); // حساب المجموع عند التغيير
+    });
+});
+
+// استماع لتحركات المستخدم وتحديث اللون
+textInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^a-zA-Z\s]/g, ''); // السماح بالحروف والمسافات فقط
+    });
+});
+
+// تحديث لون الخلفية لكل حقل عند التحميل
+numberInputs.forEach(input => {
+    updateBackgroundColor(input);
+});
+
+calculateSums(); // حساب أولي
+// إضافة إستماع للنقر على زر المسح
+document.getElementById('clearButton').addEventListener('click', function() {
+    // مسح قيم حقول الإدخال الرقمية
+    const numberInputs = document.querySelectorAll('input[type="number"]');
+    numberInputs.forEach(input => {
+        input.value = '';
+    });
+    // إعادة حساب المجموعات بعد المسح
+    calculateSums();
+});
+
 </script>
-<div id="winnerMessage">
-    <p><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
-    <!-- زر لإزالة جميع حقول الأرقام -->
-    <button id="removeAllNumbersButton">إزالة جميع الأرقام</button>
-</div>
+<p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
+<button id="clearButton" style="position: fixed; bottom: 20px; right: 20px;">مسح الحقول</button>
+
 </body>
 </html>
