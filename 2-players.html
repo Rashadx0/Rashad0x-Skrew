@@ -223,6 +223,14 @@ numberInputs.forEach(input => {
 });
 
 calculateSums(); // حساب أولي
+/////////
+    // تحديث عناوين الروابط عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            var links = document.querySelectorAll('a');
+            links.forEach(function(link) {
+                link.href = link.href.replace('.html', '');
+            });
+        });
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
 
