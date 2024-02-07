@@ -186,6 +186,11 @@
         background-color: #45a049;
     }
 .loader-container {
+  /* Existing styles... */
+  display: flex; /* Add this line */
+  justify-content: center; /* Add this line */
+  align-items: center; /* Add this line */
+}
   text-align: center;
   position: fixed; /* تغيير من absolute إلى fixed */
   top: 50%;
@@ -194,6 +199,8 @@
 }
 
 .loader {
+ margin: 0 auto; /* Add this line */
+}
   border: 8px solid #f3f3f3;
   border-top: 8px solid #3498db;
   border-radius: 50%;
