@@ -15,9 +15,14 @@
 
     <title>Skrew</title>
     <style>
-    .loader-container {
-      text-align: center;
-    }
+   .loader-container {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
     .loader {
       border: 8px solid #f3f3f3; /* Light grey */
@@ -36,8 +41,11 @@
 
     .prayer-message {
     font-size: 24px;
-    color: #333;
+    color: white; /* تحديد اللون الأبيض */
     display: block; /* أو يمكنك استخدام أي قيمة أخرى تناسب تصميمك */
+    font-family: 'Cairo', sans-serif; /* استخدام خط Cairo */
+    font-weight: bold; /* نص بولد */
+
     text-align: center; /* Center-align the text */
 }
 
