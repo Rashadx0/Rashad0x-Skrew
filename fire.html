@@ -11,7 +11,26 @@
     <title>Skrew || 2-Players</title>
     <!-- تنسيق CSS داخلي -->
     <style>
-
+   /* تنسيق زر الإزالة */
+        #removeAllNumbersButton {
+            background-color: #2ECC40;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: larger;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            float: right; /* توجيه الزر إلى اليمين */
+        }
+   /* تنسيق العنصر الذي يحتوي على النص */
+        #winnerMessage {
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+        }
         /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
         .table{
             grid-template-columns: repeat(2, 1fr);
@@ -63,8 +82,10 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
     const removeAllNumbersButton = document.getElementById('removeAllNumbersButton');
     removeAllNumbersButton.addEventListener('click', removeAllNumbers);
 </script>
-<p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
- <button id="removeAllNumbersButton">إزالة جميع الأرقام</button>
-
+<div id="winnerMessage">
+    <p><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
+    <!-- زر لإزالة جميع حقول الأرقام -->
+    <button id="removeAllNumbersButton">إزالة جميع الأرقام</button>
+</div>
 </body>
 </html>
