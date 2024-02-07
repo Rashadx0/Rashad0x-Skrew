@@ -52,26 +52,30 @@
 </div>
 <!-- جافا سكريبت -->
 <script>
- function compareAndHighlight() {
-        for (let i = 2; i <= 6; i++) {
-            const col1 = parseInt(document.getElementById(`row${i}_col1`).value);
-            const col2 = parseInt(document.getElementById(`row${i}_col2`).value);
+function compareAndHighlight() {
+    for (let i = 2; i <= 6; i++) {
+        const col1 = parseInt(document.getElementById(`row${i}_col1`).value);
+        const col2 = parseInt(document.getElementById(`row${i}_col2`).value);
 
-            if (!isNaN(col1) && !isNaN(col2)) {
-                if (col1 > col2) {
-                    document.getElementById(`row${i}_col1`).classList.add('highlight');
-                    document.getElementById(`row${i}_col2`).classList.remove('highlight');
-                } else if (col2 > col1) {
-                    document.getElementById(`row${i}_col2`).classList.add('highlight');
-                    document.getElementById(`row${i}_col1`).classList.remove('highlight');
-                } else {
-                    // If both values are equal, remove any existing highlighting
-                    document.getElementById(`row${i}_col1`).classList.remove('highlight');
-                    document.getElementById(`row${i}_col2`).classList.remove('highlight');
-                }
+        if (!isNaN(col1) && !isNaN(col2)) {
+            const element1 = document.getElementById(`row${i}_col1`);
+            const element2 = document.getElementById(`row${i}_col2`);
+
+            if (col1 > col2) {
+                element1.classList.add('highlight');
+                element2.classList.remove('highlight');
+            } else if (col2 > col1) {
+                element2.classList.add('highlight');
+                element1.classList.remove('highlight');
+            } else {
+                // If both values are equal, remove any existing highlighting
+                element1.classList.remove('highlight');
+                element2.classList.remove('highlight');
             }
         }
     }
+}
+
 
     // Call the function initially and whenever the inputs change
     document.addEventListener('DOMContentLoaded', compareAndHighlight);
