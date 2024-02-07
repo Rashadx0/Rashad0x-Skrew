@@ -217,6 +217,8 @@
         <div class="loading-text">صلي على النبي</div>
         <div class="spinner"></div>
     </div>
+    <div class="table" style="display: none;"> <!-- أضفت خاصية العرض: none لإخفاء المحتوى الأصلي -->
+
     <div class="marquee">
         <div>
             <span>Free_Palestine <img src="images/R.jpg">||</span>
@@ -262,6 +264,7 @@
 
 
     </div>
+    </div>
 
     <script>
 
@@ -293,7 +296,14 @@ function toggleVideo() {
     }
 }
 
-
+    // تأخير إخفاء شاشة التحميل
+        setTimeout(function() {
+            // إخفاء شاشة التحميل
+            document.querySelector('.loading-container').style.display = 'none';
+            // إظهار المحتوى الأصلي
+            document.querySelector('.table').style.display = 'block';
+        }, 2000); // زمن التأخير بالميلي ثانية (هنا 2000 ميلي ثانية تعادل 2 ثانية)
+    </script>
 
 </script>
   <footer>
