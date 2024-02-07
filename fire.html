@@ -223,29 +223,20 @@ numberInputs.forEach(input => {
 });
 
 calculateSums(); // حساب أولي
-// إضافة استماع للنقر على أزرار المسح
-const clearNumberButtons = document.querySelectorAll('.clearNumberFields');
-clearNumberButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        // الحصول على جميع حقول الإدخال من النوع "number"
-        const numberInputs = document.querySelectorAll('input[type="number"]');
-        // تحديد آخر حقل إدخال من النوع "number" وحذف قيمته
-        for (let i = numberInputs.length - 1; i >= 0; i--) {
-            if (numberInputs[i].value) {
-                numberInputs[i].value = '';
-                // إعادة حساب المجموعات بعد المسح
-                calculateSums();
-                break; // توقف بعد حذف أول قيمة تم العثور عليها
-            }
-        }
+function clearValues() {
+    const inputFields = document.querySelectorAll('input[type="number"]');
+    inputFields.forEach(input => {
+        input.value = ''; // قم بتفريغ قيم حقول الإدخال
+        updateBackgroundColor(input); // حدث لون الخلفية
     });
-});
-
-
+    calculateSums(); // أعد حساب المجموع بعد حذف القيم
+}
+const clearValuesButton = document.getElementById('clearValuesButton');
+clearValuesButton.addEventListener('click', clearValues);
 
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
-<button class="clearNumberFields" style="position: fixed; bottom: 20px; right: 20px;">مسح الأرقام</button>
+<button id="clearValuesButton">مسح القيم</button>
 
 </body>
 </html>
