@@ -227,16 +227,20 @@ calculateSums(); // حساب أولي
 const clearNumberButtons = document.querySelectorAll('.clearNumberFields');
 clearNumberButtons.forEach(button => {
     button.addEventListener('click', function() {
-        // تحديد الحقل الرقمي الذي يحتوي على القيمة التي يجب مسحها
-        const numberInput = this.parentElement.previousElementSibling.querySelector('input[type="number"]');
-        // مسح القيمة في الحقل الرقمي إذا كان هناك
-        if (numberInput) {
-            numberInput.value = '';
-            // إعادة حساب المجموعات بعد المسح
-            calculateSums();
+        // الحصول على جميع حقول الإدخال من النوع "number"
+        const numberInputs = document.querySelectorAll('input[type="number"]');
+        // تحديد آخر حقل إدخال من النوع "number" وحذف قيمته
+        for (let i = numberInputs.length - 1; i >= 0; i--) {
+            if (numberInputs[i].value) {
+                numberInputs[i].value = '';
+                // إعادة حساب المجموعات بعد المسح
+                calculateSums();
+                break; // توقف بعد حذف أول قيمة تم العثور عليها
+            }
         }
     });
 });
+
 
 
 </script>
