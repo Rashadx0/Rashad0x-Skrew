@@ -44,9 +44,9 @@
     <div id="score1" class="mnr"></div>
     <div id="score2"></div>
 
-    <!-- عرض الترتيب -->
-    <div id="rank1" class="mnr">1</div>
-    <div id="rank2">1</div>
+<!-- عرض الترتيب -->
+<div id="rank1" class="mnr">1</div>
+<div id="rank2">1</div>
 </div>
 <!-- جافا سكريبت -->
 <script>
@@ -62,7 +62,6 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 });
-
 // دالة لحساب المجموعات
 function calculateSums() {
     // قائمة بمعرفات حقول الإدخال للأعمدة
@@ -96,101 +95,90 @@ function calculateSums() {
     const score1 = parseFloat(document.getElementById('score1').textContent);
     const score2 = parseFloat(document.getElementById('score2').textContent);
 
+
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
 
-    const ranks = [rank1, rank2];
-    const scores = [score1, score2];
 
-    // Calculate sums
-    const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
-    const lowestScore = sortedScores[0];
 
-    for (let i = 0; i < ranks.length; i++) {
-        const rankElement = ranks[i];
-        const score = scores[i];
+const ranks = [rank1, rank2];
+const scores = [score1, score2];
 
-        if (score === lowestScore) {
-            rankElement.textContent = 'WIN';
-            rankElement.style.backgroundColor = '#2ECC40';
-        } else if (sortedScores[sortedScores.length - 1] === score) {
-            rankElement.textContent = 'LOSE';
-            rankElement.style.backgroundColor = '#D32F2F';
-        } else {
-            // Find the rank based on the sortedScores array
-            const rank = sortedScores.indexOf(score) + 1;
-            rankElement.textContent = rank.toString();
-            rankElement.style.backgroundColor = 'orange';
-        }
+// Calculate sums
+const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
+const lowestScore = sortedScores[0];
 
-        rankElement.style.color = '#FFF'; // Common color setting for all conditions
+for (let i = 0; i < ranks.length; i++) {
+    const rankElement = ranks[i];
+    const score = scores[i];
+
+    if (score === lowestScore) {
+        rankElement.textContent = 'WIN';
+        rankElement.style.backgroundColor = '#2ECC40';
+    } else if (sortedScores[sortedScores.length - 1] === score) {
+        rankElement.textContent = 'LOSE';
+        rankElement.style.backgroundColor = '#D32F2F';
+    } else {
+        // Find the rank based on the sortedScores array
+        const rank = sortedScores.indexOf(score) + 1;
+        rankElement.textContent = rank.toString();
+        rankElement.style.backgroundColor = 'orange';
     }
-
-    // Compare and color rows
-    compareAndColorRows();
+    
+    rankElement.style.color = '#FFF'; // Common color setting for all conditions
 }
 
-// دالة لمقارنة القيم في كل صف وتلوين الصف الذي يحتوي على القيمة الأكبر باللون الأحمر
-function compareAndColorRows() {
-    const rowCount = 6; // عدد الصفوف
-    const colCount = 2; // عدد الأعمدة
+/////////////////////////////////////////////////
 
-    // حلقة للانتقال عبر كل صف
-    for (let i = 1; i <= rowCount; i++) {
-        let maxRowIndex = -1; // تخزين مؤشر الصف الذي يحتوي على القيمة الأكبر
-        let maxValue = -Infinity; // تخزين القيمة الأكبر
 
-        // حلقة للانتقال عبر كل عمود في الصف
-        for (let j = 1; j <= colCount; j++) {
-            const currentValue = parseFloat(document.getElementById(`row${i}_col${j}`).value) || 0;
-            // إذا كانت القيمة الحالية أكبر من القيمة المخزنة، قم بتحديث القيمة المخزنة ومؤشر الصف
-            if (currentValue > maxValue) {
-                maxValue = currentValue;
-                maxRowIndex = i;
-            }
-        }
 
-        // قم بتلوين الصف الذي يحتوي على القيمة الأكبر باللون الأحمر
-        for (let j = 1; j <= colCount; j++) {
-            const inputElement = document.getElementById(`row${i}_col${j}`);
-            if (i === maxRowIndex) {
-                inputElement.style.backgroundColor = '#FF0000'; // اللون الأحمر
-            } else {
-                inputElement.style.backgroundColor = ''; // استعادة اللون الافتراضي
-            }
-        }
-    }
+
+
+
 }
-
 // دالة لفحص وتلوين المجموع الثالث
 function checkAndColorScore3() {
-    const score1 = parseFloat(document.getElementById('score1').textContent);
+   const score1 = parseFloat(document.getElementById('score1').textContent);
     const score2 = parseFloat(document.getElementById('score2').textContent);
+
 
     const thScore1 = document.querySelector('#score1');
     const thScore2 = document.querySelector('#score2');
+
 
     const scores = [score1, score2];
     const thScores = [thScore1, thScore2];
 
-    const maxInRows = [];
+const minScore = Math.min(...scores);
+const minScoreIndices = scores.reduce((indices, score, index) => {
+if (score === minScore) indices.push(index);
+return indices;
+}, []);
 
-    // Get maximum in each row
-    for (let i = 1; i <= 6; i++) {
-        const row1 = parseFloat(document.getElementById(`row${i}_col1`).value) || 0;
-        const row2 = parseFloat(document.getElementById(`row${i}_col2`).value) || 0;
-        maxInRows.push(Math.max(row1, row2));
-    }
+const maxScore = Math.max(...scores);
+const maxScoreIndices = scores.reduce((indices, score, index) => {
+if (score === maxScore) indices.push(index);
+return indices;
+}, []);
 
-    for (let i = 0; i < maxInRows.length; i++) {
-        if (parseFloat(document.getElementById(`row${i+1}_col1`).value) == maxInRows[i]) {
-            thScores[0].style.backgroundColor = '#FF0000'; // Red
-        }
-        if (parseFloat(document.getElementById(`row${i+1}_col2`).value) == maxInRows[i]) {
-            thScores[1].style.backgroundColor = '#FF0000'; // Red
-        }
-    }
+
+for (let i = 0; i < scores.length; i++) {
+if (minScoreIndices.includes(i)) {
+    thScores[i].style.backgroundColor = '#2ECC40';
+    thScores[i].style.backgroundImage = `url(images/crown.png)`;
+    thScores[i].style.color = '#FFF'
+} else if(maxScoreIndices.includes(i)){
+    thScores[i].style.backgroundColor = '#D32F2F';
+    thScores[i].style.backgroundImage = `url(images/cone.png)`;
+    thScores[i].style.color = '#FFF'
+} else {
+    thScores[i].style.backgroundColor = 'orange';
+    thScores[i].style.color = '#FFF'
+    thScores[i].style.backgroundImage = "none";
 }
+}
+}
+
 
 const inputFields = document.querySelectorAll('input[type="number"]');
 inputFields.forEach(input => {
@@ -235,7 +223,43 @@ numberInputs.forEach(input => {
 });
 
 calculateSums(); // حساب أولي
+function compareAndHighlight() {
+    const rowsCount = 5; // Assuming you have 5 rows
+    for (let i = 2; i <= rowsCount + 1; i++) { // Start from row 2 and end at row 6
+        const input1 = parseFloat(document.getElementById(`row${i}_col1`).value) || 0;
+        const input2 = parseFloat(document.getElementById(`row${i}_col2`).value) || 0;
+
+        const input1Element = document.getElementById(`row${i}_col1`);
+        const input2Element = document.getElementById(`row${i}_col2`);
+
+        if (input1 > input2) {
+            input1Element.style.backgroundColor = '#2ECC40'; // Green background
+            input2Element.style.backgroundColor = ''; // Reset background color
+        } else if (input1 < input2) {
+            input2Element.style.backgroundColor = '#2ECC40'; // Green background
+            input1Element.style.backgroundColor = ''; // Reset background color
+        } else {
+            // If both are equal, reset background color for both inputs
+            input1Element.style.backgroundColor = '';
+            input2Element.style.backgroundColor = '';
+        }
+    }
+}
+
+// Add event listener to inputs for dynamic comparison and highlighting
+const numberInputs = document.querySelectorAll('input[type="number"]');
+numberInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9]/g, ''); // Ensure input is numeric only
+        compareAndHighlight(); // Call the function to compare and highlight
+    });
+});
+
+// Call the function initially to perform initial comparison and highlighting
+compareAndHighlight();
+
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
+
 </body>
 </html>
