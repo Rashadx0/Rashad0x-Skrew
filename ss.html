@@ -1,4 +1,3 @@
-User
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,20 +17,15 @@ User
     <style>
           /* تنسيق شاشة التحميل */
         .loading-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+             text-align: center;
+              position: fixed; /* تغيير من absolute إلى fixed */
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+
             z-index: 9999; /* يتأكد أن شاشة التحميل تظهر فوق جميع العناصر الأخرى */
         }
-        .loading-content {
-            text-align: center;
-            color: white;
-        }
+   
 .loading-text {
   font-size: 24px;
   color: white;
