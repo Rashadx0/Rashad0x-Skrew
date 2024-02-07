@@ -261,7 +261,13 @@ function toggleVideo() {
 }
 
 
-
+    // تحديث عناوين الروابط عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            var links = document.querySelectorAll('a');
+            links.forEach(function(link) {
+                link.href = link.href.replace('.html', '');
+            });
+        });
 </script>
   <footer>
     <p>© 2024 <span>Skrew</span> جميع الحقوق محفوظة</p>
