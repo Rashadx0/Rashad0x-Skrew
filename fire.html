@@ -11,8 +11,9 @@
     <title>Skrew || 2-Players</title>
     <!-- تنسيق CSS داخلي -->
     <style>
-.red-background {
-      background-color: red;
+ .highlight {
+        background-color: red;
+    }
         /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
         .table{
             grid-template-columns: repeat(2, 1fr);
@@ -52,35 +53,31 @@
 <!-- جافا سكريبت -->
 <script>
  function compareAndHighlight() {
-    var inputs = document.querySelectorAll('input[type="number"]');
-    inputs.forEach(function(input) {
-      input.classList.remove('red-background');
-    });
+        for (let i = 2; i <= 6; i++) {
+            const col1 = parseInt(document.getElementById(`row${i}_col1`).value);
+            const col2 = parseInt(document.getElementById(`row${i}_col2`).value);
 
-    var max = Number.MIN_SAFE_INTEGER;
-    var maxInput;
-
-    inputs.forEach(function(input) {
-      var value = parseInt(input.value || 0);
-      if (value > max) {
-        max = value;
-        maxInput = input;
-      }
-    });
-
-    if (maxInput) {
-      maxInput.classList.add('red-background');
+            if (!isNaN(col1) && !isNaN(col2)) {
+                if (col1 > col2) {
+                    document.getElementById(`row${i}_col1`).classList.add('highlight');
+                    document.getElementById(`row${i}_col2`).classList.remove('highlight');
+                } else if (col2 > col1) {
+                    document.getElementById(`row${i}_col2`).classList.add('highlight');
+                    document.getElementById(`row${i}_col1`).classList.remove('highlight');
+                } else {
+                    // If both values are equal, remove any existing highlighting
+                    document.getElementById(`row${i}_col1`).classList.remove('highlight');
+                    document.getElementById(`row${i}_col2`).classList.remove('highlight');
+                }
+            }
+        }
     }
-  }
 
-  // Listen for changes in input fields
-  var inputs = document.querySelectorAll('input[type="number"]');
-  inputs.forEach(function(input) {
-    input.addEventListener('input', compareAndHighlight);
-  });
-
-  // Initially highlight based on current values
-  compareAndHighlight();
+    // Call the function initially and whenever the inputs change
+    document.addEventListener('DOMContentLoaded', compareAndHighlight);
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('input', compareAndHighlight);
+    });
 // تعطيل النقر بالزر الأيمن
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
