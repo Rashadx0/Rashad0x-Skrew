@@ -125,6 +125,41 @@ function calculateSums() {
 
         rankElement.style.color = '#FFF'; // Common color setting for all conditions
     }
+
+    // Compare and color rows
+    compareAndColorRows();
+}
+
+// دالة لمقارنة القيم في كل صف وتلوين الصف الذي يحتوي على القيمة الأكبر باللون الأحمر
+function compareAndColorRows() {
+    const rowCount = 6; // عدد الصفوف
+    const colCount = 2; // عدد الأعمدة
+
+    // حلقة للانتقال عبر كل صف
+    for (let i = 1; i <= rowCount; i++) {
+        let maxRowIndex = -1; // تخزين مؤشر الصف الذي يحتوي على القيمة الأكبر
+        let maxValue = -Infinity; // تخزين القيمة الأكبر
+
+        // حلقة للانتقال عبر كل عمود في الصف
+        for (let j = 1; j <= colCount; j++) {
+            const currentValue = parseFloat(document.getElementById(`row${i}_col${j}`).value) || 0;
+            // إذا كانت القيمة الحالية أكبر من القيمة المخزنة، قم بتحديث القيمة المخزنة ومؤشر الصف
+            if (currentValue > maxValue) {
+                maxValue = currentValue;
+                maxRowIndex = i;
+            }
+        }
+
+        // قم بتلوين الصف الذي يحتوي على القيمة الأكبر باللون الأحمر
+        for (let j = 1; j <= colCount; j++) {
+            const inputElement = document.getElementById(`row${i}_col${j}`);
+            if (i === maxRowIndex) {
+                inputElement.style.backgroundColor = '#FF0000'; // اللون الأحمر
+            } else {
+                inputElement.style.backgroundColor = ''; // استعادة اللون الافتراضي
+            }
+        }
+    }
 }
 
 // دالة لفحص وتلوين المجموع الثالث
