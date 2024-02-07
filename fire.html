@@ -16,33 +16,10 @@
         .table{
             grid-template-columns: repeat(2, 1fr);
         }
-         #clearValuesButton {
-            position: absolute;
-            bottom: 10px;
-            right: 40px;
-            padding: 10px 10px;
-            background-color: #65001A;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        #clearValuesButton:hover {
-            background-color: #8E0028;
-            transform: scale(1.05);
-        }
-
-        #clearValuesButton:active {
-            transform: scale(0.95);
-        }
+     
     </style>
 </head>
 <body>
-<button id="clearValuesButton">مسح القيم</button>
 
 <div class="table">
     <!-- حقول الإدخال لأسماء اللاعبين -->
@@ -262,6 +239,7 @@ const clearValuesButton = document.getElementById('clearValuesButton');
 clearValuesButton.addEventListener('click', clearValues);
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
+<button style="font-family: Arial, sans-serif; color: white; text-align: right; background-color: #FF0000;" id="clearValuesButton">مسح القيم</button>
 
 </body>
 </html>
