@@ -12,34 +12,34 @@
     <link rel="manifest" href="/path/to/manifest.json">
     <title>Skrew</title>
     <style>
-        /* تنسيق شاشة التحميل */
+             /* تنسيق شاشة التحميل */
         .loading-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background-color: #222;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
             z-index: 9999; /* يتأكد أن شاشة التحميل تظهر فوق جميع العناصر الأخرى */
         }
         .loading-text {
             font-size: 24px;
-            margin-bottom: 20px;
+            margin-top: 20px;
             color: white;
             font-family: Arial, sans-serif; /* خط كويس */
             font-weight: bold; /* نص بولد */
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* تأثير الظل لجاذبية أكبر */
         }
         .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid #fff;
-            border-radius: 50%;
             width: 50px;
             height: 50px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: #fff;
             animation: spin 1s linear infinite;
+            margin-bottom: 20px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
