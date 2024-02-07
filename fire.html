@@ -36,7 +36,7 @@
     <div id="score2"></div>
 
     <div id="rank1" class="mnr">1</div>
-    <div id="rank2">1</div>
+    <div id="rank2" class="mnr">1</div> <!-- تم تعديلها لتحمل الكلاس نفسه -->
 </div>
 
 <button id="clearValuesButton">مسح القيم</button> <!-- زر حذف القيم -->
@@ -110,6 +110,17 @@ function checkAndColorScore3() {
             thScores[i].style.backgroundImage = "none";
         }
     }
+
+    // حساب الرانك
+    const ranks = document.querySelectorAll('.mnr'); // اختيار جميع العناصر التي تحتوي على الكلاس mnr
+    const scores = [score1, score2];
+
+    const sortedScores = scores.slice().sort((a, b) => b - a); // ترتيب النقاط بتنازلي
+
+    ranks.forEach((rank, index) => {
+        const scoreIndex = scores.indexOf(sortedScores[index]) + 1; // العثور على مؤشر النقاط
+        rank.textContent = scoreIndex; // تحديث الرانك بالتسلسل
+    });
 }
 
 const inputFields = document.querySelectorAll('input[type="number"]');
