@@ -31,9 +31,22 @@
             align-items: center;
             justify-content: center;
         }
+        #prayer {
+            text-align: center;
+            font-size: 24px;
+            color: white;
 
+        }
+
+        #loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 /* أضف محددات للوسائط لتغيير التصميم على الأجهزة المحمولة */
 @media (max-width: 768px) {
+    /* تعديل تنسيق الشاشة على الهواتف المحمولة */
+       
     body {
         background-position: top center;
     }
@@ -184,6 +197,14 @@
     </style>
 </head>
 <body>
+    <div id="loader">
+        <!-- جملة "صلي على النبي" -->
+        <div id="prayer">
+            <h2>صلي على النبي</h2>
+            <hr style="width: 50%; border-color: white;">
+        </div>
+    </div>
+<div class="table" style="display: none;">
     <div class="marquee">
         <div>
             <span>Free_Palestine <img src="images/R.jpg">||</span>
@@ -227,11 +248,17 @@
     </video>
 </div>
 
+</div>
 
-    </div>
-
+    
     <script>
-
+    document.addEventListener("DOMContentLoaded", function() {
+        // قم بإخفاء شاشة التحميل بعد مرور ثانية واحدة فقط
+        setTimeout(function() {
+            document.getElementById("loader").style.display = "none";
+            document.querySelector(".table").style.display = "block";
+        }, 2000); // ثانية واحدة
+    });
 // تعطيل النقر بالزر الأيمن
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
@@ -268,10 +295,12 @@ function toggleVideo() {
                 link.href = link.href.replace('.html', '');
             });
         });
+
 </script>
   <footer>
     <p>© 2024 <span>Skrew</span> جميع الحقوق محفوظة</p>
   </footer>
+    </div>
 
 </body>
 </html>
