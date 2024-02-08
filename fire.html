@@ -11,10 +11,22 @@
     <title>Skrew || 2-Players</title>
     <!-- تنسيق CSS داخلي -->
     <style>
+    /* تنسيق الزر */
     button {
         position: fixed;
-        bottom: 20px; /* يمكنك تعديل هذه القيمة حسب الاحتياجات */
-        right: 20px; /* تحديد موقع الزر على اليمين */
+        bottom: 20px;
+        right: 50px;
+        background-color: #D32F2F; /* لون خلفية الزر */
+        color: white; /* لون النص */
+        padding: 10px 20px; /* حجم الحشو للزر */
+        border: none; /* إزالة حدود الزر */
+        border-radius: 5px; /* تدوير الزوايا */
+        cursor: pointer; /* تغيير المؤشر إلى علامة للتحكم */
+    }
+
+    /* تنسيق الزر عندما يتم تحريك المؤشر فوقه */
+    button:hover {
+        background-color: #B71C1C; /* تغيير لون خلفية الزر عند التحويل */
     }
         /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
         .table{
