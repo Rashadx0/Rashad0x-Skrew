@@ -30,15 +30,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column; /* تغيير اتجاه العرض للعمود */
         }
 
-/* أضف محددات للوسائط لتغيير التصميم على الأجهزة المحمولة */
-@media (max-width: 768px) {
-    body {
-        background-position: top center;
-    }
-}
-      footer {
+        footer {
             padding: 20px;
             text-align: center;
             position: fixed;
@@ -57,6 +52,7 @@
             font-weight: bold;
             color: #45A049;
         }
+
         .container {
             background-color: #fff;
             display: flex;
@@ -69,7 +65,7 @@
             position: relative;
             z-index: 2;
             max-width: 300px;
-            margin: 0 auto;
+            margin: 20px auto;
         }
 
         .container:hover {
@@ -77,46 +73,44 @@
         }
 
         .numbers {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    background-color: #252525;
-    padding: 20px;
-    border-radius: 20px;
-    max-width: 300px;
-    margin: 20px auto;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background-color: #252525;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 300px;
+            margin: 20px auto;
+        }
 
-.number {
-    color: #fff;
-    text-decoration: none;
-    background: rgba(0,0,0,0.5);
-    padding: 10px 20px;
-    transition: 0.5s ease;
-    font-size: 17px;
-    border-radius: 10px; /* تغيير الشكل إلى مربع عن طريق زيادة قيمة الحدود */
-    border: 1px solid #fff;
-    width: 50px; /* تحديد عرض وارتفاع متساويين للمربع */
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .number {
+            color: #fff;
+            text-decoration: none;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            transition: 0.5s ease;
+            font-size: 17px;
+            border-radius: 10px;
+            border: 1px solid #fff;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.number:hover {
-    background: rgba(0,0,0,0.2);
-    transform: scale(1.1);
-}
+        .number:hover {
+            background: rgba(0,0,0,0.2);
+            transform: scale(1.1);
+        }
 
- .marquee {
-            position: absolute;
+        .marquee {
+            position: relative; /* تغيير الموضع إلى نسبي */
             display: flex;
             align-items: center;
             gap: 20px;
-            top: 0;
-            left: 0;
             width: 100%;
             background-color: rgba(255, 255, 255, 0);
             color: #fff;
@@ -132,14 +126,14 @@
             animation: move 15s infinite linear;
         }
 
-       @keyframes move {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    } 
-}
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            } 
+        }
 
         .marquee span {
             display: flex;
@@ -151,41 +145,42 @@
             width: 30px;
             margin-right: 20px;
         }
-#video-container {
-    display: none;
-    text-align: center; /* محاذاة الفيديو في وسط العرض */
-    margin-top: 20px; /* تباعد بادئ من الأعلى لتجنب الاندماج مع العناصر السابقة */
-}
 
-#video-container video {
-    max-width: 60%; /* تقليل عرض الفيديو إلى 80٪ من العرض الأصلي */
-    max-height: 60vh; /* تقليل ارتفاع الفيديو لتجنب تجاوز مساحة العرض */
-}
+        #video-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
 
-#toggle-video-btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-    display: block; /* تحويل الزر إلى عنصر كتلة لجعله يظهر في المنتصف */
-    margin: 0 auto; /* تحديد المسافات من الأعلى والأسفل، وتلقائيًا يتم وضع الزر في المنتصف */
-    font-weight: bold;
-    font-size: 18px; /* تكبير حجم الخط */}
+        #video-container video {
+            max-width: 60%;
+            max-height: 60vh;
+        }
 
-#toggle-video-btn:hover {
-    background-color: #45a049;
-}
+        #toggle-video-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            margin: 0 auto;
+        }
 
+        #toggle-video-btn:hover {
+            background-color: #45a049;
+        }
 
         #prayer {
             text-align: center;
             font-size: 24px;
-    color: white;
-
+            color: white;
+            margin-bottom: 20px; /* إضافة هامش أسفل للبراير */
         }
 
         #loader {
@@ -193,10 +188,11 @@
             flex-direction: column;
             align-items: center;
         }
+
     </style>
 </head>
 <body>
- <div id="loader">
+    <div id="loader">
         <!-- جملة "صلي على النبي" -->
         <div id="prayer">
             <h2>صلي على النبي</h2>
@@ -204,91 +200,76 @@
         </div>
     </div>
     <div id="content" style="display: none;">
-    <div class="marquee">
-        <div>
-            <span>Free_Palestine <img src="images/R.jpg">||</span>
-            <span>Free_Palestine <img src="images/R.jpg">||</span>
-            <span>Free_Palestine <img src="images/R.jpg">||</span>
-            <span>Free_Palestine <img src="images/R.jpg">||</span>            
-            <span>Free_Palestine <img src="images/R.jpg">||</span>            
-            <span>Free_Palestine <img src="images/R.jpg">||</span>
-            <span>Free_Palestine <img src="images/R.jpg">||</span>            
-            <span>Free_Palestine <img src="images/R.jpg">||</span>            
+        <div class="marquee">
+            <div>
+                <span>Free_Palestine <img src="images/R.jpg">||</span>
+                <span>Free_Palestine <img src="images/R.jpg">||</span>
+                <span>Free_Palestine <img src="images/R.jpg">||</span>
+                <span>Free_Palestine <img src="images/R.jpg">||</span>            
+                <span>Free_Palestine <img src="images/R.jpg">||</span>            
+                <span>Free_Palestine <img src="images/R.jpg">||</span>
+                <span>Free_Palestine <img src="images/R.jpg">||</span>            
+                <span>Free_Palestine <img src="images/R.jpg">||</span>            
+            </div>
+            <div>
+                <span>Free_Palestine <img src="images/R.jpg">||</span>            
+                <span>Free_Palestine <img src="images/R.jpg">||</span>            
+                <span>Free_Palestine <img src="images/R.jpg">||</span>
+                <span>Free_Palestine <img src="images/R.jpg">||</span>
+                <span>Free_Palestine <img src="images/R.jpg">||</span> 
+                <span>Free_Palestine <img src="images/R.jpg">||</span>
+                <span>Free_Palestine <img src="images/R.jpg">||</span>
+                <span>Free_Palestine <img src="images/R.jpg">||</span> 
+            </div>
         </div>
-        <div>
-            <span>Free_Palestine <img src="images/R.jpg">||</span>            
-            <span>Free_Palestine <img src="images/R.jpg">||</span>            
-            <span>Free_Palestine <img src="images/R.jpg">||</span>
-            <span>Free_Palestine <img src="images/R.jpg">||</span>
-            <span>Free_Palestine <img src="images/R.jpg">||</span> 
-            <span>Free_Palestine <img src="images/R.jpg">||</span>
-            <span>Free_Palestine <img src="images/R.jpg">||</span>
-            <span>Free_Palestine <img src="images/R.jpg">||</span> 
+        <div class="box">
+            <div class="container">
+                <h1>اختار عدد اللاعبين</h1>
+            </div>
+            <div class="numbers">
+                <a href="2-players.html" class="number">2</a>
+                <a href="3-players.html" class="number">3</a>
+                <a href="4-players.html" class="number">4</a>
+                <a href="5-players.html" class="number">5</a>
+                <a href="6-players.html" class="number">6</a>
+                <a href="7-players.html" class="number">7</a>
+                <a href="8-players.html" class="number">8</a>
+            </div>
+            <button id="toggle-video-btn" onclick="toggleVideo()">قوانين اللعبة</button>
+            <div id="video-container">
+                <video id="autoplayVideo" controls autoplay>
+                    <source src="videos/RULES.mp4" type="video/mp4">
+                    متصفحك لا يدعم عنصر الفيديو.
+                </video>
+            </div>
         </div>
-    </div>
-    <div class="box">
-        <div class="container">
-            <h1>اختار عدد اللاعبين</h1>
-        </div>
-        <div class="numbers">
-            <a href="2-players.html" class="number">2</a>
-            <a href="3-players.html" class="number">3</a>
-            <a href="4-players.html" class="number">4</a>
-            <a href="5-players.html" class="number">5</a>
-            <a href="6-players.html" class="number">6</a>
-            <a href="7-players.html" class="number">7</a>
-            <a href="8-players.html" class="number">8</a>
-        </div>
-<button id="toggle-video-btn" onclick="toggleVideo()">قوانين اللعبة</button>
-<div id="video-container">
-    <video id="autoplayVideo" controls autoplay>
-        <source src="videos/RULES.mp4" type="video/mp4">
-        متصفحك لا يدعم عنصر الفيديو.
-    </video>
-</div>
-</div>
-
-
     </div>
 
     <script>
+        var videoContainer = document.getElementById('video-container');
+        var videoShown = false;
 
-// تعطيل النقر بالزر الأيمن
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-});
+        function toggleVideo() {
+            var video = document.getElementById('autoplayVideo');
+            if (!videoShown) {
+                videoContainer.style.display = 'block';
+                video.play(); // Autoplay the video
+                videoShown = true;
+            } else {
+                videoContainer.style.display = 'none';
+                video.pause(); // Pause the video if it's shown
+                videoShown = false;
+            }
+        }
 
-// تعطيل فتح صفحة F12
-document.addEventListener('keydown', function(e) {
-    // القيمة 123 تمثل مفتاح F12
-    if (e.keyCode == 123) {
-        e.preventDefault();
-    }
-});
-var videoContainer = document.getElementById('video-container');
-var videoShown = false;
-
-function toggleVideo() {
-    var video = document.getElementById('autoplayVideo');
-    if (!videoShown) {
-        videoContainer.style.display = 'block';
-        video.play(); // Autoplay the video
-        videoShown = true;
-    } else {
-        videoContainer.style.display = 'none';
-        video.pause(); // Pause the video if it's shown
-        videoShown = false;
-    }
-}
-
-
-    // تحديث عناوين الروابط عند تحميل الصفحة
+        // تحديث عناوين الروابط عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             var links = document.querySelectorAll('a');
             links.forEach(function(link) {
                 link.href = link.href.replace('.html', '');
             });
         });
+
         // عند تحميل الصفحة، قم بإخفاء الصفحة الرئيسية وعرض شاشة التحميل
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("content").style.display = "none";
@@ -297,13 +278,14 @@ function toggleVideo() {
             // قم بإظهار الصفحة بعد مرور ثانية واحدة فقط
             setTimeout(function() {
                 document.getElementById("loader").style.display = "none";
-                document.getElementById("content").style.display = "block";
+                document.getElementById("content").style.display = "flex"; /* تغيير display إلى flex */
             }, 2000); // ثانية واحدة
         });
-</script>
-  <footer>
-    <p>© 2024 <span>Skrew</span> جميع الحقوق محفوظة</p>
-  </footer>
+    </script>
+
+    <footer>
+        <p>© 2024 <span>Skrew</span> جميع الحقوق محفوظة</p>
+    </footer>
 
 </body>
 </html>
