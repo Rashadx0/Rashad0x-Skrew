@@ -11,25 +11,7 @@
     <title>Skrew || 2-Players</title>
     <!-- تنسيق CSS داخلي -->
     <style>
-    /* تنسيق الزر */
-button {
-    font-weight: bold; /* جعل الخط بولد */
-    width: 100px; /* تحديد عرض الزر */
-    height: 40px; /* تحديد ارتفاع الزر */
-    background-color: #D32F2F; /* لون خلفية الزر */
-    color: white; /* لون النص */
-    border: none; /* إزالة حدود الزر */
-    border-radius: 5px; /* تدوير الزوايا */
-    cursor: pointer; /* تغيير المؤشر إلى علامة للتحكم */
-    bottom: 20px; /* تحديد المسافة من الأسفل */
-    right: 80px; /* تحديد المسافة من اليمين */
-}
 
-
-    /* تنسيق الزر عندما يتم تحريك المؤشر فوقه */
-    button:hover {
-        background-color: #D32F2F; /* تغيير لون خلفية الزر عند التحويل */
-    }
         /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
         .table{
             grid-template-columns: repeat(2, 1fr);
@@ -67,12 +49,11 @@ button {
 <!-- عرض الترتيب -->
 <div id="rank1" class="mnr">1</div>
 <div id="rank2">1</div>
+<button onclick="clearFields()">مسح الحقول</button>
+
 </div>
 <!-- جافا سكريبت -->
-    <button onclick="clearInputFields()">جولة جديدة</button>
-
 <script>
-
 // تعطيل النقر بالزر الأيمن
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
@@ -246,20 +227,14 @@ numberInputs.forEach(input => {
 });
 
 calculateSums(); // حساب أولي
-function clearInputFields() {
-  function clearInputFields() {
-    // حلقة لمسح قيم حقول الإدخال الرقمية
-    const numberInputFields = document.querySelectorAll('input[type="number"]');
-    numberInputFields.forEach(input => {
-        input.value = ''; // قم بتفريغ قيمة الحقول
-        updateBackgroundColor(input); // تحديث لون الخلفية بناءً على القيمة الجديدة
-    });
-
-    // إعادة حساب المجموع بعد مسح القيم
-    calculateSums();
-}
-
-
+    function clearFields() {
+        const numberInputs = document.querySelectorAll('input[type="number"]');
+        numberInputs.forEach(input => {
+            input.value = ''; // حذف قيمة الحقل
+            updateBackgroundColor(input); // تحديث لون الخلفية
+        });
+        calculateSums(); // إعادة حساب المجموعات بعد المسح
+    }
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
 
