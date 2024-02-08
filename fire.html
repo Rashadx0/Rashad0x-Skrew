@@ -12,18 +12,13 @@
     <!-- تنسيق CSS داخلي -->
     <style>
         
-              font-size: 14px; /* تصغير حجم الزر */
+        .clear-button {
+            font-size: 14px; /* تصغير حجم الزر */
             margin-left: 10px; /* تباعد بين الزر ورسالة الفائز */
         }
         /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
         .table{
             grid-template-columns: repeat(2, 1fr);
-        }
-
-        /* تحديد موقع زر مسح الحقول */
-        .clear-button-container {
-            text-align: center;
-            margin-top: 20px; /* تحديد المسافة بين النص والزر */
         }
     </style>
 </head>
@@ -58,9 +53,11 @@
 <!-- عرض الترتيب -->
 <div id="rank1" class="mnr">1</div>
 <div id="rank2">1</div>
-<div class="clear-button-container">
-    <button onclick="clearFields()">مسح الحقول</button>
+<!-- عنصر div كحاوية للزر -->
+<div style="text-align: center;">
+    <button onclick="clearFields()">جولة جديدة</button>
 </div>
+
 </div>
 <!-- جافا سكريبت -->
 <script>
@@ -143,10 +140,6 @@ for (let i = 0; i < ranks.length; i++) {
 }
 
 /////////////////////////////////////////////////
-
-
-
-
 
 
 }
