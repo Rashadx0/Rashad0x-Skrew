@@ -22,7 +22,7 @@ button {
     border-radius: 5px; /* تدوير الزوايا */
     cursor: pointer; /* تغيير المؤشر إلى علامة للتحكم */
     bottom: 20px; /* تحديد المسافة من الأسفل */
-    right: 20px; /* تحديد المسافة من اليمين */
+    right: 80px; /* تحديد المسافة من اليمين */
 }
 
 
@@ -247,15 +247,18 @@ numberInputs.forEach(input => {
 
 calculateSums(); // حساب أولي
 function clearInputFields() {
+  function clearInputFields() {
     // حلقة لمسح قيم حقول الإدخال الرقمية
     const numberInputFields = document.querySelectorAll('input[type="number"]');
     numberInputFields.forEach(input => {
         input.value = ''; // قم بتفريغ قيمة الحقول
+        updateBackgroundColor(input); // تحديث لون الخلفية بناءً على القيمة الجديدة
     });
 
     // إعادة حساب المجموع بعد مسح القيم
     calculateSums();
 }
+
 
 </script>
 <p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
