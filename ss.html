@@ -1,89 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- علامات ميتا لتعيين تعيينات اللغة والعرض -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <!-- رابط لصورة الرمز المميز -->
     <link rel="icon" href="images/skrre.jpg">
-    <!-- عنوان الصفحة -->
-    <title>Skrew || 2-Players</title>
-    <!-- تنسيق CSS داخلي -->
+    <!-- أيقونة لشاشة البداية على iOS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/skrre.jpg">
+    <!-- أيقونة للأجهزة الأخرى -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/skrre.jpg">
+    <!-- أيقونة لشاشات البداية على Android -->
+    <link rel="manifest" href="/path/to/manifest.json">
+    <title>Skrew</title>
     <style>
 
-        /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
-        .table{
-            grid-template-columns: repeat(2, 1fr);
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7),transparent), url(images/back.jpg), #140A1A; /* الصورة أولاً ثم التدرج */;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+/* أضف محددات للوسائط لتغيير التصميم على الأجهزة المحمولة */
+@media (max-width: 768px) {
+    body {
+        background-position: top center;
+    }
+}
+      footer {
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            color: #ffffff;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer span {
+            font-weight: bold;
+            color: #45A049;
+        }
+        .container {
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.5s ease;
+            position: relative;
+            z-index: 2;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .container:hover {
+            filter: brightness(0.8);
+        }
+
+        .numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #252525;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+.number {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    transition: 0.5s ease;
+    font-size: 17px;
+    border-radius: 10px; /* تغيير الشكل إلى مربع عن طريق زيادة قيمة الحدود */
+    border: 1px solid #fff;
+    width: 50px; /* تحديد عرض وارتفاع متساويين للمربع */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.number:hover {
+    background: rgba(0,0,0,0.2);
+    transform: scale(1.1);
+}
+
+ .marquee {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            color: #fff;
+            padding: 20px;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .marquee > div {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: move 15s infinite linear;
+        }
+
+       @keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    } 
+}
+
+        .marquee span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .marquee img {
+            width: 30px;
+            margin-right: 20px;
+        }
+#video-container {
+    display: none;
+    text-align: center; /* محاذاة الفيديو في وسط العرض */
+    margin-top: 20px; /* تباعد بادئ من الأعلى لتجنب الاندماج مع العناصر السابقة */
+}
+
+#video-container video {
+    max-width: 60%; /* تقليل عرض الفيديو إلى 80٪ من العرض الأصلي */
+    max-height: 60vh; /* تقليل ارتفاع الفيديو لتجنب تجاوز مساحة العرض */
+}
+
+#toggle-video-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    display: block; /* تحويل الزر إلى عنصر كتلة لجعله يظهر في المنتصف */
+    margin: 0 auto; /* تحديد المسافات من الأعلى والأسفل، وتلقائيًا يتم وضع الزر في المنتصف */
+    font-weight: bold;
+    font-size: 18px; /* تكبير حجم الخط */}
+
+#toggle-video-btn:hover {
+    background-color: #45a049;
+}
+
+
+        #prayer {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        #loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
 </head>
 <body>
-<div class="table">
-    <!-- حقول الإدخال لأسماء اللاعبين -->
-    <div><input class="text" id="row1_col1" placeholder="Name" style="background-color: #65001A;"></div>
-    <div><input class="text" id="row1_col2" placeholder="Name" style="background-color: #65001A;"></div>
-
-    <!-- حقول الإدخال للنقاط -->
-    <div><input type="number" id="row2_col1" placeholder="R1" oninput="compareValues()"></div>
-    <div><input type="number" id="row2_col2" placeholder="R1" oninput="compareValues()"></div>
-
-    <div><input type="number" id="row3_col1" placeholder="R2" oninput="compareValues()"></div>
-    <div><input type="number" id="row3_col2" placeholder="R2" oninput="compareValues()"></div>
-
-    <div><input type="number" id="row4_col1" placeholder="R3" oninput="compareValues()"></div>
-    <div><input type="number" id="row4_col2" placeholder="R3" oninput="compareValues()"></div>
-
-    <div><input type="number" id="row5_col1" placeholder="R4" oninput="compareValues()"></div>
-    <div><input type="number" id="row5_col2" placeholder="R4" oninput="compareValues()"></div>
-
-    <div><input type="number" id="row6_col1" placeholder="R5" oninput="compareValues()"></div>
-    <div><input type="number" id="row6_col2" placeholder="R5" oninput="compareValues()"></div>
-
-    <!-- عرض نتيجة النقاط -->
-    <div id="score1" class="mnr"></div>
-    <div id="score2"></div>
-
-<!-- عرض الترتيب -->
-<div id="rank1" class="mnr">1</div>
-<div id="rank2">1</div>
+ <div id="loader">
+        <!-- جملة "صلي على النبي" -->
+        <div id="prayer">
+            <h2>صلي على النبي</h2>
+            <hr style="width: 50%; border-color: white;">
+        </div>
+    </div>
+    <div id="content" style="display: none;">
+    <div class="marquee">
+        <div>
+            <span>Free_Palestine <img src="images/R.jpg">||</span>
+            <span>Free_Palestine <img src="images/R.jpg">||</span>
+            <span>Free_Palestine <img src="images/R.jpg">||</span>
+            <span>Free_Palestine <img src="images/R.jpg">||</span>            
+            <span>Free_Palestine <img src="images/R.jpg">||</span>            
+            <span>Free_Palestine <img src="images/R.jpg">||</span>
+            <span>Free_Palestine <img src="images/R.jpg">||</span>            
+            <span>Free_Palestine <img src="images/R.jpg">||</span>            
+        </div>
+        <div>
+            <span>Free_Palestine <img src="images/R.jpg">||</span>            
+            <span>Free_Palestine <img src="images/R.jpg">||</span>            
+            <span>Free_Palestine <img src="images/R.jpg">||</span>
+            <span>Free_Palestine <img src="images/R.jpg">||</span>
+            <span>Free_Palestine <img src="images/R.jpg">||</span> 
+            <span>Free_Palestine <img src="images/R.jpg">||</span>
+            <span>Free_Palestine <img src="images/R.jpg">||</span>
+            <span>Free_Palestine <img src="images/R.jpg">||</span> 
+        </div>
+    </div>
+    <div class="box">
+        <div class="container">
+            <h1>اختار عدد اللاعبين</h1>
+        </div>
+        <div class="numbers">
+            <a href="2-players.html" class="number">2</a>
+            <a href="3-players.html" class="number">3</a>
+            <a href="4-players.html" class="number">4</a>
+            <a href="5-players.html" class="number">5</a>
+            <a href="6-players.html" class="number">6</a>
+            <a href="7-players.html" class="number">7</a>
+            <a href="8-players.html" class="number">8</a>
+        </div>
+<button id="toggle-video-btn" onclick="toggleVideo()">قوانين اللعبة</button>
+<div id="video-container">
+    <video id="autoplayVideo" controls autoplay>
+        <source src="videos/RULES.mp4" type="video/mp4">
+        متصفحك لا يدعم عنصر الفيديو.
+    </video>
 </div>
-<!-- جافا سكريبت -->
-<script>
-function compareAndHighlight() {
-    const rowsCount = 5; // Assuming you have 5 rows
-    for (let i = 2; i <= rowsCount + 1; i++) { // Start from row 2 and end at row 6
-        const input1 = parseFloat(document.getElementById(`row${i}_col1`).value) || 0;
-        const input2 = parseFloat(document.getElementById(`row${i}_col2`).value) || 0;
+</div>
 
-        const input1Element = document.getElementById(`row${i}_col1`);
-        const input2Element = document.getElementById(`row${i}_col2`);
 
-        if (input1 > input2) {
-            input1Element.style.backgroundColor = '#2ECC40'; // Green background
-            input2Element.style.backgroundColor = ''; // Reset background color
-        } else if (input1 < input2) {
-            input2Element.style.backgroundColor = '#2ECC40'; // Green background
-            input1Element.style.backgroundColor = ''; // Reset background color
-        } else {
-            // If both are equal, reset background color for both inputs
-            input1Element.style.backgroundColor = '';
-            input2Element.style.backgroundColor = '';
-        }
-    }
-}
+    </div>
 
-// Add event listener to inputs for dynamic comparison and highlighting
-const numberInputs = document.querySelectorAll('input[type="number"]');
-numberInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        input.value = input.value.replace(/[^0-9]/g, ''); // Ensure input is numeric only
-        compareAndHighlight(); // Call the function to compare and highlight
-    });
-});
-
-// Call the function initially to perform initial comparison and highlighting
-compareAndHighlight();
+    <script>
 
 // تعطيل النقر بالزر الأيمن
 document.addEventListener('contextmenu', function(e) {
@@ -97,170 +263,45 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 });
-// دالة لحساب المجموعات
-function calculateSums() {
-    // قائمة بمعرفات حقول الإدخال للأعمدة
-    const column1IDs = ['row6_col1', 'row5_col1', 'row4_col1', 'row3_col1', 'row2_col1'];
-    const column2IDs = ['row6_col2', 'row5_col2', 'row4_col2', 'row3_col2', 'row2_col2'];
+var videoContainer = document.getElementById('video-container');
+var videoShown = false;
 
-    // متغيرات لحساب المجموع
-    let sum1 = 0;
-    let sum2 = 0;
-
-    // حلقة لحساب المجموع
-    for (let i = 0; i < column1IDs.length; i++) {
-        const value1 = parseFloat(document.getElementById(column1IDs[i]).value) || 0;
-        const value2 = parseFloat(document.getElementById(column2IDs[i]).value) || 0;
-
-        sum1 += value1;
-        sum2 += value2;
-    }
-
-    // عرض المجموع
-    document.getElementById('score1').textContent = sum1;
-    document.getElementById('score2').textContent = sum2;
-
-    // فحص وتلوين نتيجة المجموع
-    checkAndColorScore3();
-
-    // استخلاص قيمة المجموع
-    const score1BackgroundColor = document.getElementById('score1').style.backgroundColor;
-    const mmrInput = document.querySelector('.mmr');
-    const mnrInput = document.querySelector('.mnr');
-    const score1 = parseFloat(document.getElementById('score1').textContent);
-    const score2 = parseFloat(document.getElementById('score2').textContent);
-
-
-    const thScore1 = document.querySelector('#score1');
-    const thScore2 = document.querySelector('#score2');
-
-
-
-const ranks = [rank1, rank2];
-const scores = [score1, score2];
-
-// Calculate sums
-const sortedScores = scores.slice().sort((a, b) => a - b); // Copy the scores array and sort it
-const lowestScore = sortedScores[0];
-
-for (let i = 0; i < ranks.length; i++) {
-    const rankElement = ranks[i];
-    const score = scores[i];
-
-    if (score === lowestScore) {
-        rankElement.textContent = 'WIN';
-        rankElement.style.backgroundColor = '#2ECC40';
-    } else if (sortedScores[sortedScores.length - 1] === score) {
-        rankElement.textContent = 'LOSE';
-        rankElement.style.backgroundColor = '#D32F2F';
+function toggleVideo() {
+    var video = document.getElementById('autoplayVideo');
+    if (!videoShown) {
+        videoContainer.style.display = 'block';
+        video.play(); // Autoplay the video
+        videoShown = true;
     } else {
-        // Find the rank based on the sortedScores array
-        const rank = sortedScores.indexOf(score) + 1;
-        rankElement.textContent = rank.toString();
-        rankElement.style.backgroundColor = 'orange';
-    }
-    
-    rankElement.style.color = '#FFF'; // Common color setting for all conditions
-}
-
-/////////////////////////////////////////////////
-
-
-
-
-
-
-}
-// دالة لفحص وتلوين المجموع الثالث
-function checkAndColorScore3() {
-   const score1 = parseFloat(document.getElementById('score1').textContent);
-    const score2 = parseFloat(document.getElementById('score2').textContent);
-
-
-    const thScore1 = document.querySelector('#score1');
-    const thScore2 = document.querySelector('#score2');
-
-
-    const scores = [score1, score2];
-    const thScores = [thScore1, thScore2];
-
-const minScore = Math.min(...scores);
-const minScoreIndices = scores.reduce((indices, score, index) => {
-if (score === minScore) indices.push(index);
-return indices;
-}, []);
-
-const maxScore = Math.max(...scores);
-const maxScoreIndices = scores.reduce((indices, score, index) => {
-if (score === maxScore) indices.push(index);
-return indices;
-}, []);
-
-
-for (let i = 0; i < scores.length; i++) {
-if (minScoreIndices.includes(i)) {
-    thScores[i].style.backgroundColor = '#2ECC40';
-    thScores[i].style.backgroundImage = `url(images/crown.png)`;
-    thScores[i].style.color = '#FFF'
-} else if(maxScoreIndices.includes(i)){
-    thScores[i].style.backgroundColor = '#D32F2F';
-    thScores[i].style.backgroundImage = `url(images/cone.png)`;
-    thScores[i].style.color = '#FFF'
-} else {
-    thScores[i].style.backgroundColor = 'orange';
-    thScores[i].style.color = '#FFF'
-    thScores[i].style.backgroundImage = "none";
-}
-}
-}
-
-
-const inputFields = document.querySelectorAll('input[type="number"]');
-inputFields.forEach(input => {
-    input.addEventListener('input', calculateSums);
-});
-calculateSums();
-
-// تحديث لون خلفية الحقول عند التغيير
-const numberInputs = document.querySelectorAll('input[type="number"]');
-const textInputs = document.querySelectorAll('input[type="text"]');
-
-function updateBackgroundColor(input) {
-    const inputValue = parseInt(input.value);
-    if(inputValue === 0) {
-        input.style.backgroundColor = '#2ECC40';
-        input.parentElement.style.backgroundColor = '#2ECC40';
-    } else {
-        input.style.backgroundColor = '';
-        input.parentElement.style.backgroundColor = '';
+        videoContainer.style.display = 'none';
+        video.pause(); // Pause the video if it's shown
+        videoShown = false;
     }
 }
 
-// استماع لتحركات المستخدم وتحديث اللون
-numberInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        input.value = input.value.replace(/[^0-9]/g, '');
-        updateBackgroundColor(input);
-        calculateSums(); // حساب المجموع عند التغيير
-    });
-});
 
-// استماع لتحركات المستخدم وتحديث اللون
-textInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        input.value = input.value.replace(/[^a-zA-Z\s]/g, ''); // السماح بالحروف والمسافات فقط
-    });
-});
+    // تحديث عناوين الروابط عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            var links = document.querySelectorAll('a');
+            links.forEach(function(link) {
+                link.href = link.href.replace('.html', '');
+            });
+        });
+        // عند تحميل الصفحة، قم بإخفاء الصفحة الرئيسية وعرض شاشة التحميل
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("content").style.display = "none";
+            document.getElementById("loader").style.display = "block";
 
-// تحديث لون الخلفية لكل حقل عند التحميل
-numberInputs.forEach(input => {
-    updateBackgroundColor(input);
-});
-
-calculateSums(); // حساب أولي
-
+            // قم بإظهار الصفحة بعد مرور ثانية واحدة فقط
+            setTimeout(function() {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("content").style.display = "block";
+            }, 1000); // ثانية واحدة
+        });
 </script>
-<p style="font-family: Arial, sans-serif; color: white; text-align: center;"><b>الفائز في الجولة يُحسَب</b> <span style="color: #2ECC40; font-weight: bold; font-size: larger;">صفر</span></p>
+  <footer>
+    <p>© 2024 <span>Skrew</span> جميع الحقوق محفوظة</p>
+  </footer>
 
 </body>
 </html>
