@@ -11,13 +11,13 @@
     <title>Skrew || 2-Players</title>
     <!-- تنسيق CSS داخلي -->
     <style>
-        .table {
-        margin-bottom: 50px; /* ترك مساحة بين حقول الإدخال والزر */
-    }
-
     #clearButton {
-        float: right;
-    }
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+   
         /* تنسيق عناصر الجدول عندما يكون عرض الشاشة أقل من 768 بكسل */
         .table{
             grid-template-columns: repeat(2, 1fr);
@@ -36,6 +36,7 @@
     <!-- حقول الإدخال للنقاط -->
     <div><input type="number" id="row2_col1" placeholder="R1"></div>
     <div><input type="number" id="row2_col2" placeholder="R1"></div>
+<button id="clearButton">مسح الحقول</button>
 
     <div><input type="number" id="row3_col1" placeholder="R2"></div>
     <div><input type="number" id="row3_col2" placeholder="R2"></div>
@@ -59,6 +60,11 @@
 </div>
 <!-- جافا سكريبت -->
 <script>
+document.getElementById('clearButton').addEventListener('click', function() {
+  document.getElementById('row2_col1').value = '';
+  document.getElementById('row2_col2').value = '';
+});
+
   // Get reference to the clear button
     const clearButton = document.getElementById('clearButton');
 
