@@ -252,18 +252,15 @@
 
 </div>
 
+    
     <script>
-        // عند تحميل الصفحة، قم بإخفاء الصفحة الرئيسية وعرض شاشة التحميل
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("table").style.display = "none";
-            document.getElementById("loader").style.display = "block";
-
-            // قم بإظهار الصفحة بعد مرور ثانية واحدة فقط
-            setTimeout(function() {
-                document.getElementById("loader").style.display = "none";
-                document.getElementById("table").style.display = "block";
-            }, 2000); // ثانية واحدة
-        });
+    document.addEventListener("DOMContentLoaded", function() {
+        // قم بإخفاء شاشة التحميل بعد مرور ثانية واحدة فقط
+        setTimeout(function() {
+            document.getElementById("loader").style.display = "none";
+            document.querySelector(".table").style.display = "block";
+        }, 2000); // ثانية واحدة
+    });
 // تعطيل النقر بالزر الأيمن
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
