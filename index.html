@@ -252,6 +252,41 @@
 
     
     <script>
+function checkConnection() {
+  return navigator.onLine;
+}
+
+// Save data to local storage
+function saveData(key, value) {
+  localStorage.setItem(key, value);
+}
+
+// Load data from local storage
+function loadData(key) {
+  return localStorage.getItem(key);
+}
+
+// Check if there's stored data
+window.onload = function() {
+  if (!checkConnection()) {
+    // If there's no internet connection, load data from local storage
+    var storedData = loadData("offline_data");
+    if (storedData) {
+      // Here you can use the stored data to populate your webpage
+      document.getElementById("content").innerHTML = storedData;
+    }
+  }
+}
+
+// Save data when the page is about to unload
+window.onbeforeunload = function() {
+  if (!checkConnection()) {
+    // If there's no internet connection, save data to local storage
+    var content = document.getElementById("content").innerHTML;
+    saveData("offline_data", content);
+  }
+}
+/////////////////
     document.addEventListener("DOMContentLoaded", function() {
         // قم بإخفاء شاشة التحميل بعد مرور ثانية واحدة فقط
         setTimeout(function() {
